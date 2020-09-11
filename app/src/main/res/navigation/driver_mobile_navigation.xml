@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/driver_mobile_navigation"
+    app:startDestination="@+id/navigation_home_driver">
+    <fragment
+        android:id="@+id/navigation_home_driver"
+        android:name="com.lifecapable.vehicledriver.Driver.ui.home.DriverHomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/driver_fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard_driver"
+        android:name="com.lifecapable.vehicledriver.Driver.ui.dashboard.DriverDashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/driver_fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_notifications__driver"
+        android:name="com.lifecapable.vehicledriver.Driver.ui.notifications.DriverNotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/driver_fragment_notifications" />
+</navigation>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".owner.ui.home.OwnerHomeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/ohomeenquirycount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="26sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:text="12"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:textColor="@color/colorAccent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Enquiries"
+            android:textColor="@android:color/black"
+            android:layout_below="@id/ohomeenquirycount"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@+id/arrowupiv"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            app:tint="@color/colorAccent"
+            android:src="@drawable/ic_arrow_up"
+            android:layout_below="@id/num"
+            android:layout_centerHorizontal="true"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ohomerecycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/owner_card_home"
+            android:nestedScrollingEnabled="false"
+            android:layout_below="@id/arrowupiv"/>
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+        <TextView
+            android:id="@+id/ocardname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test name"
+            android:textColor="@android:color/black"
+            android:layout_margin="8dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"/>
+        <TextView
+            android:id="@+id/ocardaddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test address"
+            android:textColor="@android:color/black"
+            android:layout_below="@id/ocardname"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:id="@+id/ocardcontact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test contact"
+            android:textColor="@android:color/black"
+            android:layout_below="@id/ocardaddress"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:id="@+id/fo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="For: "
+            android:layout_marginStart="8dp"
+            android:textColor="@color/colorAccent"
+            android:layout_below="@id/ocardcontact"
+            android:layout_alignParentStart="true"
+            />
+        <TextView
+            android:id="@+id/ocardvehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MH31A2222"
+            android:textColor="@android:color/black"
+            android:layout_toEndOf="@id/fo"
+            android:layout_below="@id/ocardcontact"/>
+        <Button
+            android:id="@+id/ocardbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Call"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            app:drawableTint="@android:color/white"
+            android:textColor="@android:color/white"
+            android:drawableStart="@drawable/ic_call"
+            android:background="@drawable/background_accent"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/ocardcontact" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

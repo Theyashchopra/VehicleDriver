@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/owner_mobile_navigation"
+    app:startDestination="@+id/nav_home_owner">
+    <fragment
+        android:id="@+id/nav_home_owner"
+        android:name="com.lifecapable.vehicledriver.owner.ui.home.OwnerHomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/owner_fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery_owner"
+        android:name="com.lifecapable.vehicledriver.owner.ui.gallery.OwnerGalleryFragment"
+        android:label="Vehicles"
+        tools:layout="@layout/owner_fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_slideshow_owner"
+        android:name="com.lifecapable.vehicledriver.owner.ui.slideshow.OwnerSlideshowFragment"
+        android:label="Drivers"
+        tools:layout="@layout/owner_fragment_slideshow" />
+</navigation>
