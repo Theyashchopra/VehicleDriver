@@ -15,6 +15,7 @@ import com.lifecapable.vehicledriver.owner.activities.OwnerLoginActivity;
 import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity {
+    //changes made by Ram Haridas
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
