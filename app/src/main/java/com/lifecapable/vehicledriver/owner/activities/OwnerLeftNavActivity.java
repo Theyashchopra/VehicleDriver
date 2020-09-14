@@ -1,6 +1,11 @@
 package com.lifecapable.vehicledriver.owner.activities;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -14,22 +19,37 @@ import com.lifecapable.vehicledriver.R;
 public class OwnerLeftNavActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    View navHeaderView;
+    ImageView headerImage;
+    TextView headerTV1,headerTV2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_owner_left_nav);
+        setContentView(R.layout.owner_activity_left_nav);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        navHeaderView = navigationView.getHeaderView(0);
+        headerImage = navHeaderView.findViewById(R.id.himageView);
+        headerTV1 = navHeaderView.findViewById(R.id.htv1);
+        headerTV2 = navHeaderView.findViewById(R.id.htv2);
+        headerTV1.setText("Name");
+        headerTV2.setText("email");
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home_owner, R.id.nav_gallery_owner, R.id.nav_slideshow_owner)
+                R.id.nav_home_owner, R.id.nav_gallery_owner, R.id.nav_slideshow_owner, R.id.nav_profile_owner)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        navHeaderView.setOnClickListener(v -> {
+            navController.navigate(R.id.nav_profile_owner);
+            Toast.makeText(OwnerLeftNavActivity.this, "Click Click", Toast.LENGTH_SHORT).show();
+            mAppBarConfiguration.getOpenableLayout().close();closeContextMenu();
+        });
     }
 
     @Override

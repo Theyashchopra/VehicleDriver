@@ -9,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverOwnerData;
@@ -38,6 +40,12 @@ public class DriverOwnerAdapter extends RecyclerView.Adapter<DriverOwnerAdapter.
         DriverOwnerData curr = mList.get(position);
         holder.dname.setText(curr.getName());
         holder.dcontact.setText(curr.getContact());
+        holder.drelative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_nav_slideshow_owner_to_nav_ViewDriver_owner);
+            }
+        });
         holder.dcall.setOnClickListener(v -> {
             Intent phoneIntent = new Intent(Intent.ACTION_CALL);
             phoneIntent.setData(Uri.parse("tel:"+curr.getContact()));
@@ -57,11 +65,13 @@ public class DriverOwnerAdapter extends RecyclerView.Adapter<DriverOwnerAdapter.
     public static class DriverOwnerViewHolder extends RecyclerView.ViewHolder{
         TextView dname, dcontact;
         Button dcall;
+        RelativeLayout drelative;
         public DriverOwnerViewHolder(@NonNull View itemView) {
             super(itemView);
             dname = itemView.findViewById(R.id.odcardname);
             dcontact = itemView.findViewById(R.id.odcardcontact);
             dcall = itemView.findViewById(R.id.odcardcall);
+            drelative = itemView.findViewById(R.id.odcardrl);
         }
     }
 }

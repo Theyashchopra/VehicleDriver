@@ -7,9 +7,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,8 +36,18 @@ public class OwnerGalleryFragment extends Fragment {
         vehicleRecycleview = root.findViewById(R.id.ogalleryrecycle);
         vehiclecounttv = root.findViewById(R.id.ogalleryvehiclecount);
         vehicleaddbutton = root.findViewById(R.id.ogalleryaddvehicle);
+        initothers();
         initVehicleRecycle();
+        vehicleaddbutton.setOnClickListener(v -> {
+
+            NavHostFragment.findNavController(OwnerGalleryFragment.this).navigate(R.id.action_nav_gallery_owner_to_nav_AddNewVehicle_owner);
+            Toast.makeText(getContext(), "Yo", Toast.LENGTH_SHORT).show();
+        });
         return root;
+    }
+
+    private void initothers(){
+
     }
 
     public void initVehicleRecycle(){

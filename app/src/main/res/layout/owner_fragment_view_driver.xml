@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    tools:context=".owner.ui.slideshow.OwnerViewDriverFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/vdimage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_account"
+            android:layout_margin="16dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/vdn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name: "
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/vdimage"/>
+
+        <TextView
+            android:id="@+id/vdname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Name is"
+            android:textColor="@android:color/black"
+            android:layout_toEndOf="@+id/vdn"
+            android:layout_alignBottom="@+id/vdn"/>
+
+        <TextView
+            android:id="@+id/vdc1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact number: "
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/vdn"/>
+
+        <TextView
+            android:id="@+id/vdcontact1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1234567890"
+            android:textColor="@android:color/black"
+            android:layout_toEndOf="@+id/vdc1"
+            android:layout_alignBottom="@+id/vdc1"/>
+
+        <TextView
+            android:id="@+id/vdc2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alternate contact: "
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/vdc1"/>
+
+        <TextView
+            android:id="@+id/vdcontact2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0987654321"
+            android:textColor="@android:color/black"
+            android:layout_toEndOf="@+id/vdc2"
+            android:layout_alignBottom="@+id/vdc2"/>
+
+        <TextView
+            android:id="@+id/vda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aadhar number: "
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/vdc2"/>
+
+        <TextView
+            android:id="@+id/vdaadhar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123123123123"
+            android:textColor="@android:color/black"
+            android:layout_toEndOf="@+id/vda"
+            android:layout_alignBottom="@+id/vda"/>
+
+        <TextView
+            android:id="@+id/vdl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Licence: "
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/vda"/>
+
+        <TextView
+            android:id="@+id/vdlicence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click here to view licence"
+            android:textColor="@color/colorAccent"
+            android:layout_toEndOf="@+id/vdl"
+            android:layout_alignBottom="@+id/vdl"/>
+        <TextView
+            android:id="@+id/vdav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Assigned Vehicle: "
+            android:textColor="@android:color/black"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/vdl"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/vdassignedvehcard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="8dp"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="10dp"
+            android:layout_below="@id/vdav"
+            android:layout_alignParentStart="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/vdvmodelname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Honda"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="8dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"/>
+
+                <TextView
+                    android:id="@+id/vdvnumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MH 31 A 3214"
+                    android:textColor="@android:color/black"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@id/vdvmodelname"
+                    android:layout_alignParentStart="true"/>
+                <TextView
+                    android:id="@+id/vdvcategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="category"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@android:color/black"
+                    android:layout_below="@id/vdvnumber"
+                    android:layout_alignParentStart="true"/>
+                <ImageView
+                    android:id="@+id/vdvnextcat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_toEndOf="@id/vdvcategory"
+                    android:layout_alignTop="@id/vdvcategory"/>
+                <TextView
+                    android:id="@+id/vdvsubcategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subcategory"
+                    android:textColor="@android:color/black"
+                    android:layout_toEndOf="@id/vdvnextcat"
+                    android:layout_alignBottom="@id/vdvcategory"/>
+                <ImageView
+                    android:id="@+id/vdvnextcat1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_alignTop="@id/vdvnextcat"
+                    android:layout_toEndOf="@id/vdvsubcategory"/>
+                <TextView
+                    android:id="@+id/ovcardsubcategory1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="subcategory"
+                    android:textColor="@android:color/black"
+                    android:layout_toEndOf="@id/vdvnextcat1"
+                    android:layout_alignBottom="@id/vdvsubcategory"/>
+
+                <Button
+                    android:id="@+id/vdvchange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Change"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/background_accent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/vdvcategory"
+                    android:layout_toStartOf="@id/vdvview"/>
+                <Button
+                    android:id="@+id/vdvview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/background_accent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/vdvcategory"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true">
+            <Button
+                android:id="@+id/vdremove"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Remove"
+                android:layout_margin="8dp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/background_red" />
+            <Button
+                android:id="@+id/vdedit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Edit"
+                android:layout_margin="8dp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/background_accent" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

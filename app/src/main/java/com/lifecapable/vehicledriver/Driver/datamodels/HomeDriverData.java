@@ -1,8 +1,25 @@
 package com.lifecapable.vehicledriver.Driver.datamodels;
 
 public class HomeDriverData {
-    String time, address, contact;
+    String name,time, address, contact;
     float lat, lon;
+
+    public HomeDriverData(String name, String time, String address, String contact, float lat, float lon) {
+        this.name = name;
+        this.time = time;
+        this.address = address;
+        this.contact = contact;
+        this.lat = lat;
+        this.lon = lon;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getTime() {
         return time;

@@ -1,13 +1,19 @@
 package com.lifecapable.vehicledriver.Driver.adapters;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lifecapable.vehicledriver.Driver.datamodels.HomeDriverData;
@@ -34,7 +40,18 @@ public class HomeDriverAdapter extends RecyclerView.Adapter<HomeDriverAdapter.Ho
     public void onBindViewHolder(@NonNull HomeDriverViewHolder holder, int position) {
         HomeDriverData curr = mList.get(position);
         holder.directionsbt.setOnClickListener(v -> {
-
+/*            String uri = "http://maps.google.com/maps?daddr=" + curr.getLat() + "," + curr.getLon() + " (" + "Job location" + ")";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+            mContext.startActivity(intent);*/
+            Intent phoneIntent = new Intent(Intent.ACTION_CALL);
+            phoneIntent.setData(Uri.parse("tel:"+curr.getContact()));
+            if (ActivityCompat.checkSelfPermission(mContext,
+                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            mContext.startActivity(phoneIntent);
+        });
+        holder.drelative.setOnClickListener(v -> {
 
         });
         holder.time.setText(curr.getTime());
@@ -48,14 +65,17 @@ public class HomeDriverAdapter extends RecyclerView.Adapter<HomeDriverAdapter.Ho
     }
 
     static public class HomeDriverViewHolder extends RecyclerView.ViewHolder{
-        TextView time, address, contact;
+        TextView name,time, address, contact;
         Button directionsbt;
+        RelativeLayout drelative;
         public HomeDriverViewHolder(@NonNull View itemView) {
             super(itemView);
+            name = itemView.findViewById(R.id.dnamecard) ;
             time = itemView.findViewById(R.id.dtimecard);
             address = itemView.findViewById(R.id.daddresscard);
             contact = itemView.findViewById(R.id.dcontactcard);
             directionsbt = itemView.findViewById(R.id.ddirectionscard);
+            drelative = itemView.findViewById(R.id.dhcard);
         }
     }
 }

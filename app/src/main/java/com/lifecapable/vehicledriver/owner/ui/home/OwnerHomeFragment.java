@@ -34,31 +34,31 @@ public class OwnerHomeFragment extends Fragment {
         root = inflater.inflate(R.layout.owner_fragment_home, container, false);
         homeRecycle = root.findViewById(R.id.ohomerecycle);
         homeenquirycount = root.findViewById(R.id.ohomeenquirycount);
-
-        inithomeRecycle();
         inithome();
+        inithomeRecycle();
         return root;
     }
     private void inithome(){
-        homeenquirycount.setText("12");
+        homeenquirycount.setText("0");
     }
     private void inithomeRecycle(){
-        homeList = new ArrayList<HomeOwnerData>();
-        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","Yo","MH31A1234"));
-        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","Yo","MH31A1234"));
-        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","Yo","MH31A1234"));
-        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","Yo","MH31A1234"));
-        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","Yo","MH31A1234"));
-        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","Yo","MH31A1234"));
-        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","Yo","MH31A1234"));
-        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","Yo","MH31A1234"));
-        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","Yo","MH31A1234"));
-        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","Yo","MH31A1234"));
-        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","Yo","MH31A1234"));
-        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","Yo","MH31A1234"));
-        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","Yo","MH31A1234"));
+        homeList = new ArrayList<>();
+        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
+        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
+        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
+        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
+        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
+        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
+        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
+        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
+        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
+        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
+        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
+        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
+        homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
         homeadapter = new HomeOwnerAdapter(homeList,getContext(),getActivity());
         homeRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
         homeRecycle.setAdapter(homeadapter);
+        homeenquirycount.setText(homeList.size()+"");
     }
 }

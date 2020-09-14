@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".owner.ui.gallery.OwnerAddNewVehicleFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/avim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Vehicle Image"
+            android:layout_margin="8dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"/>
+        <ImageView
+            android:id="@+id/avvehicleImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="12dp"
+            android:src="@drawable/ic_account"
+            android:layout_below="@id/avim"
+            android:layout_centerHorizontal="true"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avplatenumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Plate Number"
+            android:layout_below="@id/avvehicleImage">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avmadein"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Manufactured in (Year)"
+            android:layout_below="@id/avplatenumber">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="4"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avkmscompleted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Kms Completed"
+            android:layout_below="@+id/avmadein">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avrentperhour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Rent per hour(in rupees)"
+            android:layout_below="@id/avkmscompleted">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avrentperday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Rent per Day(in rupees)"
+            android:layout_below="@id/avrentperhour">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/avcategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:layout_below="@id/avrentperday"/>
+        <Spinner
+            android:id="@+id/avsubcategoery1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:layout_below="@id/avcategory"/>
+        <Spinner
+            android:id="@+id/avsubcategoery2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:layout_below="@id/avsubcategoery1"/>
+
+        <TextView
+            android:id="@+id/avinv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add Invoice image"
+            android:layout_margin="8dp"
+            android:layout_below="@id/avsubcategoery2"/>
+        <ImageView
+            android:id="@+id/avinvoiceimage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_addphoto"
+            android:layout_marginBottom="8dp"
+            android:layout_alignTop="@id/avinv"
+            android:layout_toEndOf="@id/avinv"/>
+
+        <TextView
+            android:id="@+id/avr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add RC image"
+            android:layout_margin="8dp"
+            android:layout_below="@id/avinvoiceimage"/>
+        <ImageView
+            android:id="@+id/avrcimage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_addphoto"
+            android:layout_marginBottom="8dp"
+            android:layout_alignTop="@id/avr"
+            android:layout_toEndOf="@id/avr"/>
+
+        <TextView
+            android:id="@+id/avins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add Insurance image"
+            android:layout_margin="8dp"
+            android:layout_below="@id/avrcimage"/>
+        <ImageView
+            android:id="@+id/avinsuranceimage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_addphoto"
+            android:layout_marginBottom="8dp"
+            android:layout_alignTop="@id/avins"
+            android:layout_toEndOf="@id/avins"/>
+
+        <Button
+            android:id="@+id/avdonebt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:textColor="@android:color/white"
+            android:layout_margin="8dp"
+            android:background="@drawable/background_green"
+            android:layout_below="@+id/avinsuranceimage" />
+
+    </RelativeLayout>
+
+</ScrollView>

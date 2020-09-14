@@ -10,42 +10,81 @@
     android:layout_marginTop="4dp"
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/ovcardmodelname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Honda"
-        android:textColor="@android:color/black"
-        android:layout_margin="8dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"/>
+        <TextView
+            android:id="@+id/ovcardmodelname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Honda"
+            android:textColor="@android:color/black"
+            android:layout_margin="8dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"/>
 
-    <TextView
-        android:id="@+id/ovcardnumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MH 31 A 3214"
-        android:textColor="@android:color/black"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_below="@id/ovcardmodelname"
-        android:layout_alignParentStart="true"/>
+        <TextView
+            android:id="@+id/ovcardnumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MH 31 A 3214"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/ovcardmodelname"
+            android:layout_alignParentStart="true"/>
+        <TextView
+            android:id="@+id/ovcardcategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="category"
+            android:layout_marginStart="8dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@id/ovcardnumber"
+            android:layout_alignParentStart="true"/>
+        <ImageView
+            android:id="@+id/ovnextcat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right"
+            android:layout_toEndOf="@id/ovcardcategory"
+            android:layout_alignTop="@id/ovcardcategory"/>
+        <TextView
+            android:id="@+id/ovcardsubcategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subcategory"
+            android:textColor="@android:color/black"
+            android:layout_toEndOf="@id/ovnextcat"
+            android:layout_alignBottom="@id/ovcardcategory"/>
+        <ImageView
+            android:id="@+id/ovnextcat1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right"
+            android:layout_alignTop="@id/ovnextcat"
+            android:layout_toEndOf="@id/ovcardsubcategory"/>
+        <TextView
+            android:id="@+id/ovcardsubcategory1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="subcategory"
+            android:textColor="@android:color/black"
+            android:layout_toEndOf="@id/ovnextcat1"
+            android:layout_alignBottom="@id/ovcardsubcategory"/>
 
-    <Button
-        android:id="@+id/ovcardremove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Remove"
-        android:textColor="@android:color/white"
-        android:background="@drawable/background_accent"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_below="@id/ovcardnumber"
-        android:layout_alignParentEnd="true"/>
-
-</RelativeLayout>
+        <Button
+            android:id="@+id/ovcardview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View"
+            android:textColor="@android:color/white"
+            android:background="@drawable/background_accent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/ovcardcategory"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

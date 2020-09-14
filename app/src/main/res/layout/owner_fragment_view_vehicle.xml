@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    tools:context=".owner.ui.gallery.OwnerViewVehicleFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/vvImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_account"
+            android:layout_margin="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"/>
+
+        <TextView
+            android:id="@+id/vvpltno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plate number: "
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/vvImage"/>
+
+        <TextView
+            android:id="@+id/vvplatenumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MH31 A 1234"
+            android:textColor="@android:color/black"
+            android:layout_toEndOf="@+id/vvpltno"
+            android:layout_alignBottom="@+id/vvpltno"/>
+
+        <TextView
+            android:id="@+id/vvmnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Model number: "
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@+id/vvpltno"
+            android:layout_alignParentStart="true"/>
+        <TextView
+            android:id="@+id/vvmodelnumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A312s"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@+id/vvmnum"
+            android:layout_toEndOf="@+id/vvmnum" />
+
+        <TextView
+            android:id="@+id/vvmai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Made in "
+            android:layout_below="@+id/vvmnum"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:id="@+id/vvmadein"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1969"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vvmai"
+            android:layout_toEndOf="@id/vvmai"/>
+
+        <TextView
+            android:id="@+id/vvkmsc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kms Completed: "
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/vvmai"
+            android:layout_alignParentStart="true"/>
+        <TextView
+            android:id="@+id/vvkmscompleted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12222"
+            android:textColor="@android:color/black"
+            android:layout_toEndOf="@id/vvkmsc"
+            android:layout_alignBottom="@id/vvkmsc"/>
+        <TextView
+            android:id="@+id/vvkm1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Km"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vvkmsc"
+            android:layout_toEndOf="@+id/vvkmscompleted"/>
+
+        <TextView
+            android:id="@+id/vvrpd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rent per day: "
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/vvkmsc"
+            android:layout_alignParentStart="true"/>
+        <TextView
+            android:id="@+id/vvrs1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vvrpd"
+            android:layout_toEndOf="@id/vvrpd"/>
+        <TextView
+            android:id="@+id/vvrentperday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="80000.00"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vvrs1"
+            android:layout_toEndOf="@id/vvrs1"/>
+
+        <TextView
+            android:id="@+id/vvrph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rent per hour: "
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@+id/vvrpd"
+            android:layout_alignParentStart="true"/>
+        <TextView
+            android:id="@+id/vvrs2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs"
+            android:textColor="@android:color/black"
+            android:layout_toEndOf="@id/vvrph"
+            android:layout_alignBottom="@+id/vvrph"/>
+        <TextView
+            android:id="@+id/rentperhour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5000.00"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vvrph"
+            android:layout_toEndOf="@+id/vvrs2"/>
+
+        <TextView
+            android:id="@+id/vvinv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Invoice: "
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/vvrph"
+            android:layout_alignParentStart="true"/>
+        <TextView
+            android:id="@+id/vvviewinvoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click to view Invoice"
+            android:textColor="@color/colorAccent"
+            android:layout_alignBottom="@+id/vvinv"
+            android:layout_toEndOf="@id/vvinv"/>
+
+        <TextView
+            android:id="@+id/vvrc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rc: "
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/vvinv"
+            android:layout_alignParentStart="true"/>
+        <TextView
+            android:id="@+id/vvviewrc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click to view Rc"
+            android:textColor="@color/colorAccent"
+            android:layout_alignBottom="@+id/vvrc"
+            android:layout_toEndOf="@id/vvrc"/>
+
+        <TextView
+            android:id="@+id/vvinsure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Invoice: "
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/vvrc"
+            android:layout_alignParentStart="true"/>
+        <TextView
+            android:id="@+id/vvviewinsurance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click to view Insurance"
+            android:textColor="@color/colorAccent"
+            android:layout_alignBottom="@+id/vvinsure"
+            android:layout_toEndOf="@id/vvinsure"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+            <Button
+                android:id="@+id/vvdone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:drawablePadding="12dp"
+                android:text="Remove"
+                android:textColor="@android:color/white"
+                android:background="@drawable/background_red"/>
+            <Button
+                android:id="@+id/vvedit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:text="Edit"
+                android:textColor="@android:color/white"
+                android:background="@drawable/background_green"/>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

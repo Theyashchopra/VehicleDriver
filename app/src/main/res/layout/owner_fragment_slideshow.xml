@@ -30,7 +30,7 @@
             android:id="@+id/onum3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Number of Vehicles"
+            android:text="Number of Drivers"
             android:layout_marginBottom="12dp"
             android:textColor="@android:color/black"
             android:layout_below="@id/oslidedrivercount"
@@ -42,7 +42,7 @@
             android:drawableStart="@drawable/ic_add"
             android:padding="8dp"
             android:layout_margin="8dp"
-            android:text="Add Vehicle"
+            android:text="Add Driver"
             android:background="@drawable/background_accent"
             app:drawableTint="@android:color/white"
             android:textColor="@android:color/white"
@@ -61,10 +61,10 @@
             android:layout_centerHorizontal="true"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ogalleryrecycle"
+            android:id="@+id/odriverrecycle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/owner_card_vehicle"
+            tools:listitem="@layout/owner_card_driver"
             android:nestedScrollingEnabled="false"
             android:layout_below="@id/arrowupiv2"/>
 

@@ -11,13 +11,14 @@
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp">
     <RelativeLayout
+        android:id="@+id/odcardrl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/odcardname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Test Name "
+            android:text="Test Name123 "
             android:textColor="@android:color/black"
             android:layout_margin="8dp"
             android:layout_alignParentStart="true"

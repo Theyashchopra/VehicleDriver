@@ -14,11 +14,52 @@
         android:id="@+id/nav_gallery_owner"
         android:name="com.lifecapable.vehicledriver.owner.ui.gallery.OwnerGalleryFragment"
         android:label="Vehicles"
-        tools:layout="@layout/owner_fragment_gallery" />
+        tools:layout="@layout/owner_fragment_gallery" >
+        <action
+            android:id="@+id/action_nav_gallery_owner_to_nav_viewvehicle_owner"
+            app:destination="@id/nav_viewvehicle_owner" />
+        <action
+            android:id="@+id/action_nav_gallery_owner_to_nav_AddNewVehicle_owner"
+            app:destination="@id/nav_AddNewVehicle_owner" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_slideshow_owner"
         android:name="com.lifecapable.vehicledriver.owner.ui.slideshow.OwnerSlideshowFragment"
         android:label="Drivers"
-        tools:layout="@layout/owner_fragment_slideshow" />
+        tools:layout="@layout/owner_fragment_slideshow" >
+
+        <action
+            android:id="@+id/action_nav_slideshow_owner_to_nav_ViewDriver_owner"
+            app:destination="@id/nav_ViewDriver_owner" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_profile_owner"
+        android:name="com.lifecapable.vehicledriver.owner.ui.profile.OwnerProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/owner_fragment_profile" />
+    <fragment
+        android:id="@+id/nav_viewvehicle_owner"
+        android:name="com.lifecapable.vehicledriver.owner.ui.gallery.OwnerViewVehicleFragment"
+        android:label="Vehicle Details"
+        tools:layout="@layout/owner_fragment_view_vehicle" >
+        <action
+            android:id="@+id/action_nav_viewvehicle_owner_to_nav_EditVehicle_owner"
+            app:destination="@id/nav_EditVehicle_owner" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_ViewDriver_owner"
+        android:name="com.lifecapable.vehicledriver.owner.ui.slideshow.OwnerViewDriverFragment"
+        android:label="View Driver"
+        tools:layout="@layout/owner_fragment_view_driver" />
+    <fragment
+        android:id="@+id/nav_AddNewVehicle_owner"
+        android:name="com.lifecapable.vehicledriver.owner.ui.gallery.OwnerAddNewVehicleFragment"
+        android:label="Add vehicle"
+        tools:layout="@layout/owner_fragment_add_new_vehicle" />
+    <fragment
+        android:id="@+id/nav_EditVehicle_owner"
+        android:name="com.lifecapable.vehicledriver.owner.ui.gallery.OwnerEditVehicleFragment"
+        android:label="Edit Vehicle"
+        tools:layout="@layout/owner_fragment_edit_vehicle" />
 </navigation>

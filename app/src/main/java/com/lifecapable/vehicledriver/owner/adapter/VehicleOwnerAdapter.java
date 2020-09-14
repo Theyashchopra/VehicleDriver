@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleOwnerData;
@@ -33,11 +36,10 @@ public class VehicleOwnerAdapter extends RecyclerView.Adapter<VehicleOwnerAdapte
         VehicleOwnerData curr = mList.get(position);
         holder.vehname.setText(curr.getVehiclename());
         holder.vehnumber.setText(curr.getVehiclenumber());
-        holder.vehremove.setOnClickListener(new View.OnClickListener() {
+        holder.vehview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                Navigation.findNavController(v).navigate(R.id.action_nav_gallery_owner_to_nav_viewvehicle_owner);
             }
         });
     }
@@ -49,12 +51,12 @@ public class VehicleOwnerAdapter extends RecyclerView.Adapter<VehicleOwnerAdapte
 
     public static class VehicleOwnerViewHolder extends RecyclerView.ViewHolder{
         TextView vehname,vehnumber;
-        Button vehremove;
+        Button vehview;
         public VehicleOwnerViewHolder(@NonNull View itemView) {
             super(itemView);
             vehname = itemView.findViewById(R.id.ovcardmodelname);
             vehnumber = itemView.findViewById(R.id.ovcardnumber);
-            vehremove = itemView.findViewById(R.id.ovcardremove);
+            vehview = itemView.findViewById(R.id.ovcardview);
         }
     }
 }
