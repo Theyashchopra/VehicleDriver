@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.datamodel.HomeOwnerData;
@@ -21,12 +23,12 @@ import java.util.List;
 public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.HomeOwnerViewHolder> {
     List<HomeOwnerData> mList;
     Context mContext;
-    FragmentActivity fragmentActivity;
+    Fragment fragment;
 
-    public HomeOwnerAdapter(List<HomeOwnerData> mList, Context mContext, FragmentActivity fragmentActivity) {
+    public HomeOwnerAdapter(List<HomeOwnerData> mList, Context mContext, Fragment fragment) {
         this.mList = mList;
         this.mContext = mContext;
-        this.fragmentActivity = fragmentActivity;
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -39,7 +41,7 @@ public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.Home
     @Override
     public void onBindViewHolder(@NonNull HomeOwnerViewHolder holder, int position) {
         HomeOwnerData curr = mList.get(position);
-        holder.oaddresstv.setText(curr.getAddress());
+        //holder.oaddresstv.setText(curr.getAddress());
         holder.ocontacttv.setText(curr.getContact());
         holder.onametv.setText(curr.getName());
         holder.ovehicletv.setText(curr.getVehicle());
@@ -53,6 +55,12 @@ public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.Home
             mContext.startActivity(phoneIntent);
 
         });
+        holder.ocardrelative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(fragment).navigate(R.id.action_nav_home_owner_to_nav_ViewEnquiry_owner);
+            }
+        });
     }
 
     @Override
@@ -63,13 +71,15 @@ public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.Home
     public static class HomeOwnerViewHolder extends RecyclerView.ViewHolder{
         TextView oaddresstv,ocontacttv,onametv,ovehicletv;
         Button ocontactbt;
+        RelativeLayout ocardrelative;
         public HomeOwnerViewHolder(@NonNull View itemView) {
             super(itemView);
-            oaddresstv = itemView.findViewById(R.id.ocardaddress);
+            //oaddresstv = itemView.findViewById(R.id.ocardaddress);
             ocontacttv = itemView.findViewById(R.id.ocardcontact);
             ocontactbt = itemView.findViewById(R.id.ocardbutton);
             onametv = itemView.findViewById(R.id.ocardname);
             ovehicletv = itemView.findViewById(R.id.ocardvehicle);
+            ocardrelative = itemView.findViewById(R.id.ocardrl);
         }
     }
 }

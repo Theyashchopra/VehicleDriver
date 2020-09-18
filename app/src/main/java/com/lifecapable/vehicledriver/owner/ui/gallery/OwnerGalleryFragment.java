@@ -41,7 +41,6 @@ public class OwnerGalleryFragment extends Fragment {
         vehicleaddbutton.setOnClickListener(v -> {
 
             NavHostFragment.findNavController(OwnerGalleryFragment.this).navigate(R.id.action_nav_gallery_owner_to_nav_AddNewVehicle_owner);
-            Toast.makeText(getContext(), "Yo", Toast.LENGTH_SHORT).show();
         });
         return root;
     }

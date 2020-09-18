@@ -11,6 +11,7 @@
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp">
     <RelativeLayout
+        android:id="@+id/ocardrl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
@@ -23,7 +24,7 @@
             android:layout_margin="8dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"/>
-        <TextView
+<!--        <TextView
             android:id="@+id/ocardaddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,14 +32,14 @@
             android:textColor="@android:color/black"
             android:layout_below="@id/ocardname"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp"/>-->
         <TextView
             android:id="@+id/ocardcontact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="test contact"
             android:textColor="@android:color/black"
-            android:layout_below="@id/ocardaddress"
+            android:layout_below="@id/ocardname"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"/>
         <TextView

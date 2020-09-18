@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lifecapable.vehicledriver.R;
@@ -29,9 +30,19 @@ public class OwnerSlideshowFragment extends Fragment {
         driverRecycleview = root.findViewById(R.id.odriverrecycle);
         drivercounttv = root.findViewById(R.id.oslidedrivercount);
         driveraddbutton = root.findViewById(R.id.oslideadddriver);
+        inithome();
         initdriverRecycle();
 
         return root;
+    }
+    private void inithome(){
+        driveraddbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.action_nav_slideshow_owner_to_nav_AddDriver_owner);
+            }
+        });
     }
 
     private void initdriverRecycle() {

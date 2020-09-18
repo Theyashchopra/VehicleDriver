@@ -8,7 +8,11 @@
         android:id="@+id/nav_home_owner"
         android:name="com.lifecapable.vehicledriver.owner.ui.home.OwnerHomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/owner_fragment_home" />
+        tools:layout="@layout/owner_fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_owner_to_nav_ViewEnquiry_owner"
+            app:destination="@id/nav_ViewEnquiry_owner" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery_owner"
@@ -32,6 +36,9 @@
         <action
             android:id="@+id/action_nav_slideshow_owner_to_nav_ViewDriver_owner"
             app:destination="@id/nav_ViewDriver_owner" />
+        <action
+            android:id="@+id/action_nav_slideshow_owner_to_nav_AddDriver_owner"
+            app:destination="@id/nav_AddDriver_owner" />
     </fragment>
     <fragment
         android:id="@+id/nav_profile_owner"
@@ -62,4 +69,14 @@
         android:name="com.lifecapable.vehicledriver.owner.ui.gallery.OwnerEditVehicleFragment"
         android:label="Edit Vehicle"
         tools:layout="@layout/owner_fragment_edit_vehicle" />
+    <fragment
+        android:id="@+id/nav_AddDriver_owner"
+        android:name="com.lifecapable.vehicledriver.owner.ui.slideshow.OwnerAddDriverFragment"
+        android:label="Add Driver"
+        tools:layout="@layout/owner_fragment_add_driver" />
+    <fragment
+        android:id="@+id/nav_ViewEnquiry_owner"
+        android:name="com.lifecapable.vehicledriver.owner.ui.home.OwnerViewEnquiryFragment"
+        android:label="View enquiry"
+        tools:layout="@layout/owner_fragment_view_enquiry" />
 </navigation>

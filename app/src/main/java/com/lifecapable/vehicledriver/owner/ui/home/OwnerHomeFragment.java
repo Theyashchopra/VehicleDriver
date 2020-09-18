@@ -56,7 +56,7 @@ public class OwnerHomeFragment extends Fragment {
         homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
         homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
         homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));
-        homeadapter = new HomeOwnerAdapter(homeList,getContext(),getActivity());
+        homeadapter = new HomeOwnerAdapter(homeList,getContext(),OwnerHomeFragment.this);
         homeRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
         homeRecycle.setAdapter(homeadapter);
         homeenquirycount.setText(homeList.size()+"");
