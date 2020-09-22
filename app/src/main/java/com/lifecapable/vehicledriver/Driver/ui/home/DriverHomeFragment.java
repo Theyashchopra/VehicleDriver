@@ -1,22 +1,31 @@
 package com.lifecapable.vehicledriver.Driver.ui.home;
 
+import android.app.ActivityManager;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lifecapable.vehicledriver.Driver.adapters.HomeDriverAdapter;
 import com.lifecapable.vehicledriver.Driver.datamodels.HomeDriverData;
+import com.lifecapable.vehicledriver.Driver.services.LocationService;
 import com.lifecapable.vehicledriver.R;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.ACTIVITY_SERVICE;
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
 public class DriverHomeFragment extends Fragment {
@@ -54,6 +63,7 @@ public class DriverHomeFragment extends Fragment {
                 statusvw.setBackgroundColor(Color.rgb(50,205,50));
                 statustv.setText("Online");
                 statustv.setTextColor(Color.rgb(50,205,50));
+                startLocationService();
             }
             else{
                 statusstate = true;
@@ -62,7 +72,7 @@ public class DriverHomeFragment extends Fragment {
                 statusvw.setBackgroundColor(Color.RED);
                 statustv.setText("Offline");
                 statustv.setTextColor(Color.RED);
-
+                stopLocationService();
             }
 
         });
@@ -103,4 +113,31 @@ public class DriverHomeFragment extends Fragment {
         homerecycle.setLayoutManager(new LinearLayoutManager(getContext()));
         homerecycle.setAdapter(homeDriverAdapter);
     }
+
+    private void startLocationService(){
+        if (!isLocationServiceRunning()) {
+            Intent serviceIntent = new Intent(getActivity(), LocationService.class);
+            ContextCompat.startForegroundService(getActivity(), serviceIntent);
+        }
+    }
+    private void stopLocationService(){
+            try{
+                Intent serviceIntent = new Intent(getActivity(), LocationService.class);
+                getActivity().stopService(serviceIntent);
+            }catch (NullPointerException e){
+                Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+    }
+    private boolean isLocationServiceRunning() {
+        ActivityManager manager = (ActivityManager) getContext().getSystemService(ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)){
+            if("com.lifecapable.vehicledriver.Driver.services.LocationService".equals(service.service.getClassName())) {
+                Log.d(TAG, "isLocationServiceRunning: location service is already running.");
+                return true;
+            }
+        }
+        Log.d(TAG, "isLocationServiceRunning: location service is not running.");
+        return false;
+    }
+
 }

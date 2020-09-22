@@ -15,6 +15,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.lifecapable.vehicledriver.R;
+import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class OwnerLeftNavActivity extends AppCompatActivity {
 
@@ -23,11 +27,20 @@ public class OwnerLeftNavActivity extends AppCompatActivity {
     ImageView headerImage;
     TextView headerTV1,headerTV2;
 
+    OwnerJsonPlaceHolder userPlaceHolder;
+    Retrofit retrofit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.owner_activity_left_nav);
         Toolbar toolbar = findViewById(R.id.toolbar);
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.base_url))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);

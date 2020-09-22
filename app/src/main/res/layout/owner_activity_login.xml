@@ -33,18 +33,18 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="as Owner"
-        app:layout_constraintBottom_toTopOf="@id/ocontacttf"
+        app:layout_constraintBottom_toTopOf="@id/oemailtf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ocontacttf"
+        android:id="@+id/oemailtf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Mobile Number"
+        android:hint="Email"
         app:layout_constraintBottom_toTopOf="@id/opasswordtf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +52,7 @@
         app:layout_constraintVertical_chainStyle="packed">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/oemailet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number" />
@@ -68,32 +69,15 @@
         app:layout_constraintBottom_toTopOf="@id/loginownerbt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ocontacttf">
+        app:layout_constraintTop_toBottomOf="@id/oemailtf">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/opasswordet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-<!--    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/oagencytf"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Agnecy code"
-        app:layout_constraintBottom_toTopOf="@id/loginownerbt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/opasswordtf">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-
-    </com.google.android.material.textfield.TextInputLayout>-->
 
     <Button
         android:id="@+id/loginownerbt"

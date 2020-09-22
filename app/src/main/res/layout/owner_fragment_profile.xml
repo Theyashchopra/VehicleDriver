@@ -29,6 +29,7 @@
             android:layout_below="@id/opn">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/opnameet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -77,6 +78,7 @@
             android:layout_below="@+id/opcity">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/opfulladdresset"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPostalAddress"
@@ -94,6 +96,7 @@
             android:layout_below="@+id/opfulladdress">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/oppincodeet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
@@ -121,6 +124,7 @@
             android:layout_below="@+id/opk">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/oppannumberet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"/>
@@ -136,6 +140,7 @@
             android:layout_below="@+id/oppannumber">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/optannumberet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"/>
@@ -151,6 +156,7 @@
             android:layout_below="@+id/optannumber">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/opgstnumberet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"/>
@@ -166,6 +172,7 @@
             android:layout_below="@+id/opgstnumber">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/opregisternumberet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"/>
@@ -181,6 +188,7 @@
             android:layout_below="@+id/opregisternumber">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/opownernameet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"/>
@@ -196,6 +204,7 @@
             android:layout_below="@+id/opownername">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/opemailet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"/>
@@ -211,6 +220,7 @@
             android:layout_below="@+id/opemail">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/opcontact1et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -227,6 +237,7 @@
             android:layout_below="@+id/opcontact1">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/opcontact2et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -276,7 +287,19 @@
                 android:textColor="@android:color/white"
                 android:background="@drawable/background_accent"/>
 
+            <Button
+                android:id="@+id/opdone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Done"
+                android:visibility="gone"
+                android:layout_margin="8dp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/background_accent"/>
+
         </LinearLayout>
+
     </RelativeLayout>
 
 </ScrollView>

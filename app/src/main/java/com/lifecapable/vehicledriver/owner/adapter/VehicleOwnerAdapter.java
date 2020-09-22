@@ -1,15 +1,14 @@
 package com.lifecapable.vehicledriver.owner.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleOwnerData;
@@ -34,13 +33,12 @@ public class VehicleOwnerAdapter extends RecyclerView.Adapter<VehicleOwnerAdapte
     @Override
     public void onBindViewHolder(@NonNull VehicleOwnerViewHolder holder, int position) {
         VehicleOwnerData curr = mList.get(position);
-        holder.vehname.setText(curr.getVehiclename());
-        holder.vehnumber.setText(curr.getVehiclenumber());
-        holder.vehview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_nav_gallery_owner_to_nav_viewvehicle_owner);
-            }
+        holder.vehname.setText(curr.getName());
+        holder.vehnumber.setText(curr.getPlate());
+        holder.vehview.setOnClickListener(v -> {
+            Bundle args = new Bundle();
+            args.putInt("Vehicleid",1);
+            Navigation.findNavController(v).navigate(R.id.action_nav_gallery_owner_to_nav_viewvehicle_owner,args);
         });
     }
 

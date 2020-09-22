@@ -1,6 +1,7 @@
 package com.lifecapable.vehicledriver.owner.datamodel;
 
 public class DriverOwnerData {
+    int id;
     String name;
     String contact;
 

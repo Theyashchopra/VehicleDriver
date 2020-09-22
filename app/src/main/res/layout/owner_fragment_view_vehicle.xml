@@ -143,7 +143,7 @@
             android:layout_toEndOf="@id/vvrph"
             android:layout_alignBottom="@+id/vvrph"/>
         <TextView
-            android:id="@+id/rentperhour"
+            android:id="@+id/vvrentperhour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5000.00"
@@ -210,7 +210,7 @@
             android:orientation="horizontal"
             android:layout_alignParentBottom="true">
             <Button
-                android:id="@+id/vvdone"
+                android:id="@+id/vvremove"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

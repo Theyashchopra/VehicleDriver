@@ -27,6 +27,7 @@
             android:hint="Name"
             android:layout_below="@id/adimage">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/adnameet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"/>
@@ -40,6 +41,7 @@
             android:hint="Mobile Number"
             android:layout_below="@id/adname">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/adcontact1et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
@@ -53,6 +55,7 @@
             android:hint="Alternate Number"
             android:layout_below="@id/adcontact1">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/adcontact2et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
@@ -66,9 +69,38 @@
             android:hint="E-mail"
             android:layout_below="@id/adcontact2">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ademailet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/adaadhar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Aadhar"
+            android:layout_below="@id/ademail">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/adaadharet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/adpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Password"
+            android:layout_below="@id/adaadhar">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/adpasswordet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -77,7 +109,7 @@
             android:layout_height="wrap_content"
             android:text="Upload Licence"
             android:layout_margin="8dp"
-            android:layout_below="@id/ademail"/>
+            android:layout_below="@id/adpassword"/>
 
         <ImageView
             android:id="@+id/adlicence"
@@ -88,15 +120,36 @@
             android:layout_alignTop="@id/adlic"
             android:layout_toEndOf="@id/adlic"/>
 
-<!--        <Button
-            android:id="@+id/adedit"
+        <TextView
+            android:id="@+id/advd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add assigned vehicle"
+            android:textSize="18sp"
+            android:layout_margin="8dp"
+            android:layout_below="@id/adlicence"/>
+
+        <Spinner
+            android:id="@+id/adcategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit"
             android:layout_margin="8dp"
-            android:textColor="@android:color/white"
-            android:background="@drawable/background_accent"
-            android:layout_below="@id/adlicence"/>-->
+            android:layout_below="@id/advd"/>
+
+        <Spinner
+            android:id="@+id/adsubcategory1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_below="@id/adcategory"/>
+
+        <Spinner
+            android:id="@+id/adsubcategory2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_below="@id/adsubcategory1"/>
+
         <Button
             android:id="@+id/addone"
             android:layout_width="match_parent"
@@ -105,7 +158,8 @@
             android:layout_margin="8dp"
             android:textColor="@android:color/white"
             android:background="@drawable/background_accent"
-            android:layout_below="@id/adlicence"/>
+            android:layout_below="@id/adsubcategory2"/>
 
     </RelativeLayout>
+
 </ScrollView>
