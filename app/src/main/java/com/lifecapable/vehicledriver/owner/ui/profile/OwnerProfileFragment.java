@@ -10,13 +10,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.lifecapable.vehicledriver.R;
 
 public class OwnerProfileFragment extends Fragment {
 
     View root;
-    TextInputLayout nameEt, addressEt, pincodeEt, panEt, tanEt, gstEt, gumastaEt, ownernameEt, emailEt, contactEt, contact2Et;
+    TextInputEditText nameEt, addressEt, pincodeEt, panEt, tanEt, gstEt, gumastaEt, ownernameEt, emailEt, contactEt, contact2Et;
     Button editbt, donebt, logoutbt;
     Boolean state;
     @Override

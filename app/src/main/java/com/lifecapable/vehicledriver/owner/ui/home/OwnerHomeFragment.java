@@ -41,6 +41,7 @@ public class OwnerHomeFragment extends Fragment {
     private void inithome(){
         homeenquirycount.setText("0");
     }
+
     private void inithomeRecycle(){
         homeList = new ArrayList<>();
         homeList.add(new HomeOwnerData("address dlaksjdkadlasdoajsdajsn;jasnjas","8806627745","XYZ","MH31A1234"));

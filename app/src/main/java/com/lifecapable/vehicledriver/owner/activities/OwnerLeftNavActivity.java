@@ -1,13 +1,16 @@
 package com.lifecapable.vehicledriver.owner.activities;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -15,6 +18,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.lifecapable.vehicledriver.R;
+import com.lifecapable.vehicledriver.owner.dialogs.LogoutPopup;
 import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
 
 import retrofit2.Retrofit;
@@ -26,7 +30,7 @@ public class OwnerLeftNavActivity extends AppCompatActivity {
     View navHeaderView;
     ImageView headerImage;
     TextView headerTV1,headerTV2;
-
+    NavController navController;
     OwnerJsonPlaceHolder userPlaceHolder;
     Retrofit retrofit;
 
@@ -55,7 +59,7 @@ public class OwnerLeftNavActivity extends AppCompatActivity {
                 R.id.nav_home_owner, R.id.nav_gallery_owner, R.id.nav_slideshow_owner, R.id.nav_profile_owner)
                 .setOpenableLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navHeaderView.setOnClickListener(v -> {
@@ -63,6 +67,7 @@ public class OwnerLeftNavActivity extends AppCompatActivity {
             Toast.makeText(OwnerLeftNavActivity.this, "Click Click", Toast.LENGTH_SHORT).show();
             mAppBarConfiguration.getOpenableLayout().close();closeContextMenu();
         });
+        logoutFromNavigationBar(navigationView,drawer);
     }
 
     @Override
@@ -70,5 +75,23 @@ public class OwnerLeftNavActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void logoutFromNavigationBar(NavigationView navigationView,DrawerLayout drawerLayout){
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if(id == R.id.nav_logout){
+                    LogoutPopup lg = new LogoutPopup();
+                    lg.show(getSupportFragmentManager(),"logout");
+                }
+                //This is for maintaining the behavior of the Navigation view
+                NavigationUI.onNavDestinationSelected(item,navController);
+                //This is for closing the drawer after acting on it
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
     }
 }
