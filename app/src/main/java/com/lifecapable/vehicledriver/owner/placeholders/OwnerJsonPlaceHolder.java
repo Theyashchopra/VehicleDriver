@@ -1,9 +1,7 @@
 package com.lifecapable.vehicledriver.owner.placeholders;
 
-import com.lifecapable.vehicledriver.owner.datamodel.AppointmentOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverOwnerData;
-import com.lifecapable.vehicledriver.owner.datamodel.ListAppointmentOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.ListVehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.LoginOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.Messages;
@@ -34,7 +32,7 @@ public interface OwnerJsonPlaceHolder {
                                            @Query("owner_id") int owner_id);
 
     @Multipart
-    @POST("dimages")
+    @POST("/dimages")
     Call<Messages> addDriverImage(@Part("id")RequestBody id, @Part MultipartBody.Part pic);
 
     @Multipart
@@ -54,6 +52,17 @@ public interface OwnerJsonPlaceHolder {
     @GET("vehicle")
     Call<VehicleDetailsOwnerData> ogetVehicleDetails(@Query("id") int id);
 
+    @GET("enquiry")
+    Call<RootEnquiry> getEnquiries(@Query("owner_id")int id);
+
+    @GET("vmaster")
+    Call<MasterRoot> getMaster();
+
+    @GET("vtype")
+    Call<VehicleTypeRoot> getVtypes(@Query("master_id")int id);
+
+    @GET("vmodel")
+    Call<VehicleModelRoot> getVModels(@Query("vehicle_type_id") int id);
     @GET("appt")
     Call<ListAppointmentOwnerData> ogetListAppointment(@Query("owner_id") int owner_id);
 

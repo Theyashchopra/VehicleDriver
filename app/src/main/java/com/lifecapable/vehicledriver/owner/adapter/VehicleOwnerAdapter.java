@@ -35,9 +35,10 @@ public class VehicleOwnerAdapter extends RecyclerView.Adapter<VehicleOwnerAdapte
         VehicleOwnerData curr = mList.get(position);
         holder.vehname.setText(curr.getName());
         holder.vehnumber.setText(curr.getPlate_no());
+        holder.model.setText(curr.getModel_name());
         holder.vehview.setOnClickListener(v -> {
             Bundle args = new Bundle();
-            args.putInt("Vehicleid",1);
+            args.putInt("Vehicleid",v.getId());
             Navigation.findNavController(v).navigate(R.id.action_nav_gallery_owner_to_nav_viewvehicle_owner,args);
         });
     }
@@ -48,13 +49,14 @@ public class VehicleOwnerAdapter extends RecyclerView.Adapter<VehicleOwnerAdapte
     }
 
     public static class VehicleOwnerViewHolder extends RecyclerView.ViewHolder{
-        TextView vehname,vehnumber;
+        TextView vehname,vehnumber,model;
         Button vehview;
         public VehicleOwnerViewHolder(@NonNull View itemView) {
             super(itemView);
             vehname = itemView.findViewById(R.id.ovcardmodelname);
             vehnumber = itemView.findViewById(R.id.ovcardnumber);
             vehview = itemView.findViewById(R.id.ovcardview);
+            model = itemView.findViewById(R.id.model);
         }
     }
 }
