@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".owner.ui.gallery.OwnerRcVehicleFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Image of Rc of the vehicle"
+            android:layout_margin="8dp"/>
+        <TextView
+            android:id="@+id/rcname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+        <ImageView
+            android:id="@+id/rcimage"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_addphoto"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/rcdone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:background="@drawable/background_accent"
+        android:layout_margin="8dp"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

@@ -80,7 +80,7 @@ public class OwnerDialogGetImageFragment extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            psl = (onPhotoSelectedListener)getActivity();
+            psl = (onPhotoSelectedListener)getTargetFragment();
         }catch (ClassCastException e){
             Log.e(TAG,"onAttach--------"+e.getMessage());
         }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".owner.ui.slideshow.OwnerAddDriverFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -120,35 +120,24 @@
             android:layout_alignTop="@id/adlic"
             android:layout_toEndOf="@id/adlic"/>
 
-        <TextView
-            android:id="@+id/advd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add assigned vehicle"
-            android:textSize="18sp"
-            android:layout_margin="8dp"
-            android:layout_below="@id/adlicence"/>
-
-        <Spinner
-            android:id="@+id/adcategory"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/adassignedvehicle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:layout_below="@id/advd"/>
+            app:cardCornerRadius="8dp"
+            android:elevation="8dp"
+            android:layout_below="@id/adlicence">
 
-        <Spinner
-            android:id="@+id/adsubcategory1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_below="@id/adcategory"/>
-
-        <Spinner
-            android:id="@+id/adsubcategory2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_below="@id/adsubcategory1"/>
+            <TextView
+                android:id="@+id/adassignedvehicletext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select a Vehicle to assign"
+                android:layout_margin="12dp"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center_horizontal"/>
+        </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/addone"
@@ -158,7 +147,7 @@
             android:layout_margin="8dp"
             android:textColor="@android:color/white"
             android:background="@drawable/background_accent"
-            android:layout_below="@id/adsubcategory2"/>
+            android:layout_below="@id/adassignedvehicle"/>
 
     </RelativeLayout>
 

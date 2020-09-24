@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -22,18 +25,14 @@ import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.dialogs.OwnerDialogGetImageFragment;
-import com.lifecapable.vehicledriver.owner.imagepickers.FileUtil;
+import com.lifecapable.vehicledriver.owner.dialogs.OwnerSelectVehiclePopup;
 import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.net.NetworkInterface;
 import java.util.Collections;
 import java.util.List;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,13 +44,13 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
     View root;
     TextInputEditText nameet, emailet, contact1, contact2, addharet, passwordet;
     ImageView licenceiv,profileiv;
-    Spinner categorysp,subcategorysp1,subcategorysp2;
     Button btdone;
-    OwnerJsonPlaceHolder addDriverPlaceHolder;
-    Retrofit retrofit;
     Uri profileuri, licenceuri, imageuri;
     OwnerDialogGetImageFragment dgi;
     Bitmap imagebitmap;
+    CardView cardView;
+    TextView assignedText;
+    OwnerSelectVehiclePopup ownerSelectVehiclePopup;
 
 
     @Override
@@ -67,20 +66,25 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
         passwordet = root.findViewById(R.id.adpasswordet);
         licenceiv = root.findViewById(R.id.adlicence);
         profileiv = root.findViewById(R.id.adimage);
-        categorysp = root.findViewById(R.id.adcategory);
-        subcategorysp1 = root.findViewById(R.id.adsubcategory1);
-        subcategorysp2 =root.findViewById(R.id.adsubcategory2);
+        cardView = root.findViewById(R.id.adassignedvehicle);
+        assignedText = root.findViewById(R.id.adassignedvehicletext);
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.base_url))
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
         inithome();
         return root;
     }
 
     private void inithome(){
+
+        cardView.setOnClickListener(view -> {
+            Bundle args = new Bundle();
+            args.putInt("oid",10);
+            ownerSelectVehiclePopup = new OwnerSelectVehiclePopup();
+            ownerSelectVehiclePopup.setArguments(args);
+            ownerSelectVehiclePopup.show(getFragmentManager(),"Dialog Select Vehicle");
+            Log.e("Add Vehicle","Dialog launched");
+
+        });
         btdone.setOnClickListener(v -> {
                 try {
                     addDriver();
@@ -116,32 +120,30 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
         return false;
     }
 
-    private void addDriver() throws Exception {
+    private void addDriver(){
         if(emailet.getText() == null || passwordet.getText() == null || nameet.getText() == null || contact1.getText() == null ||
-            addharet.getText() == null || contact2.getText() == null || profileuri == null || licenceuri == null){
+            addharet.getText() == null || contact2.getText() == null ){
             Toast.makeText(getActivity(), "You left something empty!!", Toast.LENGTH_SHORT).show();
             return;
         }
-        addDriverPlaceHolder = retrofit.create(OwnerJsonPlaceHolder.class);
-        File file = FileUtil.from(getContext(),profileuri);
-        RequestBody requestFile = RequestBody.create(file, MediaType.parse("multipart/form-data"));
+/*        File file = FileUtil.from(getContext(),profileuri);
+        RequestBody requestFile = RequestBody.create(file, MediaType.parse("image/*"));
         MultipartBody.Part body = MultipartBody.Part.createFormData("pic", file.getName(), requestFile);
 
         File file1 = FileUtil.from(getContext(),licenceuri);
-        RequestBody requestFile1 = RequestBody.create(file1,MediaType.parse("multipart/form-data") );
-        MultipartBody.Part body1 = MultipartBody.Part.createFormData("licence_image", file1.getName(), requestFile1);
-        Call<DriverDetailsOwnerData> call = RestAdapter.createAPI().registerDriver(
-                RequestBody.create(emailet.getText().toString(), MediaType.parse("multipart/form-data")),
-                RequestBody.create(passwordet.getText().toString(),MediaType.parse("multipart/form-data")),
-                RequestBody.create(nameet.getText().toString(),MediaType.parse("multipart/form-data")),
-                RequestBody.create(contact1.getText().toString(),MediaType.parse("multipart/form-data")),
-                RequestBody.create(addharet.getText().toString(),MediaType.parse("multipart/form-data")),
-                RequestBody.create(contact2.getText().toString(),MediaType.parse("multipart/form-data")),
-                RequestBody.create(getWifiMacAddress(),MediaType.parse("multipart/form-data")),
-                RequestBody.create("1",MediaType.parse("multipart/form-data")),
-                RequestBody.create("13",MediaType.parse("multipart/form-data")),
-                body,
-                body1);
+        RequestBody requestFile1 = RequestBody.create(file1,MediaType.parse("image/*") );
+        MultipartBody.Part body1 = MultipartBody.Part.createFormData("licence_image", file1.getName(), requestFile1);*/
+
+        Call<DriverDetailsOwnerData> call = RestAdapter.createAPI().addDriver(
+                emailet.getText().toString(),
+                passwordet.getText().toString(),
+                nameet.getText().toString(),
+                contact1.getText().toString(),
+                addharet.getText().toString(),
+                contact2.getText().toString(),
+                getWifiMacAddress(),
+                10,
+                13);
 
         call.enqueue(new Callback<DriverDetailsOwnerData>() {
             @Override
@@ -151,8 +153,10 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
                     return;
                 }
                 DriverDetailsOwnerData res = response.body();
-                Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigateUp();
-
+                if (res!= null) {
+                    Log.e("Yoooooooooo", res.getName());
+                    Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
+                }
             }
 
             @Override

@@ -1,32 +1,39 @@
 package com.lifecapable.vehicledriver.owner.datamodel;
 
+
 public class VehicleDetailsOwnerData {
+    String name;
+    int vehicle_model_id;
+    String yom;
+    int total_run_hrs;
+    int run_km_hr;
+    int fuel_consumption_rate;
+    int fuel_average_consumption_rate;
+    int rent_per_day_with_fuel;
+    int rent_per_hour_with_fuel;
+    int rent_per_hour_without_fuel;
+    int rent_per_day_without_fuel;
+    String ip_address;
+    String plate_no;
+    boolean availibility;
+    int owner_id;
 
-    String name, plate, year_of_manufacture, image, available, status,driver_id, lat, lon, rotation, rc, invoice, insurance, model_name;
-    int id, model_id, total_running_hrs, speed, fuel_consumption, rent_per_day, rent_per_hour;
-
-    public VehicleDetailsOwnerData(String name, String plate, String year_of_manufacture, String image, String available, String status, String driver_id, String lat, String lon, String rotation, String rc, String invoice, String insurance, String model_name, int id, int model_id, int total_running_hrs, int speed, int fuel_consumption, int rent_per_day, int rent_per_hour) {
+    public VehicleDetailsOwnerData(String name, int vehicle_model_id, String yom, int total_run_hrs, int run_km_hr, int fuel_consumption_rate, int fuel_average_consumption_rate, int rent_per_day_with_fuel, int rent_per_hour_with_fuel, int rent_per_hour_without_fuel, int rent_per_day_without_fuel, String ip_address, String plate_no, boolean availibility, int owner_id) {
         this.name = name;
-        this.plate = plate;
-        this.year_of_manufacture = year_of_manufacture;
-        this.image = image;
-        this.available = available;
-        this.status = status;
-        this.driver_id = driver_id;
-        this.lat = lat;
-        this.lon = lon;
-        this.rotation = rotation;
-        this.rc = rc;
-        this.invoice = invoice;
-        this.insurance = insurance;
-        this.model_name = model_name;
-        this.id = id;
-        this.model_id = model_id;
-        this.total_running_hrs = total_running_hrs;
-        this.speed = speed;
-        this.fuel_consumption = fuel_consumption;
-        this.rent_per_day = rent_per_day;
-        this.rent_per_hour = rent_per_hour;
+        this.vehicle_model_id = vehicle_model_id;
+        this.yom = yom;
+        this.total_run_hrs = total_run_hrs;
+        this.run_km_hr = run_km_hr;
+        this.fuel_consumption_rate = fuel_consumption_rate;
+        this.fuel_average_consumption_rate = fuel_average_consumption_rate;
+        this.rent_per_day_with_fuel = rent_per_day_with_fuel;
+        this.rent_per_hour_with_fuel = rent_per_hour_with_fuel;
+        this.rent_per_hour_without_fuel = rent_per_hour_without_fuel;
+        this.rent_per_day_without_fuel = rent_per_day_without_fuel;
+        this.ip_address = ip_address;
+        this.plate_no = plate_no;
+        this.availibility = availibility;
+        this.owner_id = owner_id;
     }
 
     public String getName() {
@@ -37,163 +44,115 @@ public class VehicleDetailsOwnerData {
         this.name = name;
     }
 
-    public String getPlate() {
-        return plate;
+    public int getVehicle_model_id() {
+        return vehicle_model_id;
     }
 
-    public void setPlate(String plate) {
-        this.plate = plate;
+    public void setVehicle_model_id(int vehicle_model_id) {
+        this.vehicle_model_id = vehicle_model_id;
     }
 
-    public String getYear_of_manufacture() {
-        return year_of_manufacture;
+    public String getYom() {
+        return yom;
     }
 
-    public void setYear_of_manufacture(String year_of_manufacture) {
-        this.year_of_manufacture = year_of_manufacture;
+    public void setYom(String yom) {
+        this.yom = yom;
     }
 
-    public String getImage() {
-        return image;
+    public int getTotal_run_hrs() {
+        return total_run_hrs;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setTotal_run_hrs(int total_run_hrs) {
+        this.total_run_hrs = total_run_hrs;
     }
 
-    public String getAvailable() {
-        return available;
+    public int getRun_km_hr() {
+        return run_km_hr;
     }
 
-    public void setAvailable(String available) {
-        this.available = available;
+    public void setRun_km_hr(int run_km_hr) {
+        this.run_km_hr = run_km_hr;
     }
 
-    public String getStatus() {
-        return status;
+    public int getFuel_consumption_rate() {
+        return fuel_consumption_rate;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setFuel_consumption_rate(int fuel_consumption_rate) {
+        this.fuel_consumption_rate = fuel_consumption_rate;
     }
 
-    public String getDriver_id() {
-        return driver_id;
+    public int getFuel_average_consumption_rate() {
+        return fuel_average_consumption_rate;
     }
 
-    public void setDriver_id(String driver_id) {
-        this.driver_id = driver_id;
+    public void setFuel_average_consumption_rate(int fuel_average_consumption_rate) {
+        this.fuel_average_consumption_rate = fuel_average_consumption_rate;
     }
 
-    public String getLat() {
-        return lat;
+    public int getRent_per_day_with_fuel() {
+        return rent_per_day_with_fuel;
     }
 
-    public void setLat(String lat) {
-        this.lat = lat;
+    public void setRent_per_day_with_fuel(int rent_per_day_with_fuel) {
+        this.rent_per_day_with_fuel = rent_per_day_with_fuel;
     }
 
-    public String getLon() {
-        return lon;
+    public int getRent_per_hour_with_fuel() {
+        return rent_per_hour_with_fuel;
     }
 
-    public void setLon(String lon) {
-        this.lon = lon;
+    public void setRent_per_hour_with_fuel(int rent_per_hour_with_fuel) {
+        this.rent_per_hour_with_fuel = rent_per_hour_with_fuel;
     }
 
-    public String getRotation() {
-        return rotation;
+    public int getRent_per_hour_without_fuel() {
+        return rent_per_hour_without_fuel;
     }
 
-    public void setRotation(String rotation) {
-        this.rotation = rotation;
+    public void setRent_per_hour_without_fuel(int rent_per_hour_without_fuel) {
+        this.rent_per_hour_without_fuel = rent_per_hour_without_fuel;
     }
 
-    public String getRc() {
-        return rc;
+    public int getRent_per_day_without_fuel() {
+        return rent_per_day_without_fuel;
     }
 
-    public void setRc(String rc) {
-        this.rc = rc;
+    public void setRent_per_day_without_fuel(int rent_per_day_without_fuel) {
+        this.rent_per_day_without_fuel = rent_per_day_without_fuel;
     }
 
-    public String getInvoice() {
-        return invoice;
+    public String getIp_address() {
+        return ip_address;
     }
 
-    public void setInvoice(String invoice) {
-        this.invoice = invoice;
+    public void setIp_address(String ip_address) {
+        this.ip_address = ip_address;
     }
 
-    public String getInsurance() {
-        return insurance;
+    public String getPlate_no() {
+        return plate_no;
     }
 
-    public void setInsurance(String insurance) {
-        this.insurance = insurance;
+    public void setPlate_no(String plate_no) {
+        this.plate_no = plate_no;
     }
 
-    public int getId() {
-        return id;
+    public boolean isAvailibility() {
+        return availibility;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAvailibility(boolean availibility) {
+        this.availibility = availibility;
     }
 
-    public int getModel_id() {
-        return model_id;
+    public int getOwner_id() {
+        return owner_id;
     }
 
-    public void setModel_id(int model_id) {
-        this.model_id = model_id;
-    }
-
-    public int getTotal_running_hrs() {
-        return total_running_hrs;
-    }
-
-    public void setTotal_running_hrs(int total_running_hrs) {
-        this.total_running_hrs = total_running_hrs;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public int getFuel_consumption() {
-        return fuel_consumption;
-    }
-
-    public void setFuel_consumption(int fuel_consumption) {
-        this.fuel_consumption = fuel_consumption;
-    }
-
-    public int getRent_per_day() {
-        return rent_per_day;
-    }
-
-    public void setRent_per_day(int rent_per_day) {
-        this.rent_per_day = rent_per_day;
-    }
-
-    public int getRent_per_hour() {
-        return rent_per_hour;
-    }
-
-    public void setRent_per_hour(int rent_per_hour) {
-        this.rent_per_hour = rent_per_hour;
-    }
-
-    public String getModel_name() {
-        return model_name;
-    }
-
-    public void setModel_name(String model_name) {
-        this.model_name = model_name;
+    public void setOwner_id(int owner_id) {
+        this.owner_id = owner_id;
     }
 }

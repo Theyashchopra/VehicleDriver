@@ -74,7 +74,7 @@ public class OwnerViewVehicleFragment extends Fragment {
         });
     }
     public void initviews(VehicleDetailsOwnerData allData){
-
+/*
         plateEt.setText(allData.getPlate());
         modelnumEt.setText(allData.getModel_name());
         madeinEt.setText(allData.getYear_of_manufacture());
@@ -84,7 +84,7 @@ public class OwnerViewVehicleFragment extends Fragment {
             Bundle args = new Bundle();
             args.putInt("vehicleid",allData.getId());
             Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.action_nav_viewvehicle_owner_to_nav_EditVehicle_owner,args);
-        });
+        });*/
 
         removebt.setOnClickListener(new View.OnClickListener() {
             @Override

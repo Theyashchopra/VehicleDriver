@@ -34,7 +34,7 @@ public class VehicleOwnerAdapter extends RecyclerView.Adapter<VehicleOwnerAdapte
     public void onBindViewHolder(@NonNull VehicleOwnerViewHolder holder, int position) {
         VehicleOwnerData curr = mList.get(position);
         holder.vehname.setText(curr.getName());
-        holder.vehnumber.setText(curr.getPlate());
+        holder.vehnumber.setText(curr.getPlate_no());
         holder.vehview.setOnClickListener(v -> {
             Bundle args = new Bundle();
             args.putInt("Vehicleid",1);

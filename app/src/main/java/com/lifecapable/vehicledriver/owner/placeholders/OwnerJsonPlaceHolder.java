@@ -6,6 +6,7 @@ import com.lifecapable.vehicledriver.owner.datamodel.DriverOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.ListVehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.LoginOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
+import com.lifecapable.vehicledriver.owner.datamodel.VehicleIds;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleOwnerData;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -26,9 +28,15 @@ public interface OwnerJsonPlaceHolder {
     @GET("regowner")
     Call<LoginOwnerData> ogetLogin(@Query("email") String email, @Query("password") String password);
 
-    @Multipart
     @POST("driver")
-    Call<DriverDetailsOwnerData> registerDriver(@Part("email") RequestBody email, @Part("password") RequestBody password, @Part("name") RequestBody name, @Part("mobile")RequestBody mobile, @Part("adhaar")RequestBody adhaar, @Part("mobile2")RequestBody mobile2, @Part("ip_address")RequestBody ip_address, @Part("vehicle_id")RequestBody vehicle_id, @Part("owner_id")RequestBody owner_id, @Part MultipartBody.Part pic, @Part MultipartBody.Part license_image);
+    Call<DriverDetailsOwnerData> addDriver(@Query("email") String email, @Query("password") String password,
+                                           @Query("name") String name, @Query("mobile") String mobile,
+                                           @Query("adhaar") String adhaar, @Query("mobile2") String mobile2,
+                                           @Query("ip_address") String ip_address, @Query("vehicle_id") int vehicle_id,
+                                           @Query("owner_id") int owner_id);
+
+    @POST("vehicle")
+    Call<VehicleIds> addVehicle(@Body VehicleDetailsOwnerData v);
 
 
     @GET("driver")
