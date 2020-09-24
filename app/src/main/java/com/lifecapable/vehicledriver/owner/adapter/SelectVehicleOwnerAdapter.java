@@ -18,22 +18,29 @@ import java.util.List;
 
 public class SelectVehicleOwnerAdapter extends RecyclerView.Adapter<SelectVehicleOwnerAdapter.SelectVehicleOwnerViewHolder> {
 
+    public interface OnItemClick {
+        void getPosition(int pos,VehicleOwnerData curr); //pass any things
+    }
+
     List<VehicleOwnerData> list;
     Context context;
     Dialog dialogFragment;
+    OnItemClick onItemClick;
 
-    public SelectVehicleOwnerAdapter(List<VehicleOwnerData> list, Context context, Dialog dialogFragment) {
+
+    public SelectVehicleOwnerAdapter(List<VehicleOwnerData> list, Context context, Dialog dialogFragment, OnItemClick onItemClick) {
         this.list = list;
         this.context = context;
         this.dialogFragment = dialogFragment;
+        this.onItemClick = onItemClick;
     }
 
     @NonNull
     @Override
     public SelectVehicleOwnerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.owner_dialog_select_vehicle,parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.owner_select_vehicle_card,parent, false);
 
-        return new SelectVehicleOwnerViewHolder(view);
+        return new SelectVehicleOwnerViewHolder(view,onItemClick);
     }
 
     @Override
@@ -45,8 +52,7 @@ public class SelectVehicleOwnerAdapter extends RecyclerView.Adapter<SelectVehicl
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                onItemClick.getPosition(position,curr);
             }
         });
     }
@@ -59,13 +65,13 @@ public class SelectVehicleOwnerAdapter extends RecyclerView.Adapter<SelectVehicl
     static class SelectVehicleOwnerViewHolder extends RecyclerView.ViewHolder{
         TextView name, plate;
         LinearLayout linearLayout;
-        public SelectVehicleOwnerViewHolder(@NonNull View itemView) {
+        OnItemClick onItemClick;
+        public SelectVehicleOwnerViewHolder(@NonNull View itemView,OnItemClick onItemClick) {
             super(itemView);
-
             name = itemView.findViewById(R.id.svname);
             plate = itemView.findViewById(R.id.svplate);
             linearLayout = itemView.findViewById(R.id.svll);
-
+            this.onItemClick = onItemClick;
         }
     }
 }

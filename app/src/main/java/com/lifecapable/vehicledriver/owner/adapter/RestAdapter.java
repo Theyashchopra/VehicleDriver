@@ -12,6 +12,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RestAdapter {
 
@@ -32,6 +33,7 @@ public class RestAdapter {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://delivery-rest-api.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .client(okHttpClient)
                 .build();
 

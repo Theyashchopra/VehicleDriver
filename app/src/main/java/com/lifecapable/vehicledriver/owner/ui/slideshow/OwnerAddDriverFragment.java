@@ -1,6 +1,7 @@
 package com.lifecapable.vehicledriver.owner.ui.slideshow;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverDetailsOwnerData;
+import com.lifecapable.vehicledriver.owner.datamodel.VehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.dialogs.OwnerDialogGetImageFragment;
 import com.lifecapable.vehicledriver.owner.dialogs.OwnerSelectVehiclePopup;
 import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
@@ -39,18 +41,23 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetImageFragment.MyDialogCloseListener, OwnerDialogGetImageFragment.onPhotoSelectedListener {
+import static android.content.Context.MODE_PRIVATE;
+
+public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehiclePopup.OnClosePassData {
 
     View root;
     TextInputEditText nameet, emailet, contact1, contact2, addharet, passwordet;
-    ImageView licenceiv,profileiv;
     Button btdone;
-    Uri profileuri, licenceuri, imageuri;
-    OwnerDialogGetImageFragment dgi;
-    Bitmap imagebitmap;
     CardView cardView;
     TextView assignedText;
     OwnerSelectVehiclePopup ownerSelectVehiclePopup;
+    VehicleOwnerData assignedVehicle;
+    SharedPreferences owner;
+    int oid;
+
+    /*   Uri profileuri, licenceuri, imageuri;
+    OwnerDialogGetImageFragment dgi;
+    Bitmap imagebitmap;*/
 
 
     @Override
@@ -64,12 +71,10 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
         contact2 = root.findViewById(R.id.adcontact2et);
         addharet = root.findViewById(R.id.adaadharet);
         passwordet = root.findViewById(R.id.adpasswordet);
-        licenceiv = root.findViewById(R.id.adlicence);
-        profileiv = root.findViewById(R.id.adimage);
         cardView = root.findViewById(R.id.adassignedvehicle);
         assignedText = root.findViewById(R.id.adassignedvehicletext);
-
-
+        owner = getActivity().getSharedPreferences("owner",MODE_PRIVATE);
+        oid = owner.getInt("id",-1);
         inithome();
         return root;
     }
@@ -81,6 +86,7 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
             args.putInt("oid",10);
             ownerSelectVehiclePopup = new OwnerSelectVehiclePopup();
             ownerSelectVehiclePopup.setArguments(args);
+            ownerSelectVehiclePopup.setTargetFragment(this,1);
             ownerSelectVehiclePopup.show(getFragmentManager(),"Dialog Select Vehicle");
             Log.e("Add Vehicle","Dialog launched");
 
@@ -95,7 +101,7 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
 
         });
 
-        licenceiv.setOnClickListener(v -> {
+   /*     licenceiv.setOnClickListener(v -> {
             Bundle args = new Bundle();
             args.putInt("curr",1);
             dgi = new OwnerDialogGetImageFragment();
@@ -112,12 +118,7 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
             dgi.setTargetFragment(OwnerAddDriverFragment.this,2);
             dgi.show(getFragmentManager(),"Dialog get fragment");
             Log.e("Add Driver","Dialog launched");
-        });
-    }
-
-    private boolean checkempty(){
-
-        return false;
+        });*/
     }
 
     private void addDriver(){
@@ -133,7 +134,6 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
         File file1 = FileUtil.from(getContext(),licenceuri);
         RequestBody requestFile1 = RequestBody.create(file1,MediaType.parse("image/*") );
         MultipartBody.Part body1 = MultipartBody.Part.createFormData("licence_image", file1.getName(), requestFile1);*/
-
         Call<DriverDetailsOwnerData> call = RestAdapter.createAPI().addDriver(
                 emailet.getText().toString(),
                 passwordet.getText().toString(),
@@ -142,8 +142,8 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
                 addharet.getText().toString(),
                 contact2.getText().toString(),
                 getWifiMacAddress(),
-                10,
-                13);
+                assignedVehicle.getV_id(),
+                oid);
 
         call.enqueue(new Callback<DriverDetailsOwnerData>() {
             @Override
@@ -155,7 +155,9 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
                 DriverDetailsOwnerData res = response.body();
                 if (res!= null) {
                     Log.e("Yoooooooooo", res.getName());
-                    Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
+                    Bundle args = new Bundle();
+                    args.putInt("vid",res.getVehicle_id());
+                    Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_nav_AddDriver_owner_to_nav_AddImageDriver_owner, args);
                 }
             }
 
@@ -196,7 +198,7 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
         return "";
     }
 
-    @Override
+/*    @Override
     public void getImagePath(Uri imagePath) {
         imageuri = imagePath;
         imagebitmap = null;
@@ -207,7 +209,6 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
         imagebitmap = bitmap;
         imageuri = null;
     }
-
     @Override
     public void handleDialogClose(int num) {
         if(num == 1){
@@ -236,13 +237,18 @@ public class OwnerAddDriverFragment extends Fragment implements OwnerDialogGetIm
             Toast.makeText(getActivity(), "Something Went wrong", Toast.LENGTH_SHORT).show();
         }
     }
-
-    //get uri of bitmap
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
+    }*/
+
+    @Override
+    public void getAssigned(int pos, VehicleOwnerData curr) {
+        assignedVehicle = curr;
+        assignedText.setText(curr.getName());
+        Log.e("Yo ", curr.getName());
     }
 
 }

@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
+<!--
         <ImageView
             android:id="@+id/adimage"
             android:layout_width="100dp"
@@ -17,7 +17,7 @@
             android:layout_margin="24dp"
             android:src="@drawable/ic_account"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"/>
+            android:layout_alignParentTop="true"/>-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/adname"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Name"
-            android:layout_below="@id/adimage">
+            android:layout_alignParentTop="true">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/adnameet"
                 android:layout_width="match_parent"
@@ -103,7 +103,7 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+<!--        <TextView
             android:id="@+id/adlic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
             android:src="@drawable/ic_addphoto"
             android:layout_marginBottom="12dp"
             android:layout_alignTop="@id/adlic"
-            android:layout_toEndOf="@id/adlic"/>
+            android:layout_toEndOf="@id/adlic"/>-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/adassignedvehicle"
@@ -127,7 +127,7 @@
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
             android:elevation="8dp"
-            android:layout_below="@id/adlicence">
+            android:layout_below="@id/adpassword">
 
             <TextView
                 android:id="@+id/adassignedvehicletext"
