@@ -83,7 +83,7 @@ public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehi
 
         cardView.setOnClickListener(view -> {
             Bundle args = new Bundle();
-            args.putInt("oid",10);
+            args.putInt("oid",oid);
             ownerSelectVehiclePopup = new OwnerSelectVehiclePopup();
             ownerSelectVehiclePopup.setArguments(args);
             ownerSelectVehiclePopup.setTargetFragment(this,1);
