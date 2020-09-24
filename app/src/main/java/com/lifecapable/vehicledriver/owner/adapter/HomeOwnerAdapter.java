@@ -42,12 +42,12 @@ public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.Home
     public void onBindViewHolder(@NonNull HomeOwnerViewHolder holder, int position) {
         HomeOwnerData curr = mList.get(position);
         //holder.oaddresstv.setText(curr.getAddress());
-        holder.ocontacttv.setText(curr.getContact());
-        holder.onametv.setText(curr.getName());
-        holder.ovehicletv.setText(curr.getVehicle());
+        holder.ocontacttv.setText(curr.getUser_mobile());
+        holder.onametv.setText(curr.getUser_name());
+        holder.ovehicletv.setText(curr.getVehicle_plate());
         holder.ocontactbt.setOnClickListener(v -> {
             Intent phoneIntent = new Intent(Intent.ACTION_CALL);
-            phoneIntent.setData(Uri.parse("tel:"+curr.getContact()));
+            phoneIntent.setData(Uri.parse("tel:"+curr.getUser_mobile()));
             if (ActivityCompat.checkSelfPermission(mContext,
                     Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                 return;

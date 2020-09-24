@@ -11,7 +11,11 @@
         tools:layout="@layout/owner_fragment_home" >
         <action
             android:id="@+id/action_nav_home_owner_to_nav_ViewEnquiry_owner"
-            app:destination="@id/nav_ViewEnquiry_owner" />
+            app:destination="@id/nav_ViewEnquiry_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -21,10 +25,25 @@
         tools:layout="@layout/owner_fragment_gallery" >
         <action
             android:id="@+id/action_nav_gallery_owner_to_nav_viewvehicle_owner"
-            app:destination="@id/nav_viewvehicle_owner" />
+            app:destination="@id/nav_viewvehicle_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_nav_gallery_owner_to_nav_AddNewVehicle_owner"
-            app:destination="@id/nav_AddNewVehicle_owner" />
+            app:destination="@id/nav_AddNewVehicle_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_nav_gallery_owner_to_nav_master"
+            app:destination="@id/nav_master"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -35,10 +54,18 @@
 
         <action
             android:id="@+id/action_nav_slideshow_owner_to_nav_ViewDriver_owner"
-            app:destination="@id/nav_ViewDriver_owner" />
+            app:destination="@id/nav_ViewDriver_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_nav_slideshow_owner_to_nav_AddDriver_owner"
-            app:destination="@id/nav_AddDriver_owner" />
+            app:destination="@id/nav_AddDriver_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/nav_profile_owner"
@@ -52,7 +79,11 @@
         tools:layout="@layout/owner_fragment_view_vehicle" >
         <action
             android:id="@+id/action_nav_viewvehicle_owner_to_nav_EditVehicle_owner"
-            app:destination="@id/nav_EditVehicle_owner" />
+            app:destination="@id/nav_EditVehicle_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/nav_ViewDriver_owner"
@@ -66,7 +97,11 @@
         tools:layout="@layout/owner_fragment_add_new_vehicle" >
         <action
             android:id="@+id/action_nav_AddNewVehicle_owner_to_nav_RcVehicle_owner"
-            app:destination="@id/nav_RcVehicle_owner" />
+            app:destination="@id/nav_RcVehicle_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/nav_EditVehicle_owner"
@@ -80,7 +115,11 @@
         tools:layout="@layout/owner_fragment_add_driver" >
         <action
             android:id="@+id/action_nav_AddDriver_owner_to_nav_AddImageDriver_owner"
-            app:destination="@id/nav_AddImageDriver_owner" />
+            app:destination="@id/nav_AddImageDriver_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/nav_ViewEnquiry_owner"
@@ -94,7 +133,11 @@
         tools:layout="@layout/owner_fragment_rc_vehicle" >
         <action
             android:id="@+id/action_nav_RcVehicle_owner_to_nav_gallery_owner"
-            app:destination="@id/nav_gallery_owner" />
+            app:destination="@id/nav_gallery_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/nav_AddImageDriver_owner"
@@ -103,6 +146,23 @@
         tools:layout="@layout/owner_fragment_add_image_drivers" >
         <action
             android:id="@+id/action_nav_AddImageDriver_owner_to_nav_slideshow_owner"
-            app:destination="@id/nav_slideshow_owner" />
+            app:destination="@id/nav_slideshow_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:name="com.lifecapable.vehicledriver.owner.ui.vcategories.MasterFragment"
+        android:id="@+id/nav_master"
+        android:label="Choose Type"
+        tools:layout="@layout/fragment_master">
+        <action
+            android:id="@+id/action_nav_master_to_nav_AddNewVehicle_owner"
+            app:destination="@id/nav_AddNewVehicle_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
 </navigation>

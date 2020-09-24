@@ -1,44 +1,83 @@
 package com.lifecapable.vehicledriver.owner.datamodel;
 
 public class HomeOwnerData {
-    String address,contact,name,vehicle;
 
-    public HomeOwnerData(String address, String contact, String name, String vehicle) {
-        this.address = address;
-        this.contact = contact;
-        this.name = name;
-        this.vehicle = vehicle;
+    public int eid;
+    public int uid;
+    public String user_name;
+    public String user_mobile;
+    public String user_email;
+    public int owner_id;
+    public String owner_name;
+    public String owner_email;
+    public int vehicle_id;
+    public String vehicle_name;
+    public String vehicle_plate;
+    public String date_of_enquiry;
+    public String location;
+    public float lat;
+    public float lon;
+
+    HomeOwnerData(){
     }
 
-    public String getAddress() {
-        return address;
+    public int getEid() {
+        return eid;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public int getUid() {
+        return uid;
     }
 
-    public String getContact() {
-        return contact;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public String getUser_mobile() {
+        return user_mobile;
     }
 
-    public String getName() {
-        return name;
+    public String getUser_email() {
+        return user_email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getOwner_id() {
+        return owner_id;
     }
 
-    public String getVehicle() {
-        return vehicle;
+    public String getOwner_name() {
+        return owner_name;
     }
 
-    public void setVehicle(String vehicle) {
-        this.vehicle = vehicle;
+    public String getOwner_email() {
+        return owner_email;
+    }
+
+    public int getVehicle_id() {
+        return vehicle_id;
+    }
+
+    public String getVehicle_name() {
+        return vehicle_name;
+    }
+
+    public String getVehicle_plate() {
+        return vehicle_plate;
+    }
+
+    public String getDate_of_enquiry() {
+        return date_of_enquiry;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public float getLat() {
+        return lat;
+    }
+
+    public float getLon() {
+        return lon;
     }
 }

@@ -35,10 +35,18 @@
             android:layout_below="@id/ovcardmodelname"
             android:layout_alignParentStart="true"/>
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:id="@+id/model"
+            android:text="MODEL"
+            android:layout_below="@id/ovcardnumber"/>
+        <TextView
             android:id="@+id/ovcardcategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="category"
+            android:visibility="gone"
             android:layout_marginStart="8dp"
             android:textColor="@android:color/black"
             android:layout_below="@id/ovcardnumber"
@@ -47,6 +55,7 @@
             android:id="@+id/ovnextcat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:src="@drawable/ic_arrow_right"
             android:layout_toEndOf="@id/ovcardcategory"
             android:layout_alignTop="@id/ovcardcategory"/>
@@ -55,6 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Subcategory"
+            android:visibility="gone"
             android:textColor="@android:color/black"
             android:layout_toEndOf="@id/ovnextcat"
             android:layout_alignBottom="@id/ovcardcategory"/>
@@ -64,12 +74,14 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_right"
             android:layout_alignTop="@id/ovnextcat"
+            android:visibility="gone"
             android:layout_toEndOf="@id/ovcardsubcategory"/>
         <TextView
             android:id="@+id/ovcardsubcategory1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="subcategory"
+            android:visibility="gone"
             android:textColor="@android:color/black"
             android:layout_toEndOf="@id/ovnextcat1"
             android:layout_alignBottom="@id/ovcardsubcategory"/>

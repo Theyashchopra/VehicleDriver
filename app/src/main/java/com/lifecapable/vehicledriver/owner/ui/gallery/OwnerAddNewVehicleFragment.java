@@ -1,5 +1,7 @@
 package com.lifecapable.vehicledriver.owner.ui.gallery;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
@@ -30,6 +32,8 @@ public class OwnerAddNewVehicleFragment extends Fragment {
     boolean isAvailable;
     Button donebt;
     View root;
+    SharedPreferences sharedPreferences;
+    int id,model_id;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.owner_fragment_add_new_vehicle, container, false);
@@ -46,6 +50,9 @@ public class OwnerAddNewVehicleFragment extends Fragment {
         rentperdaywithoutfuel = root.findViewById(R.id.avrentperdaywofet);
         available = root.findViewById(R.id.avavailblenowbg);
         isAvailable = true;
+        sharedPreferences = this.getActivity().getSharedPreferences("owner", Context.MODE_PRIVATE);
+        id = sharedPreferences.getInt("id",0);
+        model_id = getArguments().getInt("model_id");
         donebt = root.findViewById(R.id.avdonebt);
         initviews();
         return root;
@@ -65,17 +72,17 @@ public class OwnerAddNewVehicleFragment extends Fragment {
     }
 
     private void savedata(){
-        if(yearofman.getText() == null || totalhoursrun.getText() == null ||
-                kmperhour.getText() == null || fuelconsumptionrate.getText() == null ||
-                avgfuelconsumption.getText() == null || rentperhourwithfuel.getText() == null ||
-                rentperdaywithfuel.getText() == null || rentperhourwithoutfuel.getText() == null ||
-                rentperdaywithoutfuel.getText() == null || platenumber.getText() == null
+        if(yearofman.getText().toString().isEmpty() || totalhoursrun.getText().toString().isEmpty() ||
+                kmperhour.getText().toString().isEmpty() || fuelconsumptionrate.getText().toString().isEmpty() ||
+                avgfuelconsumption.getText().toString().isEmpty() || rentperhourwithfuel.getText().toString().isEmpty() ||
+                rentperdaywithfuel.getText().toString().isEmpty() || rentperhourwithoutfuel.getText().toString().isEmpty() ||
+                rentperdaywithoutfuel.getText().toString().isEmpty() || platenumber.getText().toString().isEmpty()
         ) {
             Toast.makeText(getContext(), "You left something empty!! ", Toast.LENGTH_SHORT).show();
             return;
         }
         Call<VehicleIds> call = RestAdapter.createAPI().addVehicle(new VehicleDetailsOwnerData(name.getText().toString(),
-                1,
+                id,
                 yearofman.getText().toString(),
                 Integer.parseInt(totalhoursrun.getText().toString()),
                 Integer.parseInt(kmperhour.getText().toString()),
@@ -88,13 +95,13 @@ public class OwnerAddNewVehicleFragment extends Fragment {
                 getWifiMacAddress(),
                 platenumber.getText().toString(),
                 isAvailable,
-                10));
+                model_id));
         call.enqueue(new Callback<VehicleIds>() {
             @Override
             public void onResponse(Call<VehicleIds> call, Response<VehicleIds> response) {
                 if(response.isSuccessful()){
                     Bundle args = new Bundle();
-                    if (response.body()!= null) {
+                    if (response.body().getName() != null) {
                         args.putInt("vehicleid", response.body().getV_id());
                         args.putString("vname",response.body().getName());
                         Log.e("Add new vehicle", response.body().getName()+"\n");

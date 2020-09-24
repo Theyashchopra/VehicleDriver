@@ -1,10 +1,14 @@
 package com.lifecapable.vehicledriver.owner.placeholders;
 
+import com.lifecapable.vehicledriver.owner.categories.MasterRoot;
+import com.lifecapable.vehicledriver.owner.categories.VehicleModelRoot;
+import com.lifecapable.vehicledriver.owner.categories.VehicleTypeRoot;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.ListVehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.LoginOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.Messages;
+import com.lifecapable.vehicledriver.owner.datamodel.RootEnquiry;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleIds;
 
@@ -52,5 +56,16 @@ public interface OwnerJsonPlaceHolder {
     @GET("vehicle")
     Call<VehicleDetailsOwnerData> ogetVehicleDetails(@Query("id") int id);
 
+    @GET("enquiry")
+    Call<RootEnquiry> getEnquiries(@Query("owner_id")int id);
+
+    @GET("vmaster")
+    Call<MasterRoot> getMaster();
+
+    @GET("vtype")
+    Call<VehicleTypeRoot> getVtypes(@Query("master_id")int id);
+
+    @GET("vmodel")
+    Call<VehicleModelRoot> getVModels(@Query("vehicle_type_id") int id);
 
 }

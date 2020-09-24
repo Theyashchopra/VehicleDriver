@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
@@ -24,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class OwnerViewVehicleFragment extends Fragment {
     View root;
-    EditText plateEt, modelnumEt, madeinEt, kmscompletedEt, rentperday, rentperhour;
+    MaterialTextView plateEt, modelnumEt, madeinEt, kmscompletedEt, rentperday, rentperhour;
     int vehicleid;
     Button editbt, removebt;
     OwnerJsonPlaceHolder vehicleDataPlaceHolder;
