@@ -25,7 +25,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Name"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/adnameet"
                 android:layout_width="match_parent"
@@ -39,7 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Mobile Number"
-            android:layout_below="@id/adname">
+            android:layout_below="@id/adname"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/adcontact1et"
                 android:layout_width="match_parent"
@@ -53,7 +55,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Alternate Number"
-            android:layout_below="@id/adcontact1">
+            android:layout_below="@id/adcontact1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/adcontact2et"
                 android:layout_width="match_parent"
@@ -67,7 +70,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="E-mail"
-            android:layout_below="@id/adcontact2">
+            android:layout_below="@id/adcontact2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ademailet"
                 android:layout_width="match_parent"
@@ -81,7 +85,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Aadhar"
-            android:layout_below="@id/ademail">
+            android:layout_below="@id/ademail"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/adaadharet"
                 android:layout_width="match_parent"
@@ -95,7 +100,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Password"
-            android:layout_below="@id/adaadhar">
+            android:layout_below="@id/adaadhar"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/adpasswordet"
                 android:layout_width="match_parent"

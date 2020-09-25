@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.lifecapable.vehicledriver.R;
@@ -36,11 +37,12 @@ import retrofit2.Response;
 
 public class OwnerAddImageDriverFragment extends Fragment implements OwnerDialogGetImageFragment.MyDialogCloseListener, OwnerDialogGetImageFragment.onPhotoSelectedListener {
 
+    ProgressBar progressBar;
     View root;
     int vehicleId;
     ImageView pic,licence;
     Button done;
-
+    String email;
     Uri profileuri, licenceuri, imageuri;
     OwnerDialogGetImageFragment dgi;
     Bitmap imagebitmap;
@@ -49,8 +51,9 @@ public class OwnerAddImageDriverFragment extends Fragment implements OwnerDialog
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.owner_fragment_add_image_drivers, container, false);
+        progressBar = root.findViewById(R.id.image_progress);
         if(getArguments() != null){
-            vehicleId = getArguments().getInt("vid");
+            email = getArguments().getString("email");
         }
         pic = root.findViewById(R.id.driverimage);
         licence = root.findViewById(R.id.driverlicence);
@@ -83,31 +86,40 @@ public class OwnerAddImageDriverFragment extends Fragment implements OwnerDialog
         done.setOnClickListener(view -> {
             try {
                 postImageData();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
     }
-    private void postImageData() throws IOException {
-        File file = FileUtil.from(getContext(),profileuri);
+    private void postImageData() throws Exception {
+        progressBar.setVisibility(View.VISIBLE);
+        if(profileuri == null){
+            Log.i("URI","NULL");
+            return;
+        }
+        File file = FileUtil.from(this.getActivity(),profileuri);
         RequestBody requestFile = RequestBody.create(file, MediaType.parse("multipart/form-data"));
-        MultipartBody.Part body = MultipartBody.Part.createFormData("pic", file.getName(), requestFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        RequestBody s = RequestBody.create(email,MediaType.parse("multipart/form-data"));
 
-        RequestBody s = RequestBody.create(vehicleId+"",MediaType.parse("multipart/form-data"));
         Call<Messages> call = RestAdapter.createAPI().addDriverImage(s,body);
+
         call.enqueue(new Callback<Messages>() {
             @Override
             public void onResponse(Call<Messages> call, Response<Messages> response) {
                 if(!response.isSuccessful()){
                     Toast.makeText(getContext(), "Somethings Wrong I can feel it"+response.message(), Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                     return;
                 }
                 Messages res = response.body();
                 if(res != null){
                     Log.e("Yoooooooooo", res.getMessage());
+                    progressBar.setVisibility(View.INVISIBLE);
                     try {
                         postLicenceData();
                     } catch (IOException e) {
+                        Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
@@ -115,36 +127,39 @@ public class OwnerAddImageDriverFragment extends Fragment implements OwnerDialog
 
             @Override
             public void onFailure(Call<Messages> call, Throwable t) {
-
+                Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }
 
     private void postLicenceData() throws IOException {
-        File file1 = FileUtil.from(getContext(),licenceuri);
+        progressBar.setVisibility(View.VISIBLE);
+        File file1 = FileUtil.from(this.getActivity(),licenceuri);
         RequestBody requestFile1 = RequestBody.create(file1,MediaType.parse("multipart/form-data") );
-        MultipartBody.Part body1 = MultipartBody.Part.createFormData("licence_image", file1.getName(), requestFile1);
-
-        RequestBody s = RequestBody.create(vehicleId+"",MediaType.parse("multipart/form-data"));
+        MultipartBody.Part body1 = MultipartBody.Part.createFormData("license", file1.getName(), requestFile1);
+        RequestBody s = RequestBody.create(email,MediaType.parse("multipart/form-data"));
         Call<Messages> call = RestAdapter.createAPI().addDriverLicence(s,body1);
         call.enqueue(new Callback<Messages>() {
             @Override
             public void onResponse(Call<Messages> call, Response<Messages> response) {
                 if(!response.isSuccessful()){
                     Toast.makeText(getContext(), "Somethings Wrong I can feel it"+response.message(), Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                     return;
                 }
                 Messages res = response.body();
                 if(res != null){
                     Log.e("Yoooooooooo1111", res.getMessage());
+                    progressBar.setVisibility(View.INVISIBLE);
                     Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.action_nav_AddImageDriver_owner_to_nav_slideshow_owner);
-
                 }
             }
 
             @Override
             public void onFailure(Call<Messages> call, Throwable t) {
-
+                Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }

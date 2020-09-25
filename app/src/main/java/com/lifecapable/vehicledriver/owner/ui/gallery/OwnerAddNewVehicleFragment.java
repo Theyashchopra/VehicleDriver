@@ -9,8 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.textfield.TextInputEditText;
 import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
@@ -20,6 +24,8 @@ import com.lifecapable.vehicledriver.owner.datamodel.VehicleIds;
 import java.net.NetworkInterface;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +40,7 @@ public class OwnerAddNewVehicleFragment extends Fragment {
     View root;
     SharedPreferences sharedPreferences;
     int id,model_id;
+    ProgressBar progressBar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.owner_fragment_add_new_vehicle, container, false);
@@ -49,9 +56,11 @@ public class OwnerAddNewVehicleFragment extends Fragment {
         rentperhourwithoutfuel = root.findViewById(R.id.avrentperhourwofet);
         rentperdaywithoutfuel = root.findViewById(R.id.avrentperdaywofet);
         available = root.findViewById(R.id.avavailblenowbg);
+        progressBar = root.findViewById(R.id.progress);
         isAvailable = true;
         sharedPreferences = this.getActivity().getSharedPreferences("owner", Context.MODE_PRIVATE);
         id = sharedPreferences.getInt("id",0);
+        Log.i("OWNER",String.valueOf(id));
         model_id = getArguments().getInt("model_id");
         donebt = root.findViewById(R.id.avdonebt);
         initviews();
@@ -77,12 +86,19 @@ public class OwnerAddNewVehicleFragment extends Fragment {
                 avgfuelconsumption.getText().toString().isEmpty() || rentperhourwithfuel.getText().toString().isEmpty() ||
                 rentperdaywithfuel.getText().toString().isEmpty() || rentperhourwithoutfuel.getText().toString().isEmpty() ||
                 rentperdaywithoutfuel.getText().toString().isEmpty() || platenumber.getText().toString().isEmpty()
-        ) {
+        ){
             Toast.makeText(getContext(), "You left something empty!! ", Toast.LENGTH_SHORT).show();
             return;
+        }else if(patterMatcher(platenumber.getText().toString().trim())){
+            platenumber.setError("No blank spaces allowed");
+            YoYo.with(Techniques.Shake)
+                    .duration(2000)
+                    .playOn(platenumber);
+            return;
         }
+        progressBar.setVisibility(View.VISIBLE);
         Call<VehicleIds> call = RestAdapter.createAPI().addVehicle(new VehicleDetailsOwnerData(name.getText().toString(),
-                id,
+                model_id,
                 yearofman.getText().toString(),
                 Integer.parseInt(totalhoursrun.getText().toString()),
                 Integer.parseInt(kmperhour.getText().toString()),
@@ -93,9 +109,9 @@ public class OwnerAddNewVehicleFragment extends Fragment {
                 Integer.parseInt(rentperhourwithoutfuel.getText().toString()),
                 Integer.parseInt(rentperdaywithoutfuel.getText().toString()),
                 getWifiMacAddress(),
-                platenumber.getText().toString(),
+                platenumber.getText().toString().toLowerCase(),
                 isAvailable,
-                model_id));
+                id));
         call.enqueue(new Callback<VehicleIds>() {
             @Override
             public void onResponse(Call<VehicleIds> call, Response<VehicleIds> response) {
@@ -104,11 +120,14 @@ public class OwnerAddNewVehicleFragment extends Fragment {
                     if (response.body().getName() != null) {
                         args.putInt("vehicleid", response.body().getV_id());
                         args.putString("vname",response.body().getName());
+                        args.putString("plate",response.body().getPlate_no());
                         Log.e("Add new vehicle", response.body().getName()+"\n");
+                        progressBar.setVisibility(View.INVISIBLE);
                         findNavController(OwnerAddNewVehicleFragment.this).navigate(R.id.action_nav_AddNewVehicle_owner_to_nav_RcVehicle_owner, args);
                     }
                     else {
                         Toast.makeText(getContext(), "Somethings Wrong I can feel it"+response.message(), Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.INVISIBLE);
                     }
                 }
             }
@@ -116,6 +135,7 @@ public class OwnerAddNewVehicleFragment extends Fragment {
             @Override
             public void onFailure(Call<VehicleIds> call, Throwable t) {
                 Toast.makeText(getContext(), "Somethings Wrong I can feel it"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -148,4 +168,16 @@ public class OwnerAddNewVehicleFragment extends Fragment {
         return "";
     }
 
+    public boolean patterMatcher(String s){
+        if(s.isEmpty() || s == null){
+            return true;
+        }
+        Pattern pattern = Pattern.compile("[a-zA-Z0-9]*");
+        Matcher matcher = pattern.matcher(s);
+        if(!matcher.matches()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

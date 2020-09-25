@@ -22,7 +22,7 @@ import java.util.List;
 public class DriverOwnerAdapter extends RecyclerView.Adapter<DriverOwnerAdapter.DriverOwnerViewHolder> {
     List<DriverOwnerData> mList;
     Context mContext;
-
+    public static DriverOwnerData driverOwnerData;
     public DriverOwnerAdapter(List<DriverOwnerData> mList, Context mContext) {
         this.mList = mList;
         this.mContext = mContext;
@@ -39,16 +39,17 @@ public class DriverOwnerAdapter extends RecyclerView.Adapter<DriverOwnerAdapter.
     public void onBindViewHolder(@NonNull DriverOwnerViewHolder holder, int position) {
         DriverOwnerData curr = mList.get(position);
         holder.dname.setText(curr.getName());
-        holder.dcontact.setText(curr.getContact());
+        holder.dcontact.setText(curr.getMobile());
         holder.drelative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                driverOwnerData = mList.get(position);
                 Navigation.findNavController(v).navigate(R.id.action_nav_slideshow_owner_to_nav_ViewDriver_owner);
             }
         });
         holder.dcall.setOnClickListener(v -> {
             Intent phoneIntent = new Intent(Intent.ACTION_CALL);
-            phoneIntent.setData(Uri.parse("tel:"+curr.getContact()));
+            phoneIntent.setData(Uri.parse("tel:"+curr.getMobile()));
             if (ActivityCompat.checkSelfPermission(mContext,
                     Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                 return;

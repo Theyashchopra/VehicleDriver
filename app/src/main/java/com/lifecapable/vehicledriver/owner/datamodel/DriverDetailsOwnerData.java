@@ -13,6 +13,7 @@ public class DriverDetailsOwnerData {
     public String owner_name;
     public String image_url;
     public String license_url;
+    String message;
 
     public int getId() {
         return id;
@@ -108,5 +109,9 @@ public class DriverDetailsOwnerData {
 
     public void setLicense_url(String license_url) {
         this.license_url = license_url;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

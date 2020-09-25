@@ -3,8 +3,9 @@ package com.lifecapable.vehicledriver.owner.datamodel;
 
 public class VehicleDetailsOwnerData {
     String name;
+    int v_id;
     int vehicle_model_id;
-    String yom;
+    String year_of_man;
     int total_run_hrs;
     int run_km_hr;
     int fuel_consumption_rate;
@@ -13,14 +14,17 @@ public class VehicleDetailsOwnerData {
     int rent_per_hour_with_fuel;
     int rent_per_hour_without_fuel;
     int rent_per_day_without_fuel;
+    String yom;
     String ip_address;
     String plate_no;
     boolean availibility;
     int owner_id;
+    String model_name;
 
     public VehicleDetailsOwnerData(String name, int vehicle_model_id, String yom, int total_run_hrs, int run_km_hr, int fuel_consumption_rate, int fuel_average_consumption_rate, int rent_per_day_with_fuel, int rent_per_hour_with_fuel, int rent_per_hour_without_fuel, int rent_per_day_without_fuel, String ip_address, String plate_no, boolean availibility, int owner_id) {
         this.name = name;
         this.vehicle_model_id = vehicle_model_id;
+        this.year_of_man = yom;
         this.yom = yom;
         this.total_run_hrs = total_run_hrs;
         this.run_km_hr = run_km_hr;
@@ -53,11 +57,11 @@ public class VehicleDetailsOwnerData {
     }
 
     public String getYom() {
-        return yom;
+        return year_of_man;
     }
 
     public void setYom(String yom) {
-        this.yom = yom;
+        this.year_of_man = yom;
     }
 
     public int getTotal_run_hrs() {
@@ -154,5 +158,13 @@ public class VehicleDetailsOwnerData {
 
     public void setOwner_id(int owner_id) {
         this.owner_id = owner_id;
+    }
+
+    public String getModel_name() {
+        return model_name;
+    }
+
+    public int getV_id() {
+        return v_id;
     }
 }
