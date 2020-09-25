@@ -3,9 +3,11 @@ package com.lifecapable.vehicledriver.owner.placeholders;
 import com.lifecapable.vehicledriver.owner.categories.MasterRoot;
 import com.lifecapable.vehicledriver.owner.categories.VehicleModelRoot;
 import com.lifecapable.vehicledriver.owner.categories.VehicleTypeRoot;
+import com.lifecapable.vehicledriver.owner.datamodel.AppointmentOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverRoot;
+import com.lifecapable.vehicledriver.owner.datamodel.ListAppointmentOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.ListVehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.LoginOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.Messages;
@@ -27,11 +29,9 @@ import retrofit2.http.Query;
 
 public interface OwnerJsonPlaceHolder {
 
-    //owner login
     @GET("regowner")
     Call<LoginOwnerData> ogetLogin(@Query("email") String email, @Query("password") String password);
 
-    //driver register
     @POST("driver")
     Call<DriverDetailsOwnerData> addDriver(@Query("email") String email, @Query("password") String password,
                                            @Query("name") String name, @Query("mobile") String mobile,
@@ -48,13 +48,11 @@ public interface OwnerJsonPlaceHolder {
     @PUT("dimages")
     Call<Messages> addDriverLicence(@Part("email") RequestBody email, @Part MultipartBody.Part licence);
 
-    //add vehicle
-    @POST("vehicle")
-    Call<VehicleIds> addVehicle(@Body VehicleDetailsOwnerData v);
-
-    //get list of drivers
     @GET("driver")
     Call<DriverRoot> getDriverList(@Query("owner_id") int id);
+
+    @POST("vehicle")
+    Call<VehicleIds> addVehicle(@Body VehicleDetailsOwnerData v);
 
     //get list of vehicles
     @GET("vehicle")
@@ -79,6 +77,16 @@ public interface OwnerJsonPlaceHolder {
     //get model list
     @GET("vmodel")
     Call<VehicleModelRoot> getVModels(@Query("vehicle_type_id") int id);
+
+
+    @GET("appt")
+    Call<ListAppointmentOwnerData> ogetListAppointment(@Query("owner_id") int owner_id);
+
+    @POST("appt")
+    Call<AppointmentOwnerData> oaddAppointment(@Query("customer_name") String customer_name, @Query("address") String address, @Query("customer_mobile") String customer_mobile, @Query("alternate_mobile") String alternate_mobile, @Query("owner_id") int owner_id, @Query("vehicle_id") int vehicle_id, @Query("start") String start, @Query("end") String end, @Query("time") String time);
+
+    @GET("appt")
+    Call<AppointmentOwnerData> ogetAppointment(@Query("id") int id);
 
     //get driver image
     @GET("driver")

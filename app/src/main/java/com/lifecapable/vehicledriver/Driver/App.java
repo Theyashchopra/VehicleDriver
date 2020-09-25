@@ -6,7 +6,7 @@ import android.app.NotificationManager;
 import android.os.Build;
 
 public class App extends Application {
-    public static final String CHANNEL_ID="1";
+    public static final String CHANNEL_ID="LocationDriverService";
     @Override
     public void onCreate() {
         super.onCreate();
@@ -17,7 +17,7 @@ public class App extends Application {
             NotificationChannel servicechannel=new NotificationChannel(
                     CHANNEL_ID,
                     "Location Service",
-                    NotificationManager.IMPORTANCE_HIGH
+                    NotificationManager.IMPORTANCE_DEFAULT
             );
             NotificationManager manager=getSystemService(NotificationManager.class);
             manager.createNotificationChannel(servicechannel);

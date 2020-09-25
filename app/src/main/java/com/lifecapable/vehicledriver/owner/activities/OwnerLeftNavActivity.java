@@ -56,7 +56,7 @@ public class OwnerLeftNavActivity extends AppCompatActivity {
         headerTV2.setText("email");
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home_owner, R.id.nav_gallery_owner, R.id.nav_slideshow_owner, R.id.nav_profile_owner)
+                R.id.nav_home_owner, R.id.nav_gallery_owner, R.id.nav_slideshow_owner, R.id.nav_profile_owner,R.id.nav_appointments_owner)
                 .setOpenableLayout(drawer)
                 .build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);

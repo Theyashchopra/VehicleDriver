@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".owner.ui.appointment.ViewAppointmentOwnerFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/vaprog"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="12dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/vacn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer name: "
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/vacustomername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vacn"
+            android:layout_toEndOf="@id/vacn"/>
+
+        <TextView
+            android:id="@+id/vaadd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address: "
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/vacustomername"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/vaaddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vaadd"
+            android:layout_toEndOf="@id/vaadd"/>
+
+        <TextView
+            android:id="@+id/vacm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer mobile: "
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/vaaddress"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/vacustomermobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vacm"
+            android:layout_toEndOf="@id/vacm"/>
+
+        <TextView
+            android:id="@+id/vacma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customer mobile alternate: "
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/vacustomermobile"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/vacustomermobilealternate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vacma"
+            android:layout_toEndOf="@id/vacma"/>
+
+        <TextView
+            android:id="@+id/vasd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Date: "
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/vacustomermobilealternate"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/vastartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vasd"
+            android:layout_toEndOf="@id/vasd"/>
+
+        <TextView
+            android:id="@+id/vaed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End Date: "
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/vastartDate"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/vaenddate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vaed"
+            android:layout_toEndOf="@id/vaed"/>
+
+        <TextView
+            android:id="@+id/vat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time: "
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/vaenddate"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/vatime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vat"
+            android:layout_toEndOf="@id/vat"/>
+
+        <TextView
+            android:id="@+id/vavd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vehicle Details"
+            android:layout_margin="8dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@id/vatime"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/vavn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vehicle name: "
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/vavd"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/vavehiclename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vavn"
+            android:layout_toEndOf="@id/vavn"/>
+
+        <TextView
+            android:id="@+id/vavp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vehicle plate: "
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/vavehiclename"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/vavehicleplate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@id/vavp"
+            android:layout_toEndOf="@id/vavp"/>
+
+<!--        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/vadone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Done"
+                android:layout_margin="8dp"/>
+            <Button
+                android:id="@+id/vacancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel"
+                android:layout_margin="8dp"/>
+        </LinearLayout>-->
+
+    </RelativeLayout>
+
+</ScrollView>
