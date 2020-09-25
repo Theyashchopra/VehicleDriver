@@ -2,41 +2,38 @@ package com.lifecapable.vehicledriver.Driver.services;
 
 import android.Manifest;
 import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.Build;
 import android.os.IBinder;
 import android.os.Looper;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.lifecapable.vehicledriver.Driver.activities.DriverBottomActivity;
 import com.lifecapable.vehicledriver.R;
 import static com.lifecapable.vehicledriver.Driver.App.CHANNEL_ID;
 
 public class LocationService extends Service {
 
-    SharedPreferences sharedPreferences;
-    private static final String TAG = "LocationService";
+/*  SharedPreferences sharedPreferences;
+    String phone_no;*/
+
+    private static final String TAG = "LocationServiceDriver";
     private FusedLocationProviderClient mFusedLocationClient;
-    private final static long UPDATE_INTERVAL = 4 * 1000;  /* 4 secs */
+    private final static long UPDATE_INTERVAL = 5 * 1000;  /* 5 secs */
     private final static long FASTEST_INTERVAL = 2000; /* 2 sec */
-    String phone_no;
+
     SharedPreferences status;
     Double lat,lon;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -50,13 +47,18 @@ public class LocationService extends Service {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand: called.");
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        sharedPreferences = getSharedPreferences("phone",MODE_PRIVATE);
-        phone_no = sharedPreferences.getString("phone","");
-        status = getSharedPreferences("status",MODE_PRIVATE);
+/*        sharedPreferences = getSharedPreferences("phone",MODE_PRIVATE);
+        phone_no = sharedPreferences.getString("phone","");*/
+        status = getSharedPreferences("statePreference",MODE_PRIVATE);
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Location service")
@@ -64,9 +66,8 @@ public class LocationService extends Service {
                 .setSmallIcon(R.drawable.ic_location)
                 .build();
             startForeground(1, notification);
-        getLocation();
-        create_notifications("yo", "yaah");
-        return START_STICKY;
+            getLocation();
+        return START_NOT_STICKY;
     }
 
     private void getLocation() {
@@ -90,11 +91,12 @@ public class LocationService extends Service {
                         if (location != null) {
                             lat = location.getLatitude();
                             lon = location.getLongitude();
-                            if(status.getBoolean("status",false)) {
+                            if(status.getBoolean("state",false)) {
                                 updateLocation(lat,lon);
                             }else{
                                 stopSelf();
                             }
+                            updateLocation(lat,lon);
                         }
                     }
                 },
@@ -102,11 +104,11 @@ public class LocationService extends Service {
     }
 
     public void updateLocation(Double lat,Double lon){
-        //update database here
+        Log.e("Locatin Data    ","Lat "+lat+", long "+ lon);
 
     }
 
-    private void create_notifications(String id,String number){
+/*    private void create_notifications(String id,String number){
 
         Intent intent = new Intent(this, DriverBottomActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -116,7 +118,7 @@ public class LocationService extends Service {
         PendingIntent pendingIntent = PendingIntent.getActivity(this,1,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel channel = new NotificationChannel("1","1", NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel = new NotificationChannel("1","1", NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
         }
@@ -128,5 +130,7 @@ public class LocationService extends Service {
                 .setContentIntent(pendingIntent);
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
         notificationManagerCompat.notify(1,builder.build());
-    }
+        Notification notification = builder.build();
+        startForeground(1,notification);
+    }*/
 }

@@ -1,7 +1,9 @@
 package com.lifecapable.vehicledriver.Driver.ui.home;
 
 import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,9 +39,12 @@ public class DriverHomeFragment extends Fragment {
     Boolean busystate, statusstate;
     TextView busytv, statustv;
     View busyvw, statusvw;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.driver_fragment_home, container, false);
+
         homerecycle = root.findViewById(R.id.dhomerecycle);
         busybt = root.findViewById(R.id.busybutton);
         statusbt = root.findViewById(R.id.statsbutton);
@@ -47,55 +52,37 @@ public class DriverHomeFragment extends Fragment {
         busytv = root.findViewById(R.id.busytxt);
         busyvw = root.findViewById(R.id.busyview);
         statusvw =root.findViewById(R.id.statusview);
-        busystate = true;
-        statusstate = true;
+        try {
+            sharedPreferences = requireActivity().getSharedPreferences("statePreference", Context.MODE_PRIVATE);
+        }catch (NullPointerException ne){
+            Log.e("yo","yo");
+        }
+        setBusyState(sharedPreferences.getBoolean("busy",false));
+        setOnlineStatus(sharedPreferences.getBoolean("state",false));
+
         initHome();
         initRecycle();
+
         return root;
     }
 
     private void initHome(){
         statusbt.setOnClickListener(v -> {
-            if(statusstate){
-                statusstate = false;
-                statusbt.setBackgroundResource(R.drawable.background_green);
-                statusbt.setText("ONLINE");
-                statusvw.setBackgroundColor(Color.rgb(50,205,50));
-                statustv.setText("Online");
-                statustv.setTextColor(Color.rgb(50,205,50));
-                startLocationService();
+            if (statusstate){
+                setOnlineStatus(false);
             }
-            else{
-                statusstate = true;
-                statusbt.setBackgroundResource(R.drawable.background_red);
-                statusbt.setText("OFFLINE");
-                statusvw.setBackgroundColor(Color.RED);
-                statustv.setText("Offline");
-                statustv.setTextColor(Color.RED);
-                stopLocationService();
+            else {
+                setOnlineStatus(true);
             }
-
         });
 
         busybt.setOnClickListener(v -> {
             if(busystate){
-                busystate = false;
-                busybt.setBackgroundResource(R.drawable.background_green);
-                busybt.setText("Available");
-                busyvw.setBackgroundColor(Color.rgb(50,205,50));
-                busytv.setText("Available");
-                busytv.setTextColor(Color.rgb(50,205,50));
-
+                setBusyState(false);
             }
             else{
-                busystate = true;
-                busybt.setBackgroundResource(R.drawable.background_orange);
-                busybt.setText("BUSY");
-                busyvw.setBackgroundColor(Color.rgb(255, 165, 0));
-                busytv.setText("Busy");
-                busytv.setTextColor(Color.rgb(255, 165, 0));
+                setBusyState(true);
             }
-
         });
     }
     private void initRecycle(){
@@ -114,22 +101,74 @@ public class DriverHomeFragment extends Fragment {
         homerecycle.setAdapter(homeDriverAdapter);
     }
 
+    private void setBusyState(boolean busystate1){
+        editor = sharedPreferences.edit();
+        if(busystate1){
+            String available = "AVAILABLE";
+            busystate = true;
+            busybt.setBackgroundResource(R.drawable.background_green);
+            busybt.setText(available);
+            busyvw.setBackgroundColor(Color.rgb(50,205,50));
+            busytv.setText(available);
+            busytv.setTextColor(Color.rgb(50,205,50));
+            editor.putBoolean("busy",true);
+        }
+        else{
+            String busy = "BUSY";
+            busystate = false;
+            busybt.setBackgroundResource(R.drawable.background_orange);
+            busybt.setText(busy);
+            busyvw.setBackgroundColor(Color.rgb(255, 165, 0));
+            busytv.setText(busy);
+            busytv.setTextColor(Color.rgb(255, 165, 0));
+            editor.putBoolean("busy",false);
+        }
+        editor.apply();
+    }
+
+    private void setOnlineStatus(boolean status){
+        editor = sharedPreferences.edit();
+        if(status){
+            String online = "ONLINE";
+            statusstate = true;
+            statusbt.setBackgroundResource(R.drawable.background_green);
+            statusbt.setText(online);
+            statusvw.setBackgroundColor(Color.rgb(50,205,50));
+            statustv.setText(online);
+            statustv.setTextColor(Color.rgb(50,205,50));
+            startLocationService();
+            editor.putBoolean("state",true);
+        }
+        else{
+            String offline = "OFFLINE";
+            statusstate = false;
+            statusbt.setBackgroundResource(R.drawable.background_red);
+            statusbt.setText(offline);
+            statusvw.setBackgroundColor(Color.RED);
+            statustv.setText(offline);
+            statustv.setTextColor(Color.RED);
+            stopLocationService();
+            editor.putBoolean("state",false);
+        }
+        editor.apply();
+    }
+
     private void startLocationService(){
         if (!isLocationServiceRunning()) {
             Intent serviceIntent = new Intent(getActivity(), LocationService.class);
-            ContextCompat.startForegroundService(getActivity(), serviceIntent);
+            ContextCompat.startForegroundService(requireActivity(), serviceIntent);
         }
     }
     private void stopLocationService(){
             try{
                 Intent serviceIntent = new Intent(getActivity(), LocationService.class);
-                getActivity().stopService(serviceIntent);
+                requireActivity().stopService(serviceIntent);
             }catch (NullPointerException e){
                 Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
             }
     }
     private boolean isLocationServiceRunning() {
-        ActivityManager manager = (ActivityManager) getContext().getSystemService(ACTIVITY_SERVICE);
+        ActivityManager manager = (ActivityManager) requireContext().getSystemService(ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)){
             if("com.lifecapable.vehicledriver.Driver.services.LocationService".equals(service.service.getClassName())) {
                 Log.d(TAG, "isLocationServiceRunning: location service is already running.");

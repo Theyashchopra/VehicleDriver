@@ -11,6 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ProgressBar
+            android:id="@+id/vaprog"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="12dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
         <TextView
             android:id="@+id/vacn"
             android:layout_width="wrap_content"
@@ -25,7 +33,7 @@
             android:id="@+id/vacustomername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name "
+            android:text=" "
             android:textColor="@android:color/black"
             android:layout_alignBottom="@id/vacn"
             android:layout_toEndOf="@id/vacn"/>
@@ -44,7 +52,7 @@
             android:id="@+id/vaaddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="yoyoyoyoyoyoyoyoyoyoyoyoy "
+            android:text=" "
             android:textColor="@android:color/black"
             android:layout_alignBottom="@id/vaadd"
             android:layout_toEndOf="@id/vaadd"/>
@@ -63,7 +71,7 @@
             android:id="@+id/vacustomermobile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1234567890 "
+            android:text=" "
             android:textColor="@android:color/black"
             android:layout_alignBottom="@id/vacm"
             android:layout_toEndOf="@id/vacm"/>
@@ -82,7 +90,7 @@
             android:id="@+id/vacustomermobilealternate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1234567890 "
+            android:text=" "
             android:textColor="@android:color/black"
             android:layout_alignBottom="@id/vacma"
             android:layout_toEndOf="@id/vacma"/>
@@ -101,7 +109,7 @@
             android:id="@+id/vastartDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="11/12/2020 "
+            android:text=" "
             android:textColor="@android:color/black"
             android:layout_alignBottom="@id/vasd"
             android:layout_toEndOf="@id/vasd"/>
@@ -120,7 +128,7 @@
             android:id="@+id/vaenddate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="11/12/2020 "
+            android:text=" "
             android:textColor="@android:color/black"
             android:layout_alignBottom="@id/vaed"
             android:layout_toEndOf="@id/vaed"/>
@@ -140,7 +148,7 @@
             android:id="@+id/vatime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="11:00 "
+            android:text=" "
             android:textColor="@android:color/black"
             android:layout_alignBottom="@id/vat"
             android:layout_toEndOf="@id/vat"/>
@@ -169,7 +177,7 @@
             android:id="@+id/vavehiclename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ABC "
+            android:text=" "
             android:textColor="@android:color/black"
             android:layout_alignBottom="@id/vavn"
             android:layout_toEndOf="@id/vavn"/>
@@ -188,12 +196,12 @@
             android:id="@+id/vavehicleplate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="mh12j1234 "
+            android:text=" "
             android:textColor="@android:color/black"
             android:layout_alignBottom="@id/vavp"
             android:layout_toEndOf="@id/vavp"/>
 
-        <LinearLayout
+<!--        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -213,7 +221,7 @@
                 android:layout_weight="1"
                 android:text="Cancel"
                 android:layout_margin="8dp"/>
-        </LinearLayout>
+        </LinearLayout>-->
 
     </RelativeLayout>
 

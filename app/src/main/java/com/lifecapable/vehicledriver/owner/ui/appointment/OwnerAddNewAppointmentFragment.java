@@ -14,9 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -40,7 +38,7 @@ public class OwnerAddNewAppointmentFragment extends Fragment implements  OwnerSe
     TextInputEditText cname, address, customer_mobile, alternate_mobile;
     CardView start,end,time,vehicle;
     TextView starttv,endtv,timetv,vehicletv;
-    String startstring, endstring, timestring, vehiclestring;
+    String startstring, endstring, timestring;
     Button done;
     SharedPreferences owner;
     int oid;
@@ -78,7 +76,7 @@ public class OwnerAddNewAppointmentFragment extends Fragment implements  OwnerSe
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     getContext(),
                     (datePicker, i, i1, i2) -> {
-                        startstring =  i + "/" + i1 + "/" + i2;
+                        startstring =  i2 + "/" + i1 + "/" + i;
                         starttv.setText(startstring);
                     },
                     Calendar.getInstance().get(Calendar.YEAR),
@@ -90,7 +88,7 @@ public class OwnerAddNewAppointmentFragment extends Fragment implements  OwnerSe
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     getContext(),
                     (datePicker, i, i1, i2) -> {
-                        endstring =  i + "/" + i1 + "/" + i2;
+                        endstring =  i2 + "/" + i1 + "/" + i;
                         endtv.setText(endstring);
                     },
                     Calendar.getInstance().get(Calendar.YEAR),
@@ -126,7 +124,7 @@ public class OwnerAddNewAppointmentFragment extends Fragment implements  OwnerSe
     }
 
     private void uploadData(){
-        if(cname == null || address == null || customer_mobile == null || alternate_mobile == null || startstring == null || endstring == null || timestring == null || vehicle == null){
+        if(cname.getText() == null || address.getText() == null || customer_mobile.getText() == null || alternate_mobile.getText() == null || startstring == null || endstring == null || timestring == null || vehicle == null){
             Toast.makeText(getContext(), "You left something empty!!", Toast.LENGTH_SHORT).show();
             return;
         }

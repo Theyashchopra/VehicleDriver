@@ -27,6 +27,7 @@
         <activity android:name=".owner.activities.OwnerLoginActivity" />
         <activity
             android:name=".Driver.activities.DriverBottomActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_driver_bottom" />
         <activity android:name=".Driver.activities.DriverLoginActivity" />
 

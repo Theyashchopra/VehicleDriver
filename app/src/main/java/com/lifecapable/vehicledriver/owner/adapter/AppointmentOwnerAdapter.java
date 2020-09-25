@@ -16,7 +16,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,7 +60,15 @@ public class AppointmentOwnerAdapter extends RecyclerView.Adapter<AppointmentOwn
         holder.relativeLayout.setOnClickListener(view -> {
             Bundle args = new Bundle();
             args.putInt("id",curr.getId());
-            NavHostFragment.findNavController(fragment).navigate(R.id.action_nav_appointments_owner_to_nav_viewAppointment_owner);
+            args.putString("address",curr.getAddress());
+            args.putString("cname",curr.getCustomer_name());
+            args.putString("mobile",curr.getCustomer_mobile());
+            args.putString("alternatemobile",curr.getAlternate_mobile());
+            args.putString("startdate",curr.getStart_day());
+            args.putString("enddate",curr.getEnd_day());
+            args.putString("time",curr.getTime());
+            args.putInt("vid",curr.getVehicle_id());
+            NavHostFragment.findNavController(fragment).navigate(R.id.action_nav_appointments_owner_to_nav_viewAppointment_owner, args);
         });
     }
 
