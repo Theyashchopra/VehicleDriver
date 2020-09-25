@@ -14,8 +14,9 @@
             android:id="@+id/opn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Agency Name"
-            android:layout_margin="8dp"
+            android:text="Agency Details"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:textSize="24sp"
             android:layout_alignParentTop="true"
             android:textAlignment="center"
@@ -26,13 +27,84 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Agency Name"
-            android:layout_below="@id/opn">
+            android:layout_below="@id/opn"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/opnameet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/opcontact1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Contact Number "
+            android:layout_below="@+id/opname"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/opcontact1et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="10"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/opcontact2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Alternate Contact Number "
+            android:layout_below="@+id/opcontact1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/opcontact2et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="10"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/opownername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Owner's Name"
+            android:layout_below="@+id/opcontact2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/opownernameet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"/>
+
+        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/opemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="E-mail"
+            android:layout_below="@+id/opcontact2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/opemailet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,7 +115,7 @@
             android:text="Address"
             android:layout_margin="8dp"
             android:textSize="24sp"
-            android:layout_below="@+id/opname"
+            android:layout_below="@+id/opemail"
             android:textAlignment="center"
             android:textColor="@android:color/black"/>
         <Spinner
@@ -75,7 +147,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Full Address"
-            android:layout_below="@+id/opcity">
+            android:layout_below="@+id/opcity"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/opfulladdresset"
@@ -93,7 +166,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Pin code"
-            android:layout_below="@+id/opfulladdress">
+            android:layout_below="@+id/opfulladdress"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/oppincodeet"
@@ -105,13 +179,75 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            android:id="@+id/ops"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subscription Details"
+            android:layout_margin="8dp"
+            android:textSize="24sp"
+            android:layout_below="@+id/oppincode"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/opsubscriptioncard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ops"
+            android:layout_margin="8dp"
+            android:elevation="12dp"
+            app:cardCornerRadius="8dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/opsn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subscription name: "
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"/>
+                <TextView
+                    android:id="@+id/opsubscriptionname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  "
+                    android:textColor="@android:color/black"
+                    android:layout_alignBottom="@id/opsn"
+                    android:layout_toEndOf="@+id/opsn"/>
+
+                <TextView
+                    android:id="@+id/opsav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Allotted Vehicles: "
+                    android:layout_below="@id/opsn"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_alignParentStart="true"/>
+
+                <TextView
+                    android:id="@+id/opsallottedvehicles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  "
+                    android:textColor="@android:color/black"
+                    android:layout_alignBottom="@id/opsn"
+                    android:layout_toEndOf="@+id/opsav"/>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
             android:id="@+id/opk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="KYC Details"
             android:layout_margin="8dp"
             android:textSize="24sp"
-            android:layout_below="@+id/oppincode"
+            android:layout_below="@+id/opsubscriptioncard"
             android:textAlignment="center"
             android:textColor="@android:color/black"/>
 
@@ -121,7 +257,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Pan number"
-            android:layout_below="@+id/opk">
+            android:layout_below="@+id/opk"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/oppannumberet"
@@ -137,7 +274,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Tan number"
-            android:layout_below="@+id/oppannumber">
+            android:layout_below="@+id/oppannumber"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/optannumberet"
@@ -153,7 +291,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="GST number"
-            android:layout_below="@+id/optannumber">
+            android:layout_below="@+id/optannumber"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/opgstnumberet"
@@ -169,7 +308,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Gumasta/Firm registration Number"
-            android:layout_below="@+id/opgstnumber">
+            android:layout_below="@+id/opgstnumber"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/opregisternumberet"
@@ -179,79 +319,13 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/opownername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:hint="Owner's Name"
-            android:layout_below="@+id/opregisternumber">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/opownernameet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/opemail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:hint="E-mail"
-            android:layout_below="@+id/opownername">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/opemailet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/opcontact1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:hint="Contact Number "
-            android:layout_below="@+id/opemail">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/opcontact1et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLength="10"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/opcontact2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:hint="Alternate Contact Number "
-            android:layout_below="@+id/opcontact1">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/opcontact2et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLength="10"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
         <TextView
             android:id="@+id/oppc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pan card Image "
             android:layout_margin="8dp"
-            android:layout_below="@+id/opcontact2"
+            android:layout_below="@+id/opregisternumber"
             android:textColor="@android:color/black"/>
         <ImageView
             android:id="@+id/oppanimage"
