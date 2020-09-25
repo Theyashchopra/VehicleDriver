@@ -60,6 +60,7 @@ public class OwnerAddNewVehicleFragment extends Fragment {
         isAvailable = true;
         sharedPreferences = this.getActivity().getSharedPreferences("owner", Context.MODE_PRIVATE);
         id = sharedPreferences.getInt("id",0);
+        Log.i("OWNER",String.valueOf(id));
         model_id = getArguments().getInt("model_id");
         donebt = root.findViewById(R.id.avdonebt);
         initviews();
@@ -97,7 +98,7 @@ public class OwnerAddNewVehicleFragment extends Fragment {
         }
         progressBar.setVisibility(View.VISIBLE);
         Call<VehicleIds> call = RestAdapter.createAPI().addVehicle(new VehicleDetailsOwnerData(name.getText().toString(),
-                id,
+                model_id,
                 yearofman.getText().toString(),
                 Integer.parseInt(totalhoursrun.getText().toString()),
                 Integer.parseInt(kmperhour.getText().toString()),
@@ -110,7 +111,7 @@ public class OwnerAddNewVehicleFragment extends Fragment {
                 getWifiMacAddress(),
                 platenumber.getText().toString().toLowerCase(),
                 isAvailable,
-                model_id));
+                id));
         call.enqueue(new Callback<VehicleIds>() {
             @Override
             public void onResponse(Call<VehicleIds> call, Response<VehicleIds> response) {

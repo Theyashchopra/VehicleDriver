@@ -99,8 +99,8 @@ public class OwnerViewVehicleFragment extends Fragment {
         rentperday.setText(String.valueOf(allData.getRent_per_day_with_fuel()));
         editbt.setOnClickListener(v -> {
             Bundle args = new Bundle();
-            args.putInt("vehicleid",allData.getV_id());
-            Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.action_nav_viewvehicle_owner_to_nav_EditVehicle_owner,args);
+            args.putString("plate",allData.getPlate_no());
+            Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.action_nav_AddNewVehicle_owner_to_nav_RcVehicle_owner,args);
         });
 
         removebt.setOnClickListener(new View.OnClickListener() {

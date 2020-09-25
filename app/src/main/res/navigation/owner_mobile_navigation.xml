@@ -84,6 +84,13 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"/>
+        <action
+            android:id="@id/action_nav_AddNewVehicle_owner_to_nav_RcVehicle_owner"
+            app:destination="@id/nav_RcVehicle_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/nav_ViewDriver_owner"

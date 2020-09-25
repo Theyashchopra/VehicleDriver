@@ -10,6 +10,7 @@ import com.lifecapable.vehicledriver.owner.datamodel.DriverRoot;
 import com.lifecapable.vehicledriver.owner.datamodel.ListAppointmentOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.ListVehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.LoginOwnerData;
+import com.lifecapable.vehicledriver.owner.datamodel.Message;
 import com.lifecapable.vehicledriver.owner.datamodel.Messages;
 import com.lifecapable.vehicledriver.owner.datamodel.RootEnquiry;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
@@ -22,6 +23,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
@@ -95,5 +97,35 @@ public interface OwnerJsonPlaceHolder {
     //get driver license
     @GET("driver")
     Call<ResponseBody> getDriverLicense(@Query("driver_license")int id);
+
+    //save Rc
+    @Multipart
+    @POST("vdocs")
+    Call<Message> uploadRC(@Part("plate")RequestBody plate,@Part MultipartBody.Part rc);
+
+    //save Invoice
+    @Multipart
+    @PUT("vdocs")
+    Call<Message> uploadInvoice(@Part("plate")RequestBody plate,@Part MultipartBody.Part invoice);
+
+    //save insurance
+    @Multipart
+    @PATCH("vdocs")
+    Call<Message> uploadInsurance(@Part("plate")RequestBody plate,@Part MultipartBody.Part insurance);
+
+    //save vfront
+    @Multipart
+    @PATCH("vimages")
+    Call<Message> uploadVfront(@Part("plate")RequestBody plate,@Part MultipartBody.Part vfront);
+
+    //save vback
+    @Multipart
+    @POST("vimages")
+    Call<Message> uploadVback(@Part("plate")RequestBody plate,@Part MultipartBody.Part vback);
+
+    //save vside
+    @Multipart
+    @PUT("vimages")
+    Call<Message> uploadVside(@Part("plate")RequestBody plate,@Part MultipartBody.Part vside);
 
 }
