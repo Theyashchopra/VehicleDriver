@@ -11,13 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lifecapable.vehicledriver.R;
+import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleOwnerData;
 import java.util.List;
 
 public class VehicleOwnerAdapter extends RecyclerView.Adapter<VehicleOwnerAdapter.VehicleOwnerViewHolder> {
     List<VehicleOwnerData> mList;
     Context mContext;
-
+    public static VehicleDetailsOwnerData vehicleDetailsOwnerData;
     public VehicleOwnerAdapter(List<VehicleOwnerData> mList, Context mContext) {
         this.mList = mList;
         this.mContext = mContext;
@@ -41,7 +42,7 @@ public class VehicleOwnerAdapter extends RecyclerView.Adapter<VehicleOwnerAdapte
         }
         holder.vehview.setOnClickListener(v -> {
             Bundle args = new Bundle();
-            args.putInt("Vehicleid",v.getId());
+            args.putInt("Vehicleid",mList.get(position).getV_id());
             Navigation.findNavController(v).navigate(R.id.action_nav_gallery_owner_to_nav_viewvehicle_owner,args);
         });
     }

@@ -2,7 +2,7 @@ package com.lifecapable.vehicledriver.owner.datamodel;
 
 public class VehicleIds {
     int v_id;
-    String name;
+    String name,plate_no;
 
     public VehicleIds(int v_id, String name) {
         this.v_id = v_id;
@@ -23,5 +23,9 @@ public class VehicleIds {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPlate_no() {
+        return plate_no;
     }
 }

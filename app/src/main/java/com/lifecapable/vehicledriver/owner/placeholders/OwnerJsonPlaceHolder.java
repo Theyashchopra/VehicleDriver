@@ -15,6 +15,7 @@ import com.lifecapable.vehicledriver.owner.datamodel.VehicleIds;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -26,47 +27,65 @@ import retrofit2.http.Query;
 
 public interface OwnerJsonPlaceHolder {
 
+    //owner login
     @GET("regowner")
     Call<LoginOwnerData> ogetLogin(@Query("email") String email, @Query("password") String password);
 
+    //driver register
     @POST("driver")
     Call<DriverDetailsOwnerData> addDriver(@Query("email") String email, @Query("password") String password,
                                            @Query("name") String name, @Query("mobile") String mobile,
                                            @Query("adhaar") String adhaar, @Query("mobile2") String mobile2,
                                            @Query("ip_address") String ip_address, @Query("vehicle_id") int vehicle_id,
                                            @Query("owner_id") int owner_id);
-
+    //save driver image
     @Multipart
-    @POST("/dimages")
+    @POST("dimages")
     Call<Messages> addDriverImage(@Part("email")RequestBody email, @Part MultipartBody.Part pic);
 
+    //save driver license
     @Multipart
-    @PUT("/dimages")
+    @PUT("dimages")
     Call<Messages> addDriverLicence(@Part("email") RequestBody email, @Part MultipartBody.Part licence);
 
+    //add vehicle
     @POST("vehicle")
     Call<VehicleIds> addVehicle(@Body VehicleDetailsOwnerData v);
 
-
+    //get list of drivers
     @GET("driver")
     Call<DriverRoot> getDriverList(@Query("owner_id") int id);
 
+    //get list of vehicles
     @GET("vehicle")
     Call<ListVehicleOwnerData> ogetVehicleList(@Query("owner_id") int owner_id);
 
+    //get vehicle details
     @GET("vehicle")
     Call<VehicleDetailsOwnerData> ogetVehicleDetails(@Query("id") int id);
 
+    //get list of enquiries
     @GET("enquiry")
     Call<RootEnquiry> getEnquiries(@Query("owner_id")int id);
 
+    //get master type
     @GET("vmaster")
     Call<MasterRoot> getMaster();
 
+    //get vehicle type
     @GET("vtype")
     Call<VehicleTypeRoot> getVtypes(@Query("master_id")int id);
 
+    //get model list
     @GET("vmodel")
     Call<VehicleModelRoot> getVModels(@Query("vehicle_type_id") int id);
+
+    //get driver image
+    @GET("driver")
+    Call<ResponseBody> getDriverImage(@Query("driver_image") int id);
+
+    //get driver license
+    @GET("driver")
+    Call<ResponseBody> getDriverLicense(@Query("driver_license")int id);
 
 }

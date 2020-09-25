@@ -1,5 +1,7 @@
 package com.lifecapable.vehicledriver.owner.ui.gallery;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,48 +12,126 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.lifecapable.vehicledriver.R;
+import com.lifecapable.vehicledriver.owner.dialogs.OwnerDialogGetImageFragment;
 
-public class OwnerRcVehicleFragment extends Fragment {
+public class OwnerRcVehicleFragment extends Fragment implements OwnerDialogGetImageFragment.MyDialogCloseListener, OwnerDialogGetImageFragment.onPhotoSelectedListener{
 
+    Uri imageUri;
+    Bitmap imagebitmap;
     View root;
     String name;
     int vid;
-    TextView rcname;
-    ImageView rcimage;
+    ImageView rcimage,invoice,insurance,vfront,vside,vback;
+    Uri rcUri,invoiceUri,insuranceUri,vfrontUri,vsideUri,vbackUri;
+    Bitmap rcBitmap,invoiceBitmap,insuranceBitmap,vfrontBitmap,vsideBitmap,vbackBitmap;
+    Button rcSave,invoiceSave,insuranceSave,vfrontSave,vsideSave,vbackSave;
+    ProgressBar rcProgress,invoiceProgress,insuranceProgress,vfrontProgress,vsideProgress,vbackProgress;
     Button rcdone;
-
+    String plate;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.owner_fragment_rc_vehicle, container, false);
-        rcname = root.findViewById(R.id.rcname);
-        rcimage = root.findViewById(R.id.rcimage);
         rcdone = root.findViewById(R.id.rcdone);
         if(getArguments() != null){
             name = getArguments().getString("vname");
             getArguments().getInt("vehicleid");
-            rcname.setText(name);
+            plate = getArguments().getString("plate");
         }
-        rcimage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         rcdone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                savedata();
                 NavHostFragment.findNavController(OwnerRcVehicleFragment.this).navigate(R.id.action_nav_RcVehicle_owner_to_nav_gallery_owner);
             }
         });
+        init();
         return root;
     }
+    public void init(){
+        //image views
+        rcimage = root.findViewById(R.id.rc_image);
+        invoice = root.findViewById(R.id.invoice_image);
+        insurance = root.findViewById(R.id.insurance_image);
+        vfront = root.findViewById(R.id.vfront_image);
+        vside = root.findViewById(R.id.vside_image);
+        vback = root.findViewById(R.id.vback_image);
+        //buttons
+        rcSave = root.findViewById(R.id.save_rc);
+        invoiceSave = root.findViewById(R.id.save_invoice);
+        insuranceSave = root.findViewById(R.id.save_insurance);
+        vfrontSave = root.findViewById(R.id.save_vfront);
+        vsideSave = root.findViewById(R.id.save_vside);
+        vbackSave = root.findViewById(R.id.save_vback);
+        //progress bars
+        rcProgress = root.findViewById(R.id.rc_progress);
+        invoiceProgress = root.findViewById(R.id.invoice_progress);
+        insuranceProgress = root.findViewById(R.id.insurance_progress);
+        vfrontProgress = root.findViewById(R.id.vfront_progress);
+        vbackProgress = root.findViewById(R.id.vback_progress);
+        vsideProgress = root.findViewById(R.id.vside_progress);
+        listeners();
+    }
 
-    private void savedata(){
 
+    @Override
+    public void getImagePath(Uri imagePath) {
+        imageUri = imagePath;
+        imagebitmap = null;
+    }
+
+    @Override
+    public void getImageBitmap(Bitmap bitmap) {
+        imagebitmap = bitmap;
+        imageUri = null;
+    }
+
+    @Override
+    public void handleDialogClose(int num) {
+        if(num == 1){
+
+        }
+    }
+
+    private void listeners(){
+        rcimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        insurance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        invoice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        vfront.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        vside.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        vback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 }

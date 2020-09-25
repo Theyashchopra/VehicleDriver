@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f5f5f5"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
     tools:context=".owner.ui.slideshow.OwnerViewDriverFragment">
@@ -10,11 +11,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:elevation="10dp"
+            android:id="@+id/vprogress"/>
         <ImageView
             android:id="@+id/vdimage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:src="@drawable/ic_account"
             android:layout_margin="16dp"
             android:layout_alignParentTop="true"
@@ -131,6 +138,7 @@
             android:layout_height="wrap_content"
             android:elevation="8dp"
             android:layout_margin="8dp"
+            app:cardBackgroundColor="#fff"
             app:cardCornerRadius="10dp"
             android:layout_below="@id/vdav"
             android:layout_alignParentStart="true">
@@ -143,7 +151,7 @@
                     android:id="@+id/vdvmodelname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Honda"
+                    android:text="Please wait..."
                     android:textColor="@android:color/black"
                     android:layout_margin="8dp"
                     android:layout_alignParentStart="true"
@@ -153,17 +161,25 @@
                     android:id="@+id/vdvnumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MH 31 A 3214"
+                    android:text=""
                     android:textColor="@android:color/black"
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_below="@id/vdvmodelname"
                     android:layout_alignParentStart="true"/>
                 <TextView
+                    android:id="@+id/model"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_below="@id/vdvnumber"
+                    android:text=""/>
+                <TextView
                     android:id="@+id/vdvcategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="category"
+                    android:visibility="gone"
                     android:layout_marginStart="8dp"
                     android:textColor="@android:color/black"
                     android:layout_below="@id/vdvnumber"
@@ -173,6 +189,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_arrow_right"
+                    android:visibility="gone"
                     android:layout_toEndOf="@id/vdvcategory"
                     android:layout_alignTop="@id/vdvcategory"/>
                 <TextView
@@ -180,6 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Subcategory"
+                    android:visibility="gone"
                     android:textColor="@android:color/black"
                     android:layout_toEndOf="@id/vdvnextcat"
                     android:layout_alignBottom="@id/vdvcategory"/>
@@ -188,6 +206,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_arrow_right"
+                    android:visibility="gone"
                     android:layout_alignTop="@id/vdvnextcat"
                     android:layout_toEndOf="@id/vdvsubcategory"/>
                 <TextView
@@ -195,6 +214,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="subcategory"
+                    android:visibility="gone"
                     android:textColor="@android:color/black"
                     android:layout_toEndOf="@id/vdvnextcat1"
                     android:layout_alignBottom="@id/vdvsubcategory"/>
@@ -204,6 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Change"
+                    android:visibility="gone"
                     android:textColor="@android:color/white"
                     android:background="@drawable/background_accent"
                     android:layout_marginEnd="8dp"
