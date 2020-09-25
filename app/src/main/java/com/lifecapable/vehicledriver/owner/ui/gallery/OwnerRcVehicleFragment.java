@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,11 @@ import android.widget.TextView;
 
 import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.dialogs.OwnerDialogGetImageFragment;
+import com.lifecapable.vehicledriver.owner.ui.slideshow.OwnerAddImageDriverFragment;
 
 public class OwnerRcVehicleFragment extends Fragment implements OwnerDialogGetImageFragment.MyDialogCloseListener, OwnerDialogGetImageFragment.onPhotoSelectedListener{
 
+    OwnerDialogGetImageFragment dgi;
     Uri imageUri;
     Bitmap imagebitmap;
     View root;
@@ -100,38 +103,76 @@ public class OwnerRcVehicleFragment extends Fragment implements OwnerDialogGetIm
         rcimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Bundle args = new Bundle();
+                args.putInt("curr",1);
+                dgi = new OwnerDialogGetImageFragment();
+                dgi.setArguments(args);
+                dgi.setTargetFragment(OwnerRcVehicleFragment.this,1);
+                dgi.show(getFragmentManager(),"Dialog get fragment");
+                Log.e("Add Driver","Dialog launched");
             }
         });
         insurance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Bundle args = new Bundle();
+                args.putInt("curr",3);
+                dgi = new OwnerDialogGetImageFragment();
+                dgi.setArguments(args);
+                dgi.setTargetFragment(OwnerRcVehicleFragment.this,3);
+                dgi.show(getFragmentManager(),"Dialog get fragment");
+                Log.e("Add Driver","Dialog launched");
             }
         });
         invoice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Bundle args = new Bundle();
+                args.putInt("curr",2);
+                dgi = new OwnerDialogGetImageFragment();
+                dgi.setArguments(args);
+                dgi.setTargetFragment(OwnerRcVehicleFragment.this,2);
+                dgi.show(getFragmentManager(),"Dialog get fragment");
+                Log.e("Add Driver","Dialog launched");
             }
         });
         vfront.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Bundle args = new Bundle();
+                args.putInt("curr",4);
+                dgi = new OwnerDialogGetImageFragment();
+                dgi.setArguments(args);
+                dgi.setTargetFragment(OwnerRcVehicleFragment.this,4);
+                dgi.show(getFragmentManager(),"Dialog get fragment");
+                Log.e("Add Driver","Dialog launched");
             }
         });
         vside.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Bundle args = new Bundle();
+                args.putInt("curr",6);
+                dgi = new OwnerDialogGetImageFragment();
+                dgi.setArguments(args);
+                dgi.setTargetFragment(OwnerRcVehicleFragment.this,6);
+                dgi.show(getFragmentManager(),"Dialog get fragment");
+                Log.e("Add Driver","Dialog launched");
             }
         });
         vback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Bundle args = new Bundle();
+                args.putInt("curr",5);
+                dgi = new OwnerDialogGetImageFragment();
+                dgi.setArguments(args);
+                dgi.setTargetFragment(OwnerRcVehicleFragment.this,5);
+                dgi.show(getFragmentManager(),"Dialog get fragment");
+                Log.e("Add Driver","Dialog launched");
             }
         });
+
+
     }
 }
