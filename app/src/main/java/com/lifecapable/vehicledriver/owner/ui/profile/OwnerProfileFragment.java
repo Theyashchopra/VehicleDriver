@@ -25,7 +25,7 @@ public class OwnerProfileFragment extends Fragment {
         root = inflater.inflate(R.layout.owner_fragment_profile, container, false);
         state = false;
         nameEt = root.findViewById(R.id.opnameet);
-        addressEt = root.findViewById(R.id.opfulladdress);
+        addressEt = root.findViewById(R.id.opfulladdresset);
         panEt = root.findViewById(R.id.oppannumberet);
         pincodeEt = root.findViewById(R.id.oppincodeet);
         tanEt = root.findViewById(R.id.optannumberet);

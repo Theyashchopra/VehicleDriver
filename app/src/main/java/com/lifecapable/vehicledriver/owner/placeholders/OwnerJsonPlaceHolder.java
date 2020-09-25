@@ -5,6 +5,7 @@ import com.lifecapable.vehicledriver.owner.categories.VehicleModelRoot;
 import com.lifecapable.vehicledriver.owner.categories.VehicleTypeRoot;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverOwnerData;
+import com.lifecapable.vehicledriver.owner.datamodel.DriverRoot;
 import com.lifecapable.vehicledriver.owner.datamodel.ListVehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.LoginOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.Messages;
@@ -37,18 +38,18 @@ public interface OwnerJsonPlaceHolder {
 
     @Multipart
     @POST("/dimages")
-    Call<Messages> addDriverImage(@Part("id")RequestBody id, @Part MultipartBody.Part pic);
+    Call<Messages> addDriverImage(@Part("email")RequestBody email, @Part MultipartBody.Part pic);
 
     @Multipart
-    @PUT
-    Call<Messages> addDriverLicence(@Part("id") RequestBody id, @Part MultipartBody.Part licence);
+    @PUT("/dimages")
+    Call<Messages> addDriverLicence(@Part("email") RequestBody email, @Part MultipartBody.Part licence);
 
     @POST("vehicle")
     Call<VehicleIds> addVehicle(@Body VehicleDetailsOwnerData v);
 
 
     @GET("driver")
-    Call<DriverOwnerData> ogetDriverList(@Query("owner_id") int id);
+    Call<DriverRoot> getDriverList(@Query("owner_id") int id);
 
     @GET("vehicle")
     Call<ListVehicleOwnerData> ogetVehicleList(@Query("owner_id") int owner_id);

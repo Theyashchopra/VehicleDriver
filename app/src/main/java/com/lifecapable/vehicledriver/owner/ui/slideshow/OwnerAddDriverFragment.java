@@ -122,8 +122,8 @@ public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehi
     }
 
     private void addDriver(){
-        if(emailet.getText() == null || passwordet.getText() == null || nameet.getText() == null || contact1.getText() == null ||
-            addharet.getText() == null || contact2.getText() == null ){
+        if(emailet.getText().toString().isEmpty() || passwordet.getText().toString().isEmpty() || nameet.getText().toString().isEmpty() || contact1.getText().toString().isEmpty() ||
+            addharet.getText().toString().isEmpty() || contact2.getText().toString().isEmpty() ){
             Toast.makeText(getActivity(), "You left something empty!!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -153,11 +153,14 @@ public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehi
                     return;
                 }
                 DriverDetailsOwnerData res = response.body();
-                if (res!= null) {
-                    Log.e("Yoooooooooo", res.getName());
+                if (res.getName() != null) {
                     Bundle args = new Bundle();
-                    args.putInt("vid",res.getVehicle_id());
+                    args.putString("email",res.getEmail());
                     Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_nav_AddDriver_owner_to_nav_AddImageDriver_owner, args);
+                }else if(res.getMessage() != null){
+                    Toast.makeText(getContext(),res.getMessage(),Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(),"ERROR",Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -247,8 +250,11 @@ public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehi
     @Override
     public void getAssigned(int pos, VehicleOwnerData curr) {
         assignedVehicle = curr;
-        assignedText.setText(curr.getName());
-        Log.e("Yo ", curr.getName());
+        try {
+            assignedText.setText(curr.getName());
+        }catch (Exception e){
+            Toast.makeText(getContext(), "You did not chose any vehicle", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
