@@ -1,5 +1,6 @@
 package com.lifecapable.vehicledriver.owner.ui.gallery;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +22,8 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.Toast;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -55,6 +59,9 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
     boolean first;
     private float start_rotation;
 
+    Handler handler;
+    Runnable runnable;
+    int delay;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -62,6 +69,8 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
         timer = new Timer();
         vehicle_id = 0;
         first = true;
+        handler = new Handler(Looper.getMainLooper());
+        delay = 3000;
         if(getArguments() != null){
             vehicle_id = getArguments().getInt("vid");
             Log.i("VID",String.valueOf(vehicle_id));
@@ -107,6 +116,7 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
                                     LatLng latLng = new LatLng(locationObject.getLat(), locationObject.getLon());
                                     googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
+                                    //googleMap.addMarker(new MarkerOptions().position(latLng));
                                     first = false;
                                 }
                                 updateLocation(locationObject);
@@ -120,18 +130,18 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
                     }
                 });
             }
-        }, 0, 3000);//put here time 1000 milliseconds=1 second
+        }, 0, 3000); //put here time 1000 milliseconds=1 second
     }
 
     private void updateLocation(LocationObject locationObject){
         if(marker == null){
             LatLng latLng = new LatLng(locationObject.getLat(),locationObject.getLon());
             marker = new PicassoMarker(googleMap.addMarker(new MarkerOptions().position(latLng)));
-            Picasso.with(view.getContext()).load(R.mipmap.car).resize( 70,  70)
+            Picasso.with(view.getContext()).load(R.mipmap.car).resize( 85,  85)
                     .into(marker);
         }
         Location location = new Location("");
-        location.setLatitude(locationObject.getLon());
+        location.setLatitude(locationObject.getLat());
         location.setLongitude(locationObject.getLon());
         moveVechile(marker.getmMarker(),location);
         rotateMarker(marker.getmMarker(),location.getBearing(),start_rotation);
@@ -188,6 +198,7 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
                 myMarker.setPosition(currentPosition);
                 // myMarker.setRotation(finalPosition.getBearing());
 
+
                 // Repeat till progress is completeelse
                 if (t < 1) {
                     // Post again 16ms later.
@@ -203,6 +214,7 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
+
     }
 
 
@@ -211,13 +223,17 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
         final long start = SystemClock.uptimeMillis();
         final float startRotation = marker.getRotation();
         final long duration = 1555;
+
         final Interpolator interpolator = new LinearInterpolator();
         handler.post(new Runnable() {
             @Override
             public void run() {
                 long elapsed = SystemClock.uptimeMillis() - start;
                 float t = interpolator.getInterpolation((float) elapsed / duration);
+
                 float rot = t * toRotation + (1 - t) * startRotation;
+
+
                 marker.setRotation(-rot > 180 ? rot / 2 : rot);
                 start_rotation = -rot > 180 ? rot / 2 : rot;
                 if (t < 1.0) {
@@ -227,4 +243,5 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
     }
+
 }
