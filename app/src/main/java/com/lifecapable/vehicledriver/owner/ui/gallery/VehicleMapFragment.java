@@ -16,6 +16,7 @@ import com.lifecapable.vehicledriver.R;
 
 public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
 
+    int vehicle_id;
     GoogleMap googleMap;
     View view;
     MapView mapView;
@@ -24,11 +25,15 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_vehicle_map, container, false);
-
+        vehicle_id = 0;
+        if(getArguments() != null){
+            vehicle_id = getArguments().getInt("vid");
+        }
         mapView = view.findViewById(R.id.mapView);
         mapView.getMapAsync(VehicleMapFragment.this);
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
+
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
         } catch (Exception e) {
