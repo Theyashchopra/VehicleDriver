@@ -31,7 +31,7 @@ public class LoginSuccessPopup extends DialogFragment {
         }).postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getContext(), OwnerLeftNavActivity.class));
+                startActivity(new Intent(getActivity(), OwnerLeftNavActivity.class));
             }
         },2500);
         return view;
