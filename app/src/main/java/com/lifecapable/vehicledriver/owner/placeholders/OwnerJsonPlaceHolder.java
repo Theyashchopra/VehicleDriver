@@ -9,6 +9,7 @@ import com.lifecapable.vehicledriver.owner.datamodel.DriverOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverRoot;
 import com.lifecapable.vehicledriver.owner.datamodel.ListAppointmentOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.ListVehicleOwnerData;
+import com.lifecapable.vehicledriver.owner.datamodel.LocationObject;
 import com.lifecapable.vehicledriver.owner.datamodel.LoginOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.Message;
 import com.lifecapable.vehicledriver.owner.datamodel.Messages;
@@ -152,5 +153,10 @@ public interface OwnerJsonPlaceHolder {
     //get vside
     @GET("vdocs")
     Call<ResponseBody> getVside(@Query("vside")int id);
+
+    @GET("vgps")
+    Call<LocationObject> getLocation(@Query("id") int vehicle_id);
+
+
 
 }
