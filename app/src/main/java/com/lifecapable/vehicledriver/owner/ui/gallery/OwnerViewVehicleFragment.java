@@ -5,7 +5,9 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,8 +55,6 @@ public class OwnerViewVehicleFragment extends Fragment {
         rentperday = root.findViewById(R.id.vvrentperday);
         rentperhour = root.findViewById(R.id.vvrentperhour);
         removebt = root.findViewById(R.id.vvremove);
-
-
         retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.base_url))
                 .addConverterFactory(GsonConverterFactory.create())
@@ -132,6 +132,10 @@ public class OwnerViewVehicleFragment extends Fragment {
             public void onClick(View v) {
 
                 //got to edit page
+                Bundle args = new Bundle();
+                args.putInt("vid",vehicleid);
+                NavController navController = NavHostFragment.findNavController(OwnerViewVehicleFragment.this);
+                navController.navigate(R.id.action_nav_viewvehicle_owner_to_nav_EditVehicle_owner,args);
             }
         });
     }
