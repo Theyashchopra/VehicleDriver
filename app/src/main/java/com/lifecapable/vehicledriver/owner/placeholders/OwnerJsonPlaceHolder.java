@@ -128,4 +128,28 @@ public interface OwnerJsonPlaceHolder {
     @PUT("vimages")
     Call<Message> uploadVside(@Part("plate")RequestBody plate,@Part MultipartBody.Part vside);
 
+    //get rc image
+    @GET("vdocs")
+    Call<ResponseBody> getRC(@Query("rc")int id);
+
+    //get invoice image
+    @GET("vdocs")
+    Call<ResponseBody> getInvoice(@Query("invoice")int id);
+
+    //get insurance
+    @GET("vdocs")
+    Call<ResponseBody> getInsurance(@Query("insurance")int id);
+
+    //get vfront
+    @GET("vdocs")
+    Call<ResponseBody> getVfront(@Query("vfront")int id);
+
+    //get vback
+    @GET("vdocs")
+    Call<ResponseBody> getVback(@Query("vback")int id);
+
+    //get vside
+    @GET("vdocs")
+    Call<ResponseBody> getVside(@Query("vside")int id);
+
 }
