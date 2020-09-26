@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -41,7 +42,7 @@ public class OwnerAddImageDriverFragment extends Fragment implements OwnerDialog
     View root;
     int vehicleId;
     ImageView pic,licence;
-    Button done;
+    Button done,saveImage,saveLicense;
     String email;
     Uri profileuri, licenceuri, imageuri;
     OwnerDialogGetImageFragment dgi;
@@ -58,6 +59,8 @@ public class OwnerAddImageDriverFragment extends Fragment implements OwnerDialog
         pic = root.findViewById(R.id.driverimage);
         licence = root.findViewById(R.id.driverlicence);
         done = root.findViewById(R.id.imagedone);
+        saveImage = root.findViewById(R.id.save_image);
+        saveLicense = root.findViewById(R.id.save_license);
         initlisteners();
 
         return root;
@@ -83,11 +86,29 @@ public class OwnerAddImageDriverFragment extends Fragment implements OwnerDialog
             Log.e("Add Driver","Dialog launched");
         });
 
-        done.setOnClickListener(view -> {
+        saveImage.setOnClickListener(view -> {
             try {
                 postImageData();
             } catch (Exception e) {
                 e.printStackTrace();
+                Toast.makeText(getContext(), "Somthing went wrong", Toast.LENGTH_SHORT).show();
+            }
+        });
+        saveLicense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    postLicenceData();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), "Somthing went wrong", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(OwnerAddImageDriverFragment.this).popBackStack();
             }
         });
     }
@@ -114,14 +135,9 @@ public class OwnerAddImageDriverFragment extends Fragment implements OwnerDialog
                 }
                 Messages res = response.body();
                 if(res != null){
+                    Toast.makeText(getContext(), res.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.e("Yoooooooooo", res.getMessage());
                     progressBar.setVisibility(View.INVISIBLE);
-                    try {
-                        postLicenceData();
-                    } catch (IOException e) {
-                        Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                    }
                 }
             }
 
@@ -150,9 +166,7 @@ public class OwnerAddImageDriverFragment extends Fragment implements OwnerDialog
                 }
                 Messages res = response.body();
                 if(res != null){
-                    Log.e("Yoooooooooo1111", res.getMessage());
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.action_nav_AddImageDriver_owner_to_nav_slideshow_owner);
+                    Toast.makeText(getContext(), res.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

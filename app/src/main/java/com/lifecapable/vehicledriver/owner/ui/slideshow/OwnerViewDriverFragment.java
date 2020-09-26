@@ -5,10 +5,13 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -33,6 +36,7 @@ import retrofit2.Response;
 public class OwnerViewDriverFragment extends Fragment {
     ProgressBar progressBar;
     View root;
+    Button edit,upload;
     TextView clickviewlicence;
     DriverOwnerData driverOwnerData;
     TextView name,number1,number2,adhaar,license,vname,plate,model,vplate;
@@ -65,8 +69,27 @@ public class OwnerViewDriverFragment extends Fragment {
         plate = root.findViewById(R.id.vdvnumber);
         model = root.findViewById(R.id.model);
         vplate = root.findViewById(R.id.vdvnumber);
+        edit = root.findViewById(R.id.vdedit);
+        upload = root.findViewById(R.id.vdremove);
         imageView = root.findViewById(R.id.vdimage);
         imageView.setImageResource(R.drawable.ic_person);
+
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle args = new Bundle();
+                args.putString("email",driverOwnerData.getEmail());
+                NavController navController = NavHostFragment.findNavController(OwnerViewDriverFragment.this);
+                navController.navigate(R.id.action_nav_ViewDriver_owner_to_nav_AddImageDriver_owner,args);
+            }
+        });
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         try {
             setData();
             getVehicleData();

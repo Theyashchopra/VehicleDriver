@@ -237,6 +237,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="View"
+                    android:visibility="invisible"
                     android:textColor="@android:color/white"
                     android:background="@drawable/background_accent"
                     android:layout_marginEnd="8dp"
@@ -257,7 +258,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Remove"
+                android:text="UPLOAD PICS"
                 android:layout_margin="8dp"
                 android:textColor="@android:color/white"
                 android:background="@drawable/background_red" />

@@ -26,6 +26,7 @@ import com.lifecapable.vehicledriver.owner.categories.VehicleType;
 import com.lifecapable.vehicledriver.owner.categories.VehicleTypeRoot;
 import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
 
+import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,8 +85,12 @@ public class MasterFragment extends Fragment {
                         for(VehicleModel v : vehicleModelRoot.getModels()){
                             models.add(v.getModel_name());
                         }
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,models);
-                        spinner3.setAdapter(adapter);
+                        try {
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, models);
+                            spinner3.setAdapter(adapter);
+                        }catch (Exception e){
+
+                        }
                     }
                 }else{
                     Toast.makeText(getContext(), "Check your internet connection", Toast.LENGTH_SHORT).show();
@@ -142,8 +147,13 @@ public class MasterFragment extends Fragment {
                     for(VehicleType v : vehicleTypeRoot.getMasters()){
                         type.add(v.getVehicle_type_name());
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,type);
-                    spinner2.setAdapter(adapter);
+                    try {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,type);
+                        spinner2.setAdapter(adapter);
+                    }catch (Exception e){
+
+                    }
+
                 }else{
                     Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                 }
