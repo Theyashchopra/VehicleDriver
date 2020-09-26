@@ -12,6 +12,7 @@ import com.lifecapable.vehicledriver.owner.datamodel.ListVehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.LoginOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.Message;
 import com.lifecapable.vehicledriver.owner.datamodel.Messages;
+import com.lifecapable.vehicledriver.owner.datamodel.ProfileOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.RootEnquiry;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleIds;
@@ -87,8 +88,8 @@ public interface OwnerJsonPlaceHolder {
     @POST("appt")
     Call<AppointmentOwnerData> oaddAppointment(@Query("customer_name") String customer_name, @Query("address") String address, @Query("customer_mobile") String customer_mobile, @Query("alternate_mobile") String alternate_mobile, @Query("owner_id") int owner_id, @Query("vehicle_id") int vehicle_id, @Query("start") String start, @Query("end") String end, @Query("time") String time);
 
-    @GET("appt")
-    Call<AppointmentOwnerData> ogetAppointment(@Query("id") int id);
+    @GET("regowner")
+    Call<ProfileOwnerData> ogetProfileData(@Query("id") int id);
 
     //get driver image
     @GET("driver")

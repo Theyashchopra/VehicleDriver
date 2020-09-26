@@ -20,14 +20,14 @@ import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
 import com.lifecapable.vehicledriver.owner.adapter.VehicleOwnerAdapter;
 import com.lifecapable.vehicledriver.owner.datamodel.ListVehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleOwnerData;
-import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class OwnerGalleryFragment extends Fragment {
     View root;
@@ -38,8 +38,6 @@ public class OwnerGalleryFragment extends Fragment {
     Button vehicleaddbutton;
     SharedPreferences sharedPreferences;
     int id;
-    OwnerJsonPlaceHolder listVehiclePlaceHolder;
-    Retrofit retrofit;
     ProgressBar progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,19 +45,13 @@ public class OwnerGalleryFragment extends Fragment {
         vehicleRecycleview = root.findViewById(R.id.ogalleryrecycle);
         vehiclecounttv = root.findViewById(R.id.ogalleryvehiclecount);
         vehicleaddbutton = root.findViewById(R.id.ogalleryaddvehicle);
-        sharedPreferences = this.getActivity().getSharedPreferences("owner", Context.MODE_PRIVATE);
+        sharedPreferences = this.requireActivity().getSharedPreferences("owner", Context.MODE_PRIVATE);
         id = sharedPreferences.getInt("id",0);
         progressBar = root.findViewById(R.id.vehicle_progress);
-        retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.base_url))
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
         initothers();
         initVehicleRecycle();
-        vehicleaddbutton.setOnClickListener(v -> {
-            NavHostFragment.findNavController(OwnerGalleryFragment.this).navigate(R.id.action_nav_gallery_owner_to_nav_master);
-        });
+        vehicleaddbutton.setOnClickListener(v -> NavHostFragment.findNavController(OwnerGalleryFragment.this).navigate(R.id.action_nav_gallery_owner_to_nav_master));
         return root;
     }
 
@@ -74,12 +66,11 @@ public class OwnerGalleryFragment extends Fragment {
         }
         progressBar.setVisibility(View.VISIBLE);
         vehicleList =new ArrayList<>();
-        listVehiclePlaceHolder = RestAdapter.createAPI();
-        Call<ListVehicleOwnerData> call = listVehiclePlaceHolder.ogetVehicleList(id);
+        Call<ListVehicleOwnerData> call = RestAdapter.createAPI().ogetVehicleList(id);
 
         call.enqueue(new Callback<ListVehicleOwnerData>() {
             @Override
-            public void onResponse(Call<ListVehicleOwnerData> call, Response<ListVehicleOwnerData> response) {
+            public void onResponse(@NotNull Call<ListVehicleOwnerData> call, @NotNull Response<ListVehicleOwnerData> response) {
                 if(!response.isSuccessful()){
                     Toast.makeText(getContext(), "Somethings Wrong I can feel it"+response.message(), Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
@@ -97,11 +88,10 @@ public class OwnerGalleryFragment extends Fragment {
                 }
             }
             @Override
-            public void onFailure(Call<ListVehicleOwnerData> call, Throwable t) {
+            public void onFailure(@NotNull Call<ListVehicleOwnerData> call, @NotNull Throwable t) {
                     Toast.makeText(getContext(), "Somethings Wrong I can feel it"+t.getMessage(), Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });
-
     }
 }
