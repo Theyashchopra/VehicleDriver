@@ -17,11 +17,13 @@ import com.lifecapable.vehicledriver.R;
 
 public class DriverDashboardFragment extends Fragment {
 
+    View root;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.driver_fragment_dashboard, container, false);
+        root = inflater.inflate(R.layout.driver_fragment_dashboard, container, false);
+
+
         return root;
     }
 }

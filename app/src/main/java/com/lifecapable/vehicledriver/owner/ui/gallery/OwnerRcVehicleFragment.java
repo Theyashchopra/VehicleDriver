@@ -115,7 +115,7 @@ public class OwnerRcVehicleFragment extends Fragment implements OwnerDialogGetIm
         if(num == 1){
             if(imagebitmap != null){
                 rcimage.setImageBitmap(imagebitmap);
-                rcUri = getImageUri(getContext(),imagebitmap);
+                rcUri = getImageUri(this.requireActivity(),imagebitmap);
             }else if(imageUri != null){
                 rcimage.setImageURI(imageUri);
                 rcUri = imageUri;
@@ -125,7 +125,7 @@ public class OwnerRcVehicleFragment extends Fragment implements OwnerDialogGetIm
         }else if(num == 2){
             if(imagebitmap != null){
                 invoice.setImageBitmap(imagebitmap);
-                invoiceUri = getImageUri(getContext(),imagebitmap);
+                invoiceUri = getImageUri(this.requireActivity(),imagebitmap);
             }else if(imageUri != null){
                 invoice.setImageURI(imageUri);
                 invoiceUri = imageUri;
@@ -135,7 +135,7 @@ public class OwnerRcVehicleFragment extends Fragment implements OwnerDialogGetIm
         }else if(num == 3){
             if(imagebitmap != null){
                 insurance.setImageBitmap(imagebitmap);
-                insuranceUri = getImageUri(getContext(),imagebitmap);
+                insuranceUri = getImageUri(this.requireActivity(),imagebitmap);
             }else if(imageUri != null){
                 insurance.setImageURI(imageUri);
                 insuranceUri = imageUri;
@@ -145,7 +145,7 @@ public class OwnerRcVehicleFragment extends Fragment implements OwnerDialogGetIm
         }else if(num == 4){
             if(imagebitmap != null){
                 vfront.setImageBitmap(imagebitmap);
-                vfrontUri = getImageUri(getContext(),imagebitmap);
+                vfrontUri = getImageUri(this.requireActivity(),imagebitmap);
             }else if(imageUri != null){
                 vfront.setImageURI(imageUri);
                 vfrontUri = imageUri;
@@ -155,7 +155,7 @@ public class OwnerRcVehicleFragment extends Fragment implements OwnerDialogGetIm
         }else if(num == 5){
             if(imagebitmap != null){
                 vback.setImageBitmap(imagebitmap);
-                vbackUri = getImageUri(getContext(),imagebitmap);
+                vbackUri = getImageUri(this.requireActivity(),imagebitmap);
             }else if(imageUri != null){
                 vback.setImageURI(imageUri);
                 vbackUri = imageUri;
@@ -165,7 +165,7 @@ public class OwnerRcVehicleFragment extends Fragment implements OwnerDialogGetIm
         }else if(num == 6){
             if(imagebitmap != null){
                 vside.setImageBitmap(imagebitmap);
-                vsideUri = getImageUri(getContext(),imagebitmap);
+                vsideUri = getImageUri(this.requireActivity(),imagebitmap);
             }else if(imageUri != null){
                 vside.setImageURI(imageUri);
                 vsideUri = imageUri;
@@ -337,7 +337,7 @@ public class OwnerRcVehicleFragment extends Fragment implements OwnerDialogGetIm
             return;
         }
         rcProgress.setVisibility(View.VISIBLE);
-        File file = FileUtil.from(this.getActivity(),rcUri);
+        File file = FileUtil.from(this.requireActivity(),rcUri);
         RequestBody requestFile1 = RequestBody.create(file, MediaType.parse("multipart/form-data") );
         MultipartBody.Part body1 = MultipartBody.Part.createFormData("rc", file.getName(), requestFile1);
         RequestBody s = RequestBody.create(plate,MediaType.parse("multipart/form-data"));

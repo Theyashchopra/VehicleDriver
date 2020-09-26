@@ -31,16 +31,13 @@ public class SplashActivity extends AppCompatActivity {
         new Handler(Looper.myLooper(), message -> {
             Toast.makeText(SplashActivity.this,message.toString(),Toast.LENGTH_SHORT).show();
             return false;
-        }).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(isOwner){
-                    startActivity(new Intent(SplashActivity.this, OwnerLeftNavActivity.class));
-                }else if(isDriver){
-                    startActivity(new Intent(SplashActivity.this, DriverBottomActivity.class));
-                }else{
-                    startActivity(new Intent(SplashActivity.this,MainActivity.class));
-                }
+        }).postDelayed(() -> {
+            if(isOwner){
+                startActivity(new Intent(SplashActivity.this, OwnerLeftNavActivity.class));
+            }else if(isDriver){
+                startActivity(new Intent(SplashActivity.this, DriverBottomActivity.class));
+            }else{
+                startActivity(new Intent(SplashActivity.this,MainActivity.class));
             }
         },2500);
     }

@@ -16,9 +16,13 @@ import android.widget.Toast;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.lifecapable.vehicledriver.R;
+import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
 import com.lifecapable.vehicledriver.owner.datamodel.LoginOwnerData;
 import com.lifecapable.vehicledriver.owner.dialogs.LoginSuccessPopup;
 import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
+
+import org.jetbrains.annotations.NotNull;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,8 +35,6 @@ public class OwnerLoginActivity extends AppCompatActivity {
     Button loginbt;
     EditText emailet,passet;
     String email,pass;
-    OwnerJsonPlaceHolder loginPlaceHolder;
-    Retrofit retrofit;
     SharedPreferences owner;
     SharedPreferences.Editor editor;
     @Override
@@ -45,10 +47,6 @@ public class OwnerLoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_logino);
         owner = getSharedPreferences("owner",MODE_PRIVATE);
         editor = owner.edit();
-        retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.base_url))
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
         loginbt.setOnClickListener(v -> {
             try {
@@ -60,7 +58,7 @@ public class OwnerLoginActivity extends AppCompatActivity {
 
     }
 
-    private void login() throws Exception{
+    private void login() {
         progressBar.setVisibility(View.VISIBLE);
         email = emailet.getText().toString();
         pass = passet.getText().toString();
@@ -83,12 +81,11 @@ public class OwnerLoginActivity extends AppCompatActivity {
             imm.showSoftInput(passet, InputMethodManager.SHOW_IMPLICIT);
             return;
         }
-        loginPlaceHolder = retrofit.create(OwnerJsonPlaceHolder.class);
-        Call<LoginOwnerData> call = loginPlaceHolder.ogetLogin(email,pass);
+        Call<LoginOwnerData> call = RestAdapter.createAPI().ogetLogin(email,pass);
 
         call.enqueue(new Callback<LoginOwnerData>() {
             @Override
-            public void onResponse(Call<LoginOwnerData> call, Response<LoginOwnerData> response) {
+            public void onResponse(@NotNull Call<LoginOwnerData> call, @NotNull Response<LoginOwnerData> response) {
                 if(!response.isSuccessful()){
                     Toast.makeText(OwnerLoginActivity.this, "Somethings Wrong I can feel it"+response.message(), Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);

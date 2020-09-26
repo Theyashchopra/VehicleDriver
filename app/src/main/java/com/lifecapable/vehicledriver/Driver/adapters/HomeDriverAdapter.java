@@ -44,7 +44,7 @@ public class HomeDriverAdapter extends RecyclerView.Adapter<HomeDriverAdapter.Ho
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
             mContext.startActivity(intent);*/
             Intent phoneIntent = new Intent(Intent.ACTION_CALL);
-            phoneIntent.setData(Uri.parse("tel:"+curr.getContact()));
+            phoneIntent.setData(Uri.parse("tel:"+curr.getCustomer_mobile()));
             if (ActivityCompat.checkSelfPermission(mContext,
                     Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                 return;
@@ -54,8 +54,8 @@ public class HomeDriverAdapter extends RecyclerView.Adapter<HomeDriverAdapter.Ho
         holder.drelative.setOnClickListener(v -> {
 
         });
-        holder.time.setText(curr.getTime());
-        holder.contact.setText(curr.getContact());
+        holder.time.setText(curr.getStart_day());
+        holder.contact.setText(curr.getCustomer_mobile());
         holder.address.setText(curr.getAddress());
     }
 
