@@ -169,7 +169,6 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
     public void moveVechile(final Marker myMarker, final Location finalPosition) {
 
         final LatLng startPosition = myMarker.getPosition();
-
         final Handler handler = new Handler(Looper.getMainLooper());
         final long start = SystemClock.uptimeMillis();
         final Interpolator interpolator = new AccelerateDecelerateInterpolator();
