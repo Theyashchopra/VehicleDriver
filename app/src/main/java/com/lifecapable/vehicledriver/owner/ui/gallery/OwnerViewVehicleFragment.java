@@ -43,6 +43,7 @@ public class OwnerViewVehicleFragment extends Fragment {
     Button editbt, removebt;
     OwnerJsonPlaceHolder vehicleDataPlaceHolder;
     Retrofit retrofit;
+    Button location;
     VehicleDetailsOwnerData vehicleDetailsOwnerData;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -72,6 +73,8 @@ public class OwnerViewVehicleFragment extends Fragment {
         vfront = root.findViewById(R.id.vfront_imageV);
         vside = root.findViewById(R.id.vside_imageV);
         vback = root.findViewById(R.id.vback_imageV);
+
+        location = root.findViewById(R.id.navigate);
 
         rcProgress = root.findViewById(R.id.rc_progressV);
         invoiceProgress = root.findViewById(R.id.invoice_progressV);
@@ -136,6 +139,16 @@ public class OwnerViewVehicleFragment extends Fragment {
                 args.putInt("vid",vehicleid);
                 NavController navController = NavHostFragment.findNavController(OwnerViewVehicleFragment.this);
                 navController.navigate(R.id.action_nav_viewvehicle_owner_to_nav_EditVehicle_owner,args);
+            }
+        });
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle args = new Bundle();
+                args.putInt("vid",vehicleid);
+                NavController nav = NavHostFragment.findNavController(OwnerViewVehicleFragment.this);
+                nav.navigate(R.id.action_nav_viewvehicle_owner_to_nav_vehicle_map,args);
+
             }
         });
     }

@@ -159,12 +159,20 @@
            android:layout_width="match_parent"
            android:layout_below="@id/vvrentperhour"
            layout="@layout/view_vehicle_docs"/>
-
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/navigate"
+            android:layout_margin="5dp"
+            android:layout_centerHorizontal="true"
+            android:drawableLeft="@drawable/ic_location_driver_owner"
+            android:layout_below="@id/all_images"
+            android:text="TRACK LOCATION"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@id/all_images">
+            android:layout_below="@id/navigate">
             <Button
                 android:id="@+id/vvremove"
                 android:layout_width="0dp"
