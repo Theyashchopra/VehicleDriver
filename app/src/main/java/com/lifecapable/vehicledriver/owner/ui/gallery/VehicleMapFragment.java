@@ -48,6 +48,7 @@ import retrofit2.Response;
 
 public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
 
+    TimerTask timerTask;
     OwnerJsonPlaceHolder ownerJsonPlaceHolder;
     Call<LocationObject> call;
     int vehicle_id;
@@ -58,6 +59,9 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
     PicassoMarker marker;
     boolean first;
     private float start_rotation;
+    Handler handler;
+    Runnable runnable;
+    int delay;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,6 +70,8 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
         timer = new Timer();
         vehicle_id = 0;
         first = true;
+        handler = new Handler(Looper.getMainLooper());
+        delay = 3000;
         if(getArguments() != null){
             vehicle_id = getArguments().getInt("vid");
             Log.i("VID",String.valueOf(vehicle_id));
@@ -111,6 +117,7 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
                                     LatLng latLng = new LatLng(locationObject.getLat(), locationObject.getLon());
                                     googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
+                                    //googleMap.addMarker(new MarkerOptions().position(latLng));
                                     first = false;
                                 }
                                 updateLocation(locationObject);
@@ -124,18 +131,18 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
                     }
                 });
             }
-        }, 0, 3000);//put here time 1000 milliseconds=1 second
+        }, 0, 3000); //put here time 1000 milliseconds=1 second
     }
 
     private void updateLocation(LocationObject locationObject){
         if(marker == null){
             LatLng latLng = new LatLng(locationObject.getLat(),locationObject.getLon());
             marker = new PicassoMarker(googleMap.addMarker(new MarkerOptions().position(latLng)));
-            Picasso.with(view.getContext()).load(R.mipmap.car).resize( 70,  70)
+            Picasso.with(view.getContext()).load(R.mipmap.car).resize( 85,  85)
                     .into(marker);
         }
         Location location = new Location("");
-        location.setLatitude(locationObject.getLon());
+        location.setLatitude(locationObject.getLat());
         location.setLongitude(locationObject.getLon());
         moveVechile(marker.getmMarker(),location);
         rotateMarker(marker.getmMarker(),location.getBearing(),start_rotation);
@@ -167,7 +174,6 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     public void moveVechile(final Marker myMarker, final Location finalPosition) {
-
         final LatLng startPosition = myMarker.getPosition();
         final Handler handler = new Handler(Looper.getMainLooper());
         final long start = SystemClock.uptimeMillis();
@@ -182,7 +188,6 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
 
             @Override
             public void run() {
-
                 // Calculate progress using interpolator
                 elapsed = SystemClock.uptimeMillis() - start;
                 t = elapsed / durationInMs;
@@ -221,7 +226,6 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
         final long duration = 1555;
 
         final Interpolator interpolator = new LinearInterpolator();
-
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -240,4 +244,5 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
     }
+
 }
