@@ -26,6 +26,7 @@
             android:layout_margin="8dp"
             android:hint="Name">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dpnameet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"/>
@@ -38,6 +39,7 @@
             android:layout_margin="8dp"
             android:hint="Mobile Number">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dpcontactet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
@@ -50,6 +52,7 @@
             android:layout_margin="8dp"
             android:hint="Alternate Number">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dpaltcontactet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
@@ -63,10 +66,25 @@
             android:layout_margin="8dp"
             android:hint="E-mail">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dpemailet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dpaadhar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Aadhar">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dpaadharet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/dpedit"

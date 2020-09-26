@@ -20,18 +20,27 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lifecapable.vehicledriver.Driver.adapters.HomeDriverAdapter;
+import com.lifecapable.vehicledriver.Driver.adapters.RestAdapter;
 import com.lifecapable.vehicledriver.Driver.datamodels.HomeDriverData;
+import com.lifecapable.vehicledriver.Driver.datamodels.ListHomeDriverData;
 import com.lifecapable.vehicledriver.Driver.services.LocationService;
 import com.lifecapable.vehicledriver.R;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.Context.ACTIVITY_SERVICE;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-
 public class DriverHomeFragment extends Fragment {
     View root;
+    int vid;
     RecyclerView homerecycle;
     HomeDriverAdapter homeDriverAdapter;
     List<HomeDriverData> appointlist;
@@ -40,6 +49,7 @@ public class DriverHomeFragment extends Fragment {
     TextView busytv, statustv;
     View busyvw, statusvw;
     SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences2;
     SharedPreferences.Editor editor;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,9 +64,12 @@ public class DriverHomeFragment extends Fragment {
         statusvw =root.findViewById(R.id.statusview);
         try {
             sharedPreferences = requireActivity().getSharedPreferences("statePreference", Context.MODE_PRIVATE);
+            sharedPreferences2 = requireActivity().getSharedPreferences("driver", Context.MODE_PRIVATE);
         }catch (NullPointerException ne){
             Log.e("yo","yo");
         }
+        vid = sharedPreferences2.getInt("vehicleid",0);
+        Log.e("Vid    ", vid+"");
         setBusyState(sharedPreferences.getBoolean("busy",false));
         setOnlineStatus(sharedPreferences.getBoolean("state",false));
 
@@ -87,15 +100,26 @@ public class DriverHomeFragment extends Fragment {
     }
     private void initRecycle(){
         appointlist = new ArrayList<>();
-        appointlist.add(new HomeDriverData("XYZ","11/10/20 - 12/10/20","Sadar","1234567890",21.1480f,79.0936f));
-        appointlist.add(new HomeDriverData("XYZ","11/10/20 - 12/10/20","Sadar","1234567890",0.0f,0.0f));
-        appointlist.add(new HomeDriverData("XYZ","11/10/20 - 12/10/20","Sadar","1234567890",0.0f,0.0f));
-        appointlist.add(new HomeDriverData("XYZ","11/10/20 - 12/10/20","Sadar","1234567890",0.0f,0.0f));
-        appointlist.add(new HomeDriverData("XYZ","11/10/20 - 12/10/20","Sadar","1234567890",0.0f,0.0f));
-        appointlist.add(new HomeDriverData("XYZ","11/10/20 - 12/10/20","Sadar","1234567890",0.0f,0.0f));
-        appointlist.add(new HomeDriverData("XYZ","11/10/20 - 12/10/20","Sadar","1234567890",0.0f,0.0f));
-        appointlist.add(new HomeDriverData("XYZ","11/10/20 - 12/10/20","Sadar","1234567890",0.0f,0.0f));
-        appointlist.add(new HomeDriverData("XYZ","11/10/20 - 12/10/20","Sadar","1234567890",0.0f,0.0f));
+        Call<ListHomeDriverData> call = RestAdapter.createAPI().dgetAppointmnets(vid);
+        call.enqueue(new Callback<ListHomeDriverData>() {
+            @Override
+            public void onResponse(@NotNull Call<ListHomeDriverData> call, @NotNull Response<ListHomeDriverData> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(getContext(), "Something went wrong"+response.message(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                ListHomeDriverData res = response.body();
+                if (res != null){
+                    appointlist.addAll(res.getAppointments());
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<ListHomeDriverData> call, @NotNull Throwable t) {
+                Toast.makeText(getContext(), "Something went wrong"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                return;
+            }
+        });
         homeDriverAdapter = new HomeDriverAdapter(appointlist,getContext());
         homerecycle.setLayoutManager(new LinearLayoutManager(getContext()));
         homerecycle.setAdapter(homeDriverAdapter);
