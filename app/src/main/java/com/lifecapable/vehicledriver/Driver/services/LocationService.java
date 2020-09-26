@@ -10,6 +10,8 @@ import android.location.Location;
 import android.os.IBinder;
 import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
@@ -18,7 +20,16 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.lifecapable.vehicledriver.Driver.adapters.RestAdapter;
+import com.lifecapable.vehicledriver.Driver.datamodels.ReturnMessage;
 import com.lifecapable.vehicledriver.R;
+
+import org.jetbrains.annotations.NotNull;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static com.lifecapable.vehicledriver.Driver.App.CHANNEL_ID;
 
 public class LocationService extends Service {
@@ -31,8 +42,9 @@ public class LocationService extends Service {
     private final static long UPDATE_INTERVAL = 5 * 1000;  /* 5 secs */
     private final static long FASTEST_INTERVAL = 2000; /* 2 sec */
 
-    SharedPreferences status;
-    Double lat,lon;
+    SharedPreferences status,sharedPreferences;
+    int vid,did;
+    float lat,lon;
 
     @Nullable
     @Override
@@ -59,6 +71,9 @@ public class LocationService extends Service {
 /*        sharedPreferences = getSharedPreferences("phone",MODE_PRIVATE);
         phone_no = sharedPreferences.getString("phone","");*/
         status = getSharedPreferences("statePreference",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("driver",MODE_PRIVATE);
+        vid = sharedPreferences.getInt("vehicleid",0);
+        did = sharedPreferences.getInt("driverid",0);
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Location service")
@@ -89,8 +104,8 @@ public class LocationService extends Service {
                         Log.d(TAG, "onLocationResult: got location result.");
                         Location location = locationResult.getLastLocation();
                         if (location != null) {
-                            lat = location.getLatitude();
-                            lon = location.getLongitude();
+                            lat = (float)location.getLatitude();
+                            lon = (float)location.getLongitude();
                             if(status.getBoolean("state",false)) {
                                 updateLocation(lat,lon);
                             }else{
@@ -103,8 +118,27 @@ public class LocationService extends Service {
                 Looper.myLooper());
     }
 
-    public void updateLocation(Double lat,Double lon){
+    public void updateLocation(float lat,float lon){
         Log.e("Locatin Data    ","Lat "+lat+", long "+ lon);
+        Call<ReturnMessage> call = RestAdapter.createAPI().oputlocation(vid,lat,lon,did);
+        call.enqueue(new Callback<ReturnMessage>() {
+            @Override
+            public void onResponse(@NotNull Call<ReturnMessage> call, @NotNull Response<ReturnMessage> response) {
+                if(!response.isSuccessful()){
+                    Log.e("yeah","Naah");
+                    return;
+                }
+                ReturnMessage res = response.body();
+                if(res != null){
+                    Log.e("Location status",res.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<ReturnMessage> call, @NotNull Throwable t) {
+                Toast.makeText(LocationService.this, "Location is not updated"+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

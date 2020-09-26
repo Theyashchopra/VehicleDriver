@@ -33,7 +33,7 @@ public class LogoutPopup extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.deletepopup, container, false);
 
-        sharedPreferences = this.getActivity().getSharedPreferences("driver", Context.MODE_PRIVATE);
+        sharedPreferences = this.requireActivity().getSharedPreferences("owner", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         textView = view.findViewById(R.id.question);
         button = view.findViewById(R.id.delete);

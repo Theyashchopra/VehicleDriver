@@ -54,6 +54,7 @@ public class HomeDriverAdapter extends RecyclerView.Adapter<HomeDriverAdapter.Ho
         holder.drelative.setOnClickListener(v -> {
 
         });
+        holder.name.setText(curr.getCustomer_name());
         holder.time.setText(curr.getStart_day());
         holder.contact.setText(curr.getCustomer_mobile());
         holder.address.setText(curr.getAddress());

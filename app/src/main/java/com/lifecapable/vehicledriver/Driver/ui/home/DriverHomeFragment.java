@@ -111,6 +111,9 @@ public class DriverHomeFragment extends Fragment {
                 ListHomeDriverData res = response.body();
                 if (res != null){
                     appointlist.addAll(res.getAppointments());
+                    homeDriverAdapter = new HomeDriverAdapter(appointlist,getContext());
+                    homerecycle.setLayoutManager(new LinearLayoutManager(getContext()));
+                    homerecycle.setAdapter(homeDriverAdapter);
                 }
             }
 
@@ -120,9 +123,7 @@ public class DriverHomeFragment extends Fragment {
                 return;
             }
         });
-        homeDriverAdapter = new HomeDriverAdapter(appointlist,getContext());
-        homerecycle.setLayoutManager(new LinearLayoutManager(getContext()));
-        homerecycle.setAdapter(homeDriverAdapter);
+
     }
 
     private void setBusyState(boolean busystate1){
