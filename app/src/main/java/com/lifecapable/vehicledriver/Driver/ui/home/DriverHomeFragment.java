@@ -111,7 +111,7 @@ public class DriverHomeFragment extends Fragment {
                 ListHomeDriverData res = response.body();
                 if (res != null){
                     appointlist.addAll(res.getAppointments());
-                    homeDriverAdapter = new HomeDriverAdapter(appointlist,getContext());
+                    homeDriverAdapter = new HomeDriverAdapter(appointlist,getContext(),DriverHomeFragment.this);
                     homerecycle.setLayoutManager(new LinearLayoutManager(getContext()));
                     homerecycle.setAdapter(homeDriverAdapter);
                 }

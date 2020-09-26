@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Driver.ui.home.DriverViewAppointmentFragment">
+
+    <TextView
+        android:id="@+id/dvahead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:layout_margin="12dp"
+        android:text="Appointment Details"
+        android:textColor="@android:color/black"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/dvacardcust"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        android:layout_below="@+id/dvahead">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/dvacn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Customer Name:"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:id="@+id/dvacustomername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:textColor="@android:color/black"
+                android:layout_toEndOf="@id/dvacn"
+                android:layout_alignBottom="@id/dvacn"/>
+            <TextView
+                android:id="@+id/dvacc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact: "
+                android:layout_below="@+id/dvacustomername"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"/>
+            <TextView
+                android:id="@+id/dvacustomercontact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:textColor="@android:color/black"
+                android:layout_toEndOf="@id/dvacc"
+                android:layout_alignBottom="@id/dvacc"/>
+            <Button
+                android:id="@+id/dvacustomercontactbt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="call"
+                android:layout_margin="8dp"
+                android:layout_below="@id/dvacustomercontact"
+                android:layout_alignParentEnd="true"/>
+            <TextView
+                android:id="@+id/dvacac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alternate Contact: "
+                android:layout_below="@+id/dvacustomercontactbt"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"/>
+            <TextView
+                android:id="@+id/dvacustomeralternatecontact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:textColor="@android:color/black"
+                android:layout_toEndOf="@id/dvacac"
+                android:layout_alignBottom="@id/dvacac"/>
+            <Button
+                android:id="@+id/dvacustomeraltcontactbt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="call"
+                android:layout_margin="8dp"
+                android:layout_below="@id/dvacustomeralternatecontact"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/dvacardadd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        android:layout_below="@+id/dvacardcust">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location:"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:id="@+id/dvaaddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_margin="8dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/dvacardtime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        android:layout_below="@+id/dvacardadd">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/dvadu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Duration:"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:id="@+id/dvat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time:"
+                android:textSize="16sp"
+                android:layout_below="@+id/dvadu"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:id="@+id/dvatime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:textColor="@android:color/black"
+                android:layout_toEndOf="@id/dvat"
+                android:layout_alignBottom="@id/dvat"/>
+            <TextView
+                android:id="@+id/dvasd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Date:"
+                android:textSize="16sp"
+                android:layout_below="@id/dvatime"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:id="@+id/dvastartdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:textColor="@android:color/black"
+                android:layout_toEndOf="@id/dvatime"
+                android:layout_alignBottom="@id/dvatime"/>
+
+            <TextView
+                android:id="@+id/dvaed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Date:"
+                android:textSize="16sp"
+                android:layout_below="@id/dvasd"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/dvaenddate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:textColor="@android:color/black"
+                android:layout_toEndOf="@id/dvaed"
+                android:layout_alignBottom="@id/dvaed"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
