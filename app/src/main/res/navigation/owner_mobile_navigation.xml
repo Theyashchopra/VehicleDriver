@@ -91,6 +91,13 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_nav_viewvehicle_owner_to_nav_vehicle_map"
+            app:destination="@id/nav_vehicle_map"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/nav_ViewDriver_owner"
@@ -187,10 +194,18 @@
         tools:layout="@layout/owner_fragment_appointments" >
         <action
             android:id="@+id/action_nav_appointments_owner_to_nav_viewAppointment_owner"
-            app:destination="@id/nav_viewAppointment_owner" />
+            app:destination="@id/nav_viewAppointment_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_nav_appointments_owner_to_nav_AddNewAppointment_owner"
-            app:destination="@id/nav_AddNewAppointment_owner" />
+            app:destination="@id/nav_AddNewAppointment_owner"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/nav_viewAppointment_owner"
@@ -202,4 +217,9 @@
         android:name="com.lifecapable.vehicledriver.owner.ui.appointment.OwnerAddNewAppointmentFragment"
         android:label="Add New Appointment"
         tools:layout="@layout/owner_fragment_add_new_appointment" />
+    <fragment
+        android:id="@+id/nav_vehicle_map"
+        android:name="com.lifecapable.vehicledriver.owner.ui.gallery.VehicleMapFragment"
+        android:label="Track Location"
+        tools:layout="@layout/fragment_vehicle_map"/>
 </navigation>
