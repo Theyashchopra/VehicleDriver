@@ -157,15 +157,22 @@ public interface OwnerJsonPlaceHolder {
     @GET("vdocs")
     Call<ResponseBody> getVside(@Query("vside")int id);
 
+    //get location of driver
     @GET("vgps")
     Call<LocationObject> getLocation(@Query("id") int vehicle_id);
 
+    //get driver info
     @GET("driver")
     Call<DriverDetailsOwnerData> getDriverDetails(@Query("id")int id);
 
+    //edit your appointment
     @PUT("appt")
     Call<Map> editAppointment(@Body Map map);
 
+    //delete your appointment
     @DELETE("appt")
     Call<Map> deleteAppointment(@Query("id")int id);
+
+    @PUT("vehicle")
+    Call<Map> updateVehicleData(@Body Map map);
 }
