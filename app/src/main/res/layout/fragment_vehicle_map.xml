@@ -23,6 +23,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:elevation="8dp"
+                android:visibility="invisible"
+                android:id="@+id/map_Progress"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,7 +43,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PLATE NUMBER"
+                android:text="Please wait..."
                 android:id="@+id/plateMap"
                 android:layout_below="@id/header"
                 android:layout_centerHorizontal="true"
@@ -53,6 +60,7 @@
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_margin="8dp"
+                android:id="@+id/driver_image"
                 android:src="@drawable/ic_person"
                 android:layout_below="@id/header"/>
 

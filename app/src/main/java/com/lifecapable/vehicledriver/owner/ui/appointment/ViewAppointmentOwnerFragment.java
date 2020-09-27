@@ -3,6 +3,7 @@ package com.lifecapable.vehicledriver.owner.ui.appointment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
 import com.lifecapable.vehicledriver.owner.datamodel.AppointmentOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
+import com.lifecapable.vehicledriver.owner.dialogs.DeleteAppointmentPopup;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +32,7 @@ public class ViewAppointmentOwnerFragment extends Fragment {
     TextView customername,address, mobile, alternatemobile, startdate, enddate, time,vehiclename, vehicleplate;
     String customernamestring, addressstring, mobilestring, alternatemobilestring, startdatestring, enddatestring, timestring, vehiclenamestring, vehicleplatestring;
     ProgressBar progressBar;
-    Button done, cancel;
+    Button edit, delete;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -60,7 +62,24 @@ public class ViewAppointmentOwnerFragment extends Fragment {
         vehiclename = root.findViewById(R.id.vavehiclename);
         vehicleplate = root.findViewById(R.id.vavehicleplate);
         progressBar = root.findViewById(R.id.vaprog);
-
+        edit = root.findViewById(R.id.vaedit);
+        delete = root.findViewById(R.id.vadone);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle args = new Bundle();
+                args.putInt("id",id);
+                args.putInt("vid",vid);
+                NavHostFragment.findNavController(ViewAppointmentOwnerFragment.this).navigate(R.id.action_nav_viewAppointment_owner_to_nav_edit_appointment,args);
+            }
+        });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DeleteAppointmentPopup dp = new DeleteAppointmentPopup(id,ViewAppointmentOwnerFragment.this);
+                dp.show(getActivity().getSupportFragmentManager(),"delete");
+            }
+        });
         initviews();
         getVehicleData(vid);
 

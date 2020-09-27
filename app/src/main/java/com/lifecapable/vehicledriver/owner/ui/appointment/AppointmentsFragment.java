@@ -75,6 +75,7 @@ public class AppointmentsFragment extends Fragment {
                     appointments.addAll(res.getAppointments());
                     AppointmentOwnerAdapter adapter = new AppointmentOwnerAdapter(appointments,getContext(),AppointmentsFragment.this);
                     appointmentRecycle.setAdapter(adapter);
+                    appointmentRecycle.scheduleLayoutAnimation();
                     appointmentRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
                     ValueAnimator animator = new ValueAnimator();
                     animator.setObjectValues(0, appointments.size());

@@ -20,6 +20,7 @@ public class VehicleDetailsOwnerData {
     boolean availibility;
     int owner_id;
     String model_name;
+    int driver_id;
 
     public VehicleDetailsOwnerData(String name, int vehicle_model_id, String yom, int total_run_hrs, int run_km_hr, int fuel_consumption_rate, int fuel_average_consumption_rate, int rent_per_day_with_fuel, int rent_per_hour_with_fuel, int rent_per_hour_without_fuel, int rent_per_day_without_fuel, String ip_address, String plate_no, boolean availibility, int owner_id) {
         this.name = name;
@@ -166,5 +167,9 @@ public class VehicleDetailsOwnerData {
 
     public int getV_id() {
         return v_id;
+    }
+
+    public int getDriver_id() {
+        return driver_id;
     }
 }

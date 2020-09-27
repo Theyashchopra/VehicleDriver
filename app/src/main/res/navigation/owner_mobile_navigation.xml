@@ -211,7 +211,15 @@
         android:id="@+id/nav_viewAppointment_owner"
         android:name="com.lifecapable.vehicledriver.owner.ui.appointment.ViewAppointmentOwnerFragment"
         android:label="View Appointments"
-        tools:layout="@layout/owner_fragment_view_appointment" />
+        tools:layout="@layout/owner_fragment_view_appointment" >
+        <action
+            android:id="@+id/action_nav_viewAppointment_owner_to_nav_edit_appointment"
+            app:destination="@id/nav_edit_appointment"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
+    </fragment>
     <fragment
         android:id="@+id/nav_AddNewAppointment_owner"
         android:name="com.lifecapable.vehicledriver.owner.ui.appointment.OwnerAddNewAppointmentFragment"
@@ -222,4 +230,9 @@
         android:name="com.lifecapable.vehicledriver.owner.ui.gallery.VehicleMapFragment"
         android:label="Track Location"
         tools:layout="@layout/fragment_vehicle_map"/>
+    <fragment
+        android:id="@+id/nav_edit_appointment"
+        android:label="Edit Appointment"
+        android:name="com.lifecapable.vehicledriver.owner.ui.appointment.EditAppointmentFragment"
+        tools:layout="@layout/fragment_edit_appointment"/>
 </navigation>
