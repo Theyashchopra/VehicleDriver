@@ -63,7 +63,7 @@ public class OwnerAddNewAppointmentFragment extends Fragment implements  OwnerSe
         timetv = root.findViewById(R.id.natimetv);
         vehicletv = root.findViewById(R.id.naselectvehicletv);
         done = root.findViewById(R.id.nadone);
-        owner = getActivity().getSharedPreferences("owner",MODE_PRIVATE);
+        owner = this.getActivity().getSharedPreferences("owner",MODE_PRIVATE);
         oid = owner.getInt("id",-1);
         initviews();
 
@@ -109,7 +109,7 @@ public class OwnerAddNewAppointmentFragment extends Fragment implements  OwnerSe
             );
             timePickerDialog.show();
         });
-        vehicletv.setOnClickListener(view -> {
+        vehicle.setOnClickListener(view -> {
              Bundle args = new Bundle();
              args.putInt("oid", oid);
              ownerSelectVehiclePopup = new OwnerSelectVehiclePopup();
@@ -124,7 +124,7 @@ public class OwnerAddNewAppointmentFragment extends Fragment implements  OwnerSe
     }
 
     private void uploadData(){
-        if(cname.getText() == null || address.getText() == null || customer_mobile.getText() == null || alternate_mobile.getText() == null || startstring == null || endstring == null || timestring == null || vehicle == null){
+        if(cname.getText().toString().isEmpty() || address.getText().toString().isEmpty() || customer_mobile.getText().toString().isEmpty() || alternate_mobile.getText().toString().isEmpty() || startstring == null || endstring == null || timestring == null || vehicle == null){
             Toast.makeText(getContext(), "You left something empty!!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -153,7 +153,11 @@ public class OwnerAddNewAppointmentFragment extends Fragment implements  OwnerSe
     @Override
     public void getAssigned(int pos, VehicleOwnerData curr) {
         assignedVehicle = curr;
-        vehicletv.setText(curr.getName());
-        Log.e("Yo ", curr.getName());
+        try {
+            vehicletv.setText(curr.getName());
+        }catch (Exception e){
+            Toast.makeText(getContext(), "You didn't choose any vehicle", Toast.LENGTH_SHORT).show();
+        }
     }
+
 }

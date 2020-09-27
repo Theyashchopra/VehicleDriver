@@ -13,22 +13,22 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nacustomername"
+            android:id="@+id/eacustomername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Customer name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nacustomernameet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/eacustomernameet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/naaddress"
+            android:id="@+id/eaaddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -36,14 +36,14 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/naaddresset"
+                android:id="@+id/eaaddresset"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPostalAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nacustomermobile"
+            android:id="@+id/eacustomermobile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -51,7 +51,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nacustomermobileet"
+                android:id="@+id/eacustomermobileet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -59,7 +59,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nacustomeralternate"
+            android:id="@+id/eacustomeralternate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -67,7 +67,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nacustomeralternateet"
+                android:id="@+id/eacustomeralternateet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -75,7 +75,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/nastartday"
+            android:id="@+id/eastartday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="#fff"
@@ -84,7 +84,7 @@
             android:elevation="8dp">
 
             <TextView
-                android:id="@+id/nastartdaytv"
+                android:id="@+id/eastartdaytv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Start Date"
@@ -95,7 +95,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/naendday"
+            android:id="@+id/eaendday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -104,7 +104,7 @@
             android:elevation="8dp">
 
             <TextView
-                android:id="@+id/naenddaytv"
+                android:id="@+id/eaenddaytv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="End Date"
@@ -115,7 +115,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/natime"
+            android:id="@+id/eatime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -124,7 +124,7 @@
             android:elevation="8dp">
 
             <TextView
-                android:id="@+id/natimetv"
+                android:id="@+id/eatimetv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Time"
@@ -135,7 +135,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/naselectvehicle"
+            android:id="@+id/easelectvehicle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="#fff"
@@ -144,7 +144,7 @@
             android:elevation="8dp">
 
             <TextView
-                android:id="@+id/naselectvehicletv"
+                android:id="@+id/easelectvehicletv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Select vehicle"
@@ -155,12 +155,19 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/nadone"
+            android:id="@+id/eadone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="5dp"
-            android:text="Done"
+            android:text="Update"
             android:layout_margin="8dp"/>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_progress"
+            android:elevation="5dp"
+            android:visibility="invisible"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
 </ScrollView>

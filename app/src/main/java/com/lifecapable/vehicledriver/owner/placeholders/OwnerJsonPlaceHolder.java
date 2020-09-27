@@ -18,11 +18,14 @@ import com.lifecapable.vehicledriver.owner.datamodel.RootEnquiry;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleIds;
 
+import java.util.Map;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
@@ -154,9 +157,22 @@ public interface OwnerJsonPlaceHolder {
     @GET("vdocs")
     Call<ResponseBody> getVside(@Query("vside")int id);
 
+    //get location of driver
     @GET("vgps")
     Call<LocationObject> getLocation(@Query("id") int vehicle_id);
 
+    //get driver info
+    @GET("driver")
+    Call<DriverDetailsOwnerData> getDriverDetails(@Query("id")int id);
 
+    //edit your appointment
+    @PUT("appt")
+    Call<Map> editAppointment(@Body Map map);
 
+    //delete your appointment
+    @DELETE("appt")
+    Call<Map> deleteAppointment(@Query("id")int id);
+
+    @PUT("vehicle")
+    Call<Map> updateVehicleData(@Body Map map);
 }

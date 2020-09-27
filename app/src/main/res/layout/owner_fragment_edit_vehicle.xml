@@ -3,40 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#f5f5f5"
     android:fillViewport="true"
-    tools:context=".owner.ui.gallery.OwnerEditVehicleFragment">
-
+    tools:context=".owner.ui.gallery.OwnerAddNewVehicleFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/evim"
+        <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Vehicle Image"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:id="@+id/vedit_progress"/>
+        <TextView
+            android:id="@+id/avim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Vehicle Details here"
             android:layout_margin="8dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"/>
         <ImageView
-            android:id="@+id/evvehicleImage"
+            android:id="@+id/avvehicleImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginBottom="12dp"
+            android:visibility="gone"
             android:src="@drawable/ic_account"
-            android:layout_below="@id/evim"
+            android:layout_below="@id/avim"
             android:layout_centerHorizontal="true"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/evplatenumber"
+            android:id="@+id/vedit_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Plate Number"
-            android:layout_below="@id/evvehicleImage">
+            android:hint="Name"
+            android:layout_below="@id/avvehicleImage"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vedit_nameet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -44,14 +53,45 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/evmadein"
+            android:id="@+id/vedit_platenumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Manufactured in (Year)"
-            android:layout_below="@id/evplatenumber">
+            android:hint="Plate Number"
+            android:layout_below="@id/vedit_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vedit_platenumberet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/vedit_pn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*The plate number should be without spaces and in small letter"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/vedit_platenumber"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vedit_madein"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:hint="Manufactured in (Year)"
+            android:layout_below="@id/vedit_pn"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vedit_madeinet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -60,14 +100,16 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/evkmscompleted"
+            android:id="@+id/vedit_ktotalrunhours"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Kms Completed"
-            android:layout_below="@+id/evmadein">
+            android:hint="Total hours running"
+            android:layout_below="@+id/vedit_madein"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vedit_ktotalrunhourset"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number" />
@@ -75,14 +117,101 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/evrentperhour"
+            android:id="@+id/vedit_runkmhr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Rent per hour(in rupees)"
-            android:layout_below="@id/evkmscompleted">
+            android:hint="Running kilometer per hour"
+            android:layout_below="@+id/vedit_ktotalrunhours"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vedit_runkmhret"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vedit_fuelconsumption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Fuel consumption rate"
+            android:layout_below="@+id/vedit_runkmhr"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vedit_fuelconsumptionet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vedit_avgfuelconsumption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Average fuel consumption"
+            android:layout_below="@+id/vedit_fuelconsumption"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vedit_avgfuelconsumptionet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vedit_rentperhourwf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Rent per hour with fuel(in rupees)"
+            android:layout_below="@id/vedit_avgfuelconsumption"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vedit_rentperhourwfet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vedit_rentperdaywf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Rent per Day with fuel(in rupees)"
+            android:layout_below="@id/vedit_rentperhourwf"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vedit_rentperdaywfet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vedit_rentperhourwof"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Rent per hour without fuel(in rupees)"
+            android:layout_below="@id/vedit_rentperdaywf"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vedit_rentperhourwofet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal" />
@@ -90,101 +219,170 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/evrentperday"
+            android:id="@+id/vedit_rentperdaywof"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Rent per Day(in rupees)"
-            android:layout_below="@id/evrentperhour">
+            android:hint="Rent per Day without fuel(in rupees)"
+            android:layout_below="@id/vedit_rentperhourwof"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vedit_rentperdaywofet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
+                android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/evcategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_margin="8dp"
-            android:layout_below="@id/evrentperday"/>
-        <Spinner
-            android:id="@+id/evsubcategoery1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_margin="8dp"
-            android:layout_below="@id/evcategory"/>
-        <Spinner
-            android:id="@+id/evsubcategoery2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_margin="8dp"
-            android:layout_below="@id/evsubcategoery1"/>
-
         <TextView
-            android:id="@+id/evinv"
+            android:id="@+id/vedit_avil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="add Invoice image"
+            android:text="Available Now? "
             android:layout_margin="8dp"
-            android:layout_below="@id/evsubcategoery2"/>
-        <ImageView
-            android:id="@+id/evinvoiceimage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_addphoto"
+            android:layout_below="@+id/vedit_rentperdaywof"
+            android:layout_alignParentStart="true"/>
+        <RadioGroup
+            android:id="@+id/avavailblenowbg"
+            android:layout_width="match_parent"
+            android:checkedButton="@id/yes"
+            android:layout_height="30dp"
             android:layout_marginBottom="8dp"
-            android:layout_alignTop="@id/evinv"
-            android:layout_toEndOf="@id/evinv"/>
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/owner_radio_pick_outline"
+            android:orientation="horizontal"
+            android:layout_below="@id/vedit_rentperdaywof"
+            android:layout_toEndOf="@+id/vedit_avil">
+            <RadioButton
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginEnd="1dp"
+                android:id="@+id/yes"
+                android:background="@drawable/owner_radio_background"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Yes"
+                android:textColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/evr"
-            android:layout_width="wrap_content"
+            <RadioButton
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:id="@+id/no"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/owner_radio_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="No"
+                android:textColor="@android:color/white" />
+        </RadioGroup>
+
+        <!--  <TextView
+              android:id="@+id/avinv"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="add Invoice image"
+              android:layout_margin="8dp"
+              android:layout_below="@id/avsubcategoery2"/>
+          <ImageView
+              android:id="@+id/avinvoiceimage"
+              android:layout_width="100dp"
+              android:layout_height="100dp"
+              android:src="@drawable/ic_addphoto"
+              android:layout_marginBottom="8dp"
+              android:layout_alignTop="@id/avinv"
+              android:layout_toEndOf="@id/avinv"/>
+
+          <TextView
+              android:id="@+id/avr"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="add RC image"
+              android:layout_margin="8dp"
+              android:layout_below="@id/avinvoiceimage"/>
+          <ImageView
+              android:id="@+id/avrcimage"
+              android:layout_width="100dp"
+              android:layout_height="100dp"
+              android:src="@drawable/ic_addphoto"
+              android:layout_marginBottom="8dp"
+              android:layout_alignTop="@id/avr"
+              android:layout_toEndOf="@id/avr"/>
+
+          <TextView
+              android:id="@+id/avins"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="add Insurance image"
+              android:layout_margin="8dp"
+              android:layout_below="@id/avrcimage"/>
+          <ImageView
+              android:id="@+id/avinsuranceimage"
+              android:layout_width="100dp"
+              android:layout_height="100dp"
+              android:src="@drawable/ic_addphoto"
+              android:layout_marginBottom="8dp"
+              android:layout_alignTop="@id/avins"
+              android:layout_toEndOf="@id/avins"/>-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/vedit_startday"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="add RC image"
+            app:cardBackgroundColor="#fff"
+            android:layout_below="@id/avavailblenowbg"
             android:layout_margin="8dp"
-            android:layout_below="@id/evinvoiceimage"/>
-        <ImageView
-            android:id="@+id/evrcimage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_addphoto"
-            android:layout_marginBottom="8dp"
-            android:layout_alignTop="@id/evr"
-            android:layout_toEndOf="@id/evr"/>
+            app:cardCornerRadius="8dp"
+            android:elevation="8dp">
 
-        <TextView
-            android:id="@+id/evins"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/vedit_startdaytv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Busy Start Date"
+                android:textColor="@android:color/black"
+                android:layout_margin="12dp"
+                android:layout_gravity="center_horizontal"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/vedit_endday"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="add Insurance image"
             android:layout_margin="8dp"
-            android:layout_below="@id/evrcimage"/>
-        <ImageView
-            android:id="@+id/evinsuranceimage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_addphoto"
-            android:layout_marginBottom="8dp"
-            android:layout_alignTop="@id/evins"
-            android:layout_toEndOf="@id/evins"/>
+            android:layout_below="@id/vedit_startday"
+            app:cardBackgroundColor="#fff"
+            app:cardCornerRadius="8dp"
+            android:elevation="8dp">
 
+            <TextView
+                android:id="@+id/vedit_enddaytv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Busy End Date"
+                android:textColor="@android:color/black"
+                android:layout_margin="12dp"
+                android:layout_gravity="center_horizontal"/>
+
+        </androidx.cardview.widget.CardView>
         <Button
-            android:id="@+id/evdonebt"
+            android:id="@+id/vedit_donebt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Done"
             android:textColor="@android:color/white"
             android:layout_margin="8dp"
             android:background="@drawable/background_green"
-            android:layout_below="@+id/evinsuranceimage" />
+            android:layout_below="@id/vedit_endday" />
 
     </RelativeLayout>
-
 
 </ScrollView>

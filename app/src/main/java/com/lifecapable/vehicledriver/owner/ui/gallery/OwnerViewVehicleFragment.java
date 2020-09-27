@@ -101,6 +101,7 @@ public class OwnerViewVehicleFragment extends Fragment {
                 }
 
                 VehicleDetailsOwnerData res = response.body();
+                vehicleDetailsOwnerData = response.body();
                 if(res != null) {
                     try {
                         initviews(res);
@@ -145,6 +146,8 @@ public class OwnerViewVehicleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Bundle args = new Bundle();
+                args.putInt("driver_id",vehicleDetailsOwnerData.getDriver_id());
+                args.putString("vname",vehicleDetailsOwnerData.getName());
                 args.putInt("vid",vehicleid);
                 NavController nav = NavHostFragment.findNavController(OwnerViewVehicleFragment.this);
                 nav.navigate(R.id.action_nav_viewvehicle_owner_to_nav_vehicle_map,args);
