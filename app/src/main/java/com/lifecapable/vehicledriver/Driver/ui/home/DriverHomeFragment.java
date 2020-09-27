@@ -23,6 +23,7 @@ import com.lifecapable.vehicledriver.Driver.adapters.HomeDriverAdapter;
 import com.lifecapable.vehicledriver.Driver.adapters.RestAdapter;
 import com.lifecapable.vehicledriver.Driver.datamodels.HomeDriverData;
 import com.lifecapable.vehicledriver.Driver.datamodels.ListHomeDriverData;
+import com.lifecapable.vehicledriver.Driver.datamodels.VehicleDriverData;
 import com.lifecapable.vehicledriver.Driver.services.LocationService;
 import com.lifecapable.vehicledriver.R;
 
@@ -129,6 +130,7 @@ public class DriverHomeFragment extends Fragment {
     private void setBusyState(boolean busystate1){
         editor = sharedPreferences.edit();
         if(busystate1){
+            setAvailabilityInApi(1);
             String available = "AVAILABLE";
             busystate = true;
             busybt.setBackgroundResource(R.drawable.background_green);
@@ -139,6 +141,7 @@ public class DriverHomeFragment extends Fragment {
             editor.putBoolean("busy",true);
         }
         else{
+            setAvailabilityInApi(0);
             String busy = "BUSY";
             busystate = false;
             busybt.setBackgroundResource(R.drawable.background_orange);
@@ -178,6 +181,30 @@ public class DriverHomeFragment extends Fragment {
         editor.apply();
     }
 
+    private void setAvailabilityInApi(int s){
+        Call<VehicleDriverData> call = RestAdapter.createAPI().oputAvailability(vid,s);
+        call.enqueue(new Callback<VehicleDriverData>() {
+            @Override
+            public void onResponse(@NotNull Call<VehicleDriverData> call, @NotNull Response<VehicleDriverData> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(getContext(), "Something went wrong"+response.message(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                VehicleDriverData res = response.body();
+                if(res != null){
+                    if(res.getName() == null){
+                        Toast.makeText(getContext(), "Something went wrong"+response.message(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<VehicleDriverData> call, Throwable t) {
+                Toast.makeText(getContext(), "Something went wrong"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                return;
+            }
+        });
+    }
     private void startLocationService(){
         if (!isLocationServiceRunning()) {
             Intent serviceIntent = new Intent(getActivity(), LocationService.class);
