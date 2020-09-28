@@ -17,11 +17,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.Task;
 import com.lifecapable.vehicledriver.Driver.adapters.RestAdapter;
 import com.lifecapable.vehicledriver.Driver.datamodels.ReturnMessage;
 import com.lifecapable.vehicledriver.R;
@@ -47,10 +49,12 @@ public class LocationService extends Service {
     private final static long UPDATE_INTERVAL = 5 * 1000;  /* 5 secs */
     private final static long FASTEST_INTERVAL = 2000; /* 2 sec */
 
-    SharedPreferences status,sharedPreferences;
-    int vid,did;
-    float lat,lon;
+    SharedPreferences status, sharedPreferences;
+    int vid, did;
+    float lat, lon;
+    Timer timer;
 
+    Boolean service;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -70,27 +74,31 @@ public class LocationService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand: called.");
-
+        service = intent.getExtras().getBoolean("service");
+        if(!service){
+            stopForeground(true);
+            stopSelfResult(startId);
+        }
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 /*        sharedPreferences = getSharedPreferences("phone",MODE_PRIVATE);
         phone_no = sharedPreferences.getString("phone","");*/
-        status = getSharedPreferences("statePreference",MODE_PRIVATE);
-        sharedPreferences = getSharedPreferences("driver",MODE_PRIVATE);
-        vid = sharedPreferences.getInt("vehicleid",0);
-        did = sharedPreferences.getInt("driverid",0);
+        sharedPreferences = getSharedPreferences("driver", MODE_PRIVATE);
+        vid = sharedPreferences.getInt("vehicleid", 0);
+        did = sharedPreferences.getInt("driverid", 0);
 
+        timer = new Timer();
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Location service")
                 .setContentText("Updating location")
                 .setSmallIcon(R.drawable.ic_location)
                 .build();
-            startForeground(1, notification);
+        startForeground(1, notification);
         getLocation();
         return START_NOT_STICKY;
     }
 
     private void getLocation() {
-        LocationRequest mLocationRequestHighAccuracy = new LocationRequest();
+       /* LocationRequest mLocationRequestHighAccuracy = new LocationRequest();
         mLocationRequestHighAccuracy.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequestHighAccuracy.setInterval(UPDATE_INTERVAL);
         mLocationRequestHighAccuracy.setFastestInterval(FASTEST_INTERVAL);
@@ -119,7 +127,36 @@ public class LocationService extends Service {
                         }
                     }
                 },
-                Looper.myLooper());
+                Looper.myLooper());*/
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (ActivityCompat.checkSelfPermission(LocationService.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                        ActivityCompat.checkSelfPermission(LocationService.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                    return;
+                }
+                status = getSharedPreferences("statePreference", MODE_PRIVATE);
+                if(status.getBoolean("state",false)) {
+                    Task location = mFusedLocationClient.getLastLocation();
+                    location.addOnCompleteListener(task -> {
+                        Location currLocation =(Location)task.getResult();
+                        try {
+                            if(currLocation != null){
+                                lat = (float)currLocation.getLatitude();
+                                lon = (float)currLocation.getLongitude();
+                                    updateLocation(lat,lon);
+                                }
+                        }
+                        catch (Exception e){
+                            Log.e("Exception in location", "Location is null");
+                        }
+                    });
+                }else{
+                    stopSelf();
+                }
+           }
+       },0,5000);
     }
 
     public void updateLocation(float lat,float lon){

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -219,12 +220,15 @@ public class DriverHomeFragment extends Fragment {
     private void startLocationService(){
         if (!isLocationServiceRunning()) {
             Intent serviceIntent = new Intent(getActivity(), LocationService.class);
-            ContextCompat.startForegroundService(requireActivity(), serviceIntent);
+            serviceIntent.putExtra("service",true);
+            requireActivity().startService( serviceIntent);
+            
         }
     }
     private void stopLocationService(){
             try{
                 Intent serviceIntent = new Intent(getActivity(), LocationService.class);
+                serviceIntent.putExtra("service",false);
                 requireActivity().stopService(serviceIntent);
             }catch (NullPointerException e){
                 Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();

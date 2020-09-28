@@ -84,12 +84,9 @@ public class ViewAppointmentOwnerFragment extends Fragment {
                 NavHostFragment.findNavController(ViewAppointmentOwnerFragment.this).navigate(R.id.action_nav_viewAppointment_owner_to_nav_edit_appointment,args);
             }
         });
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DeleteAppointmentPopup dp = new DeleteAppointmentPopup(id,ViewAppointmentOwnerFragment.this);
-                dp.show(getActivity().getSupportFragmentManager(),"delete");
-            }
+        delete.setOnClickListener(view -> {
+            DeleteAppointmentPopup dp = new DeleteAppointmentPopup(id,ViewAppointmentOwnerFragment.this);
+            dp.show(getActivity().getSupportFragmentManager(),"delete");
         });
         initviews();
         getVehicleData(vid);
