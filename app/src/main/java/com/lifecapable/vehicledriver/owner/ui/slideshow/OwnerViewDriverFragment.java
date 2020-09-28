@@ -39,7 +39,7 @@ public class OwnerViewDriverFragment extends Fragment {
     View root;
     Button edit,upload;
     TextView clickviewlicence;
-    DriverOwnerData driverOwnerData;
+    public static DriverOwnerData driverOwnerData;
     TextView name,number1,number2,adhaar,license,vname,plate,model,vplate;
     ImageView imageView;
     Bitmap licensebitmap;

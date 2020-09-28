@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
+import com.lifecapable.vehicledriver.owner.datamodel.DriverOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.dialogs.OwnerSelectVehiclePopup;
 import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
@@ -46,11 +47,13 @@ public class EditDriverFragment extends Fragment implements  OwnerSelectVehicleP
     SharedPreferences sharedPreferences;
     OwnerSelectVehiclePopup ownerSelectVehiclePopup;
     Map<String,Object> map;
+    DriverOwnerData driverOwnerData;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_edit_driver, container, false);
+        driverOwnerData = OwnerViewDriverFragment.driverOwnerData;
         sharedPreferences = this.getActivity().getSharedPreferences("owner", Context.MODE_PRIVATE);
         map = new HashMap<>();
         id = 0;
@@ -66,11 +69,20 @@ public class EditDriverFragment extends Fragment implements  OwnerSelectVehicleP
 
     private void init(){
         name = view.findViewById(R.id.ednameet);
+        name.setText(driverOwnerData.getName());
+
         adhaar = view.findViewById(R.id.edadhaaret);
+        adhaar.setText(driverOwnerData.getAdhaar());
+
         mobile = view.findViewById(R.id.edmobileet);
+        mobile.setText(driverOwnerData.getMobile2());
+
         password = view.findViewById(R.id.edpasswordet);
+
         cardView = view.findViewById(R.id.adassignedvehicle);
         textView = view.findViewById(R.id.adassignedvehicletext);
+        textView.setText(driverOwnerData.getVehicle_plate());
+        
         progressBar = view.findViewById(R.id.edit_driver_progress);
         save = view.findViewById(R.id.update_driver);
         listeners();

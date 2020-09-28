@@ -40,6 +40,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class EditAppointmentFragment extends Fragment implements OwnerSelectVehiclePopup.OnClosePassData {
 
     SharedPreferences sharedPreferences;
+    String customernamestring, addressstring, mobilestring, alternatemobilestring, startdatestring, enddatestring;
     TextInputEditText cname, address, customer_mobile, alternate_mobile;
     CardView start,end,time,vehicle;
     TextView starttv,endtv,timetv,vehicletv;
@@ -86,10 +87,28 @@ public class EditAppointmentFragment extends Fragment implements OwnerSelectVehi
         owner = this.getActivity().getSharedPreferences("owner",MODE_PRIVATE);
         oid = owner.getInt("id",-1);
         map.put("owner_id",oid);
+        setFields();
         init();
         return view;
     }
-
+    private void setFields(){
+        getDatafromArgument();
+        cname.setText(customernamestring);
+        address.setText(addressstring);
+        customer_mobile.setText(mobilestring);
+        alternate_mobile.setText(alternatemobilestring);
+    }
+    private void getDatafromArgument(){
+        id = getArguments().getInt("id");
+        vid = getArguments().getInt(("vid"));
+        customernamestring = getArguments().getString("cname");
+        addressstring = getArguments().getString("address");
+        mobilestring = getArguments().getString("mobile");
+        alternatemobilestring = getArguments().getString("alternatemobile");
+        startdatestring = getArguments().getString("startdate");
+        enddatestring = getArguments().getString("enddate");
+        timestring = getArguments().getString("time");
+    }
     private void init(){
         listeners();
         start.setOnClickListener(view -> {

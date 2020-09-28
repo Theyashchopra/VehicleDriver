@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -30,9 +32,10 @@ public class OwnerProfileFragment extends Fragment {
     TextInputEditText nameEt, addressEt, pincodeEt, panEt, tanEt, gstEt, gumastaEt, emailEt, contactEt, contact2Et;
     Button editbt, donebt, logoutbt;
     Boolean state;
+    TextView subnaem,alloted_vehicles;
     SharedPreferences sharedPreferences;
     int id;
-
+    ProgressBar progressBar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.owner_fragment_profile, container, false);
@@ -43,6 +46,9 @@ public class OwnerProfileFragment extends Fragment {
         id = sharedPreferences.getInt("id",0);
 
         nameEt = root.findViewById(R.id.opnameet);
+        progressBar = root.findViewById(R.id.opsProgress);
+        subnaem = root.findViewById(R.id.opsubscriptionname);
+        alloted_vehicles = root.findViewById(R.id.opsallottedvehicles);
         addressEt = root.findViewById(R.id.opfulladdresset);
         panEt = root.findViewById(R.id.oppannumberet);
         pincodeEt = root.findViewById(R.id.oppincodeet);
@@ -53,9 +59,9 @@ public class OwnerProfileFragment extends Fragment {
         emailEt = root.findViewById(R.id.opemailet);
         contactEt = root.findViewById(R.id.opcontact1et);
         contact2Et = root.findViewById(R.id.opcontact2et);
-        editbt = root.findViewById(R.id.opedit);
-        donebt = root.findViewById(R.id.opdone);
-        logoutbt = root.findViewById(R.id.oplogout);
+        //editbt = root.findViewById(R.id.opedit);
+        //donebt = root.findViewById(R.id.opdone);
+        //logoutbt = root.findViewById(R.id.oplogout);
         inithome();
 
         return root;
@@ -73,13 +79,10 @@ public class OwnerProfileFragment extends Fragment {
         emailEt.setEnabled(false);
         contactEt.setEnabled(false);
         contact2Et.setEnabled(false);
-        donebt.setVisibility(View.GONE);
-        editbt.setVisibility(View.VISIBLE);
-        logoutbt.setVisibility(View.VISIBLE);
 
         getData();
 
-        editbt.setOnClickListener(v -> {
+       /* editbt.setOnClickListener(v -> {
                 state = false;
                 nameEt.setEnabled(true);
                 addressEt.setEnabled(true);
@@ -112,15 +115,18 @@ public class OwnerProfileFragment extends Fragment {
                 donebt.setVisibility(View.GONE);
                 editbt.setVisibility(View.VISIBLE);
                 logoutbt.setVisibility(View.VISIBLE);
-        });
+        });*/
     }
     private void getData(){
+        progressBar.setVisibility(View.VISIBLE);
         Call<ProfileOwnerData> call = RestAdapter.createAPI().ogetProfileData(id);
         call.enqueue(new Callback<ProfileOwnerData>() {
             @Override
             public void onResponse(@NotNull Call<ProfileOwnerData> call, @NotNull Response<ProfileOwnerData> response) {
                 if (!response.isSuccessful()){
                     Log.e("Respose error ", response.message());
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getContext(), "No internet access", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 ProfileOwnerData res = response.body();
@@ -135,12 +141,16 @@ public class OwnerProfileFragment extends Fragment {
                     emailEt.setText(res.getEmail());
                     contactEt.setText(res.getMobile());
                     contact2Et.setText(res.getMobile2());
+                    subnaem.setText(res.getSubscriptionName());
+                    alloted_vehicles.setText(String.valueOf(res.getAllotedVehicles()));
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
 
             @Override
             public void onFailure(@NotNull Call<ProfileOwnerData> call, @NotNull Throwable t) {
                 Toast.makeText(getContext(), "Something went wrong" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }

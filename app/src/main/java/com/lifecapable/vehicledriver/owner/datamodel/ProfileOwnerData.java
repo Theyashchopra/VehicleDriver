@@ -8,10 +8,11 @@ public class ProfileOwnerData {
     private String mobile;
     private Boolean status;
     private String ipAddress;
-    private String subscriptionName;
-    private int allotedVehicles;
-    private String pinCode;
-    private String fullAddress;
+    private String subscription_name;
+
+    private int alloted_vehicles;
+    private String pin_code;
+    private String full_address;
     private String pan;
     private String tan;
     private String gst;
@@ -27,10 +28,10 @@ public class ProfileOwnerData {
         this.mobile = mobile;
         this.status = status;
         this.ipAddress = ipAddress;
-        this.subscriptionName = subscriptionName;
-        this.allotedVehicles = allotedVehicles;
-        this.pinCode = pinCode;
-        this.fullAddress = fullAddress;
+        this.subscription_name = subscriptionName;
+        this.alloted_vehicles = allotedVehicles;
+        this.pin_code = pinCode;
+        this.full_address = fullAddress;
         this.pan = pan;
         this.tan = tan;
         this.gst = gst;
@@ -89,35 +90,35 @@ public class ProfileOwnerData {
     }
 
     public String getSubscriptionName() {
-        return subscriptionName;
+        return subscription_name;
     }
 
     public void setSubscriptionName(String subscriptionName) {
-        this.subscriptionName = subscriptionName;
+        this.subscription_name = subscriptionName;
     }
 
     public int getAllotedVehicles() {
-        return allotedVehicles;
+        return alloted_vehicles;
     }
 
     public void setAllotedVehicles(int allotedVehicles) {
-        this.allotedVehicles = allotedVehicles;
+        this.alloted_vehicles = allotedVehicles;
     }
 
     public String getPinCode() {
-        return pinCode;
+        return pin_code;
     }
 
     public void setPinCode(String pinCode) {
-        this.pinCode = pinCode;
+        this.pin_code = pinCode;
     }
 
     public String getFullAddress() {
-        return fullAddress;
+        return full_address;
     }
 
     public void setFullAddress(String fullAddress) {
-        this.fullAddress = fullAddress;
+        this.full_address = fullAddress;
     }
 
     public String getPan() {
