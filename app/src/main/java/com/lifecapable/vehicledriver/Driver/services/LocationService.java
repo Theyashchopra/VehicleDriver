@@ -64,6 +64,11 @@ public class LocationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        if(!service){
+            stopForeground(true);
+            stopSelf();
+            Log.e("Location service","Stopping service");
+        }
     }
 
     @Override
@@ -78,6 +83,9 @@ public class LocationService extends Service {
         if(!service){
             stopForeground(true);
             stopSelfResult(startId);
+            stopSelf();
+            stopService(intent);
+            Log.e("Location service","Stopping service");
         }
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 /*        sharedPreferences = getSharedPreferences("phone",MODE_PRIVATE);
@@ -98,7 +106,7 @@ public class LocationService extends Service {
     }
 
     private void getLocation() {
-       /* LocationRequest mLocationRequestHighAccuracy = new LocationRequest();
+        LocationRequest mLocationRequestHighAccuracy = new LocationRequest();
         mLocationRequestHighAccuracy.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequestHighAccuracy.setInterval(UPDATE_INTERVAL);
         mLocationRequestHighAccuracy.setFastestInterval(FASTEST_INTERVAL);
@@ -113,22 +121,22 @@ public class LocationService extends Service {
                 new LocationCallback() {
                     @Override
                     public void onLocationResult(LocationResult locationResult) {
-                        Log.d(TAG, "onLocationResult: got location result.");
-                        Location location = locationResult.getLastLocation();
-                        if (location != null) {
-                            lat = (float)location.getLatitude();
-                            lon = (float)location.getLongitude();
-                            if(status.getBoolean("state",false)) {
+                        status = getSharedPreferences("statePreference", MODE_PRIVATE);
+                        if(status.getBoolean("state",false)) {
+                            Log.d(TAG, "onLocationResult: got location result.");
+                            Location location = locationResult.getLastLocation();
+                            if (location != null) {
+                                lat = (float)location.getLatitude();
+                                lon = (float)location.getLongitude();
                                 updateLocation(lat,lon);
-                            }else{
-                                stopSelf();
                             }
-                            updateLocation(lat,lon);
+                        }else{
+                            stopSelf();
                         }
                     }
                 },
-                Looper.myLooper());*/
-        timer.scheduleAtFixedRate(new TimerTask() {
+                getMainLooper());
+/*        timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 if (ActivityCompat.checkSelfPermission(LocationService.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
@@ -156,7 +164,7 @@ public class LocationService extends Service {
                     stopSelf();
                 }
            }
-       },0,5000);
+       },0,5000);*/
     }
 
     public void updateLocation(float lat,float lon){
