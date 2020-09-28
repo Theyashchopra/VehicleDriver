@@ -60,12 +60,13 @@ public class OwnerLeftNavActivity extends AppCompatActivity {
                 R.id.nav_home_owner, R.id.nav_gallery_owner, R.id.nav_slideshow_owner, R.id.nav_profile_owner,R.id.nav_appointments_owner)
                 .setOpenableLayout(drawer)
                 .build();
+
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navHeaderView.setOnClickListener(v -> {
             navController.navigate(R.id.nav_profile_owner);
-            Toast.makeText(OwnerLeftNavActivity.this, "Click Click", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(OwnerLeftNavActivity.this, "Click Click", Toast.LENGTH_SHORT).show();
             mAppBarConfiguration.getOpenableLayout().close();closeContextMenu();
         });
         logoutFromNavigationBar(navigationView,drawer);

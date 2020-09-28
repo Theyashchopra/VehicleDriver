@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#f5f5f5"
     android:layout_height="match_parent"
     android:fillViewport="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,6 +11,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/opsProgress"
+            android:visibility="invisible"/>
         <TextView
             android:id="@+id/opn"
             android:layout_width="match_parent"
@@ -32,6 +39,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/opnameet"
+                android:textColor="@android:color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -51,6 +59,7 @@
                 android:id="@+id/opcontact1et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:inputType="number"
                 android:maxLength="10"/>
 
@@ -69,6 +78,7 @@
                 android:id="@+id/opcontact2et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:inputType="number"
                 android:maxLength="10"/>
 
@@ -104,11 +114,12 @@
                 android:id="@+id/opemailet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+        <!--<TextView
             android:id="@+id/opa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -139,7 +150,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:padding="8dp"
-            android:layout_below="@id/opdistrict"/>
+            android:layout_below="@id/opdistrict"/>-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/opfulladdress"
@@ -147,7 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Full Address"
-            android:layout_below="@+id/opcity"
+            android:layout_below="@+id/opemail"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -155,6 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPostalAddress"
+                android:textColor="@android:color/black"
                 android:lines="5"
                 android:maxLength="100"/>
 
@@ -173,6 +185,7 @@
                 android:id="@+id/oppincodeet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:inputType="numberDecimal"
                 android:maxLength="6"/>
 
@@ -196,6 +209,7 @@
             android:layout_below="@id/ops"
             android:layout_margin="8dp"
             android:elevation="12dp"
+            app:cardBackgroundColor="#fff"
             app:cardCornerRadius="8dp">
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -234,7 +248,7 @@
                     android:layout_height="wrap_content"
                     android:text="  "
                     android:textColor="@android:color/black"
-                    android:layout_alignBottom="@id/opsn"
+                    android:layout_below="@+id/opsubscriptionname"
                     android:layout_toEndOf="@+id/opsav"/>
 
             </RelativeLayout>
@@ -264,6 +278,7 @@
                 android:id="@+id/oppannumberet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -281,6 +296,7 @@
                 android:id="@+id/optannumberet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -297,6 +313,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/opgstnumberet"
                 android:layout_width="match_parent"
+                android:textColor="@android:color/black"
                 android:layout_height="wrap_content"
                 android:inputType="text"/>
 
@@ -315,6 +332,7 @@
                 android:id="@+id/opregisternumberet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -324,6 +342,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pan card Image "
+            android:visibility="gone"
             android:layout_margin="8dp"
             android:layout_below="@+id/opregisternumber"
             android:textColor="@android:color/black"/>
@@ -331,14 +350,16 @@
             android:id="@+id/oppanimage"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:visibility="gone"
             android:src="@drawable/ic_account"
             android:layout_toEndOf="@id/oppc"
             android:layout_alignTop="@id/oppc"/>
 
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_below="@id/oppanimage">
 
             <Button
@@ -347,6 +368,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Logout"
+                android:visibility="gone"
                 android:layout_margin="8dp"
                 android:textColor="@android:color/white"
                 android:background="@drawable/background_red"/>
@@ -357,6 +379,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Edit"
+                android:visibility="gone"
                 android:layout_margin="8dp"
                 android:textColor="@android:color/white"
                 android:background="@drawable/background_accent"/>
@@ -372,7 +395,7 @@
                 android:textColor="@android:color/white"
                 android:background="@drawable/background_accent"/>
 
-        </LinearLayout>
+        </LinearLayout>-->
 
     </RelativeLayout>
 

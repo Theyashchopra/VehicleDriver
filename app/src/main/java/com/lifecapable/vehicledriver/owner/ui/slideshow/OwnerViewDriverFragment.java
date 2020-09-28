@@ -25,6 +25,7 @@ import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.dialogs.OwnerImageViewPopup;
 import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
+import com.lifecapable.vehicledriver.owner.ui.gallery.OwnerViewVehicleFragment;
 
 import java.security.acl.Owner;
 
@@ -38,7 +39,7 @@ public class OwnerViewDriverFragment extends Fragment {
     View root;
     Button edit,upload;
     TextView clickviewlicence;
-    DriverOwnerData driverOwnerData;
+    public static DriverOwnerData driverOwnerData;
     TextView name,number1,number2,adhaar,license,vname,plate,model,vplate;
     ImageView imageView;
     Bitmap licensebitmap;
@@ -87,7 +88,9 @@ public class OwnerViewDriverFragment extends Fragment {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Bundle args = new Bundle();
+                args.putInt("did",driverOwnerData.getId());
+                NavHostFragment.findNavController(OwnerViewDriverFragment.this).navigate(R.id.action_nav_ViewDriver_owner_to_nav_edit_driver,args);
             }
         });
         try {

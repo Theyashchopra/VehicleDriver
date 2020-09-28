@@ -33,10 +33,12 @@ public class ViewAppointmentOwnerFragment extends Fragment {
     String customernamestring, addressstring, mobilestring, alternatemobilestring, startdatestring, enddatestring, timestring, vehiclenamestring, vehicleplatestring;
     ProgressBar progressBar;
     Button edit, delete;
+    Bundle new_args;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.owner_fragment_view_appointment, container, false);
+        new_args = new Bundle();
         if(getArguments() != null){
             id = getArguments().getInt("id");
             vid = getArguments().getInt(("vid"));
@@ -48,6 +50,14 @@ public class ViewAppointmentOwnerFragment extends Fragment {
             enddatestring = getArguments().getString("enddate");
             timestring = getArguments().getString("time");
 
+            new_args.putInt("id",id);
+            new_args.putString("address",addressstring);
+            new_args.putString("cname",customernamestring);
+            new_args.putString("mobile",mobilestring);
+            new_args.putString("alternatemobile",alternatemobilestring);
+            new_args.putString("startdate",startdatestring);
+            new_args.putString("enddate",enddatestring);
+            new_args.putString("time",timestring);
         }
         else {
             Log.e("yoyoyoyoyoyoyoyooyo","yoyoyoyoyoyoyoyoyoy");
@@ -64,11 +74,15 @@ public class ViewAppointmentOwnerFragment extends Fragment {
         progressBar = root.findViewById(R.id.vaprog);
         edit = root.findViewById(R.id.vaedit);
         delete = root.findViewById(R.id.vadone);
-        edit.setOnClickListener(view -> {
-            Bundle args = new Bundle();
-            args.putInt("id",id);
-            args.putInt("vid",vid);
-            NavHostFragment.findNavController(ViewAppointmentOwnerFragment.this).navigate(R.id.action_nav_viewAppointment_owner_to_nav_edit_appointment,args);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle args = new Bundle();
+                args.putAll(new_args);
+                args.putInt("id",id);
+                args.putInt("vid",vid);
+                NavHostFragment.findNavController(ViewAppointmentOwnerFragment.this).navigate(R.id.action_nav_viewAppointment_owner_to_nav_edit_appointment,args);
+            }
         });
         delete.setOnClickListener(view -> {
             DeleteAppointmentPopup dp = new DeleteAppointmentPopup(id,ViewAppointmentOwnerFragment.this);

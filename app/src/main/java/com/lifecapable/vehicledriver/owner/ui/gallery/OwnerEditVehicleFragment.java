@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
+import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
+import com.lifecapable.vehicledriver.owner.datamodel.VehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
 
 import java.util.Calendar;
@@ -46,6 +48,7 @@ public class OwnerEditVehicleFragment extends Fragment {
     boolean isAvailable;
     int avail_bit;
     String startstring,endstring;
+    VehicleDetailsOwnerData vehicleOwnerData;
     int vid;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +56,7 @@ public class OwnerEditVehicleFragment extends Fragment {
         root = inflater.inflate(R.layout.owner_fragment_edit_vehicle, container, false);
         map = new HashMap<>();
         vid = 0;
+        vehicleOwnerData = OwnerViewVehicleFragment.vehicleDetailsOwnerData;
         if(getArguments() != null){
             vid = getArguments().getInt("vid");
             map.put("id",vid);
@@ -69,16 +73,38 @@ public class OwnerEditVehicleFragment extends Fragment {
         start_card = root.findViewById(R.id.vedit_startday);
         end_card = root.findViewById(R.id.vedit_endday);
         name = root.findViewById(R.id.vedit_nameet);
+        name.setText(vehicleOwnerData.getName());
+
         platenumber = root.findViewById(R.id.vedit_platenumberet);
+        platenumber.setText(vehicleOwnerData.getPlate_no());
+
         yearofman = root.findViewById(R.id.vedit_madeinet);
+        yearofman.setText(String.valueOf(vehicleOwnerData.getYom()));
+
         totalhoursrun = root.findViewById(R.id.vedit_ktotalrunhourset);
+        totalhoursrun.setText(String.valueOf(vehicleOwnerData.getTotal_run_hrs()));
+
         kmperhour = root.findViewById(R.id.vedit_runkmhret);
+        kmperhour.setText(String.valueOf(vehicleOwnerData.getRun_km_hr()));
+
         fuelconsumptionrate = root.findViewById(R.id.vedit_fuelconsumptionet);
+        fuelconsumptionrate.setText(String.valueOf(vehicleOwnerData.getFuel_consumption()));
+
         avgfuelconsumption = root.findViewById(R.id.vedit_avgfuelconsumptionet);
+        avgfuelconsumption.setText(String.valueOf(vehicleOwnerData.getAverage_fuel_consumption()));
+
         rentperhourwithfuel = root.findViewById(R.id.vedit_rentperhourwfet);
+        rentperhourwithfuel.setText(String.valueOf(vehicleOwnerData.getRent_per_hour_with_fuel()));
+
         rentperdaywithfuel = root.findViewById(R.id.vedit_rentperdaywfet);
+        rentperdaywithfuel.setText(String.valueOf(vehicleOwnerData.getRent_per_day_with_fuel()));
+
         rentperhourwithoutfuel = root.findViewById(R.id.vedit_rentperhourwofet);
+        rentperhourwithfuel.setText(String.valueOf(vehicleOwnerData.getRent_per_hour_without_fuel()));
+
         rentperdaywithoutfuel = root.findViewById(R.id.vedit_rentperdaywofet);
+        rentperdaywithoutfuel.setText(String.valueOf(vehicleOwnerData.getRent_per_day_without_fuel()));
+
         available = root.findViewById(R.id.avavailblenowbg);
         progressBar = root.findViewById(R.id.vedit_progress);
         listeners();

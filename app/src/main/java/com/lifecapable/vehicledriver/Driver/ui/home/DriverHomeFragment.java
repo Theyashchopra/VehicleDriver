@@ -106,7 +106,7 @@ public class DriverHomeFragment extends Fragment {
             @Override
             public void onResponse(@NotNull Call<ListHomeDriverData> call, @NotNull Response<ListHomeDriverData> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(getContext(), "Something went wrong"+response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 ListHomeDriverData res = response.body();
@@ -166,6 +166,7 @@ public class DriverHomeFragment extends Fragment {
             statustv.setTextColor(Color.rgb(50,205,50));
             startLocationService();
             editor.putBoolean("state",true);
+            editor.apply();
         }
         else{
             String offline = "OFFLINE";
@@ -177,8 +178,9 @@ public class DriverHomeFragment extends Fragment {
             statustv.setTextColor(Color.RED);
             stopLocationService();
             editor.putBoolean("state",false);
+            editor.apply();
         }
-        editor.apply();
+
     }
 
     private void setAvailabilityInApi(int s){

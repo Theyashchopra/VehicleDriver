@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.util.Log;
+import android.util.Printer;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -25,6 +27,9 @@ import com.lifecapable.vehicledriver.Driver.datamodels.ReturnMessage;
 import com.lifecapable.vehicledriver.R;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,7 +60,6 @@ public class LocationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
     }
 
     @Override
@@ -77,11 +81,11 @@ public class LocationService extends Service {
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Location service")
-                .setContentText("getting location")
+                .setContentText("Updating location")
                 .setSmallIcon(R.drawable.ic_location)
                 .build();
             startForeground(1, notification);
-            getLocation();
+        getLocation();
         return START_NOT_STICKY;
     }
 
@@ -119,7 +123,7 @@ public class LocationService extends Service {
     }
 
     public void updateLocation(float lat,float lon){
-        Log.e("Locatin Data    ","Lat "+lat+", long "+ lon);
+        Log.e("Location Data    ","Lat "+lat+", long "+ lon);
         Call<ReturnMessage> call = RestAdapter.createAPI().oputlocation(vid,lat,lon,did);
         call.enqueue(new Callback<ReturnMessage>() {
             @Override

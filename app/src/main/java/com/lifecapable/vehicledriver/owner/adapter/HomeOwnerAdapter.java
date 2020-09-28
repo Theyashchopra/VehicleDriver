@@ -58,7 +58,7 @@ public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.Home
         holder.ocardrelative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(fragment).navigate(R.id.action_nav_home_owner_to_nav_ViewEnquiry_owner);
+                //NavHostFragment.findNavController(fragment).navigate(R.id.action_nav_home_owner_to_nav_ViewEnquiry_owner);
             }
         });
     }
