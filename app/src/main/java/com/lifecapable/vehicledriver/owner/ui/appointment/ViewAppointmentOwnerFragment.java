@@ -64,21 +64,15 @@ public class ViewAppointmentOwnerFragment extends Fragment {
         progressBar = root.findViewById(R.id.vaprog);
         edit = root.findViewById(R.id.vaedit);
         delete = root.findViewById(R.id.vadone);
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle args = new Bundle();
-                args.putInt("id",id);
-                args.putInt("vid",vid);
-                NavHostFragment.findNavController(ViewAppointmentOwnerFragment.this).navigate(R.id.action_nav_viewAppointment_owner_to_nav_edit_appointment,args);
-            }
+        edit.setOnClickListener(view -> {
+            Bundle args = new Bundle();
+            args.putInt("id",id);
+            args.putInt("vid",vid);
+            NavHostFragment.findNavController(ViewAppointmentOwnerFragment.this).navigate(R.id.action_nav_viewAppointment_owner_to_nav_edit_appointment,args);
         });
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DeleteAppointmentPopup dp = new DeleteAppointmentPopup(id,ViewAppointmentOwnerFragment.this);
-                dp.show(getActivity().getSupportFragmentManager(),"delete");
-            }
+        delete.setOnClickListener(view -> {
+            DeleteAppointmentPopup dp = new DeleteAppointmentPopup(id,ViewAppointmentOwnerFragment.this);
+            dp.show(getActivity().getSupportFragmentManager(),"delete");
         });
         initviews();
         getVehicleData(vid);
