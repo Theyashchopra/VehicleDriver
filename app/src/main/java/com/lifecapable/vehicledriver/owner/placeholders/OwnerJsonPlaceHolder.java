@@ -173,6 +173,11 @@ public interface OwnerJsonPlaceHolder {
     @DELETE("appt")
     Call<Map> deleteAppointment(@Query("id")int id);
 
+    //update vehicle
     @PUT("vehicle")
     Call<Map> updateVehicleData(@Body Map map);
+
+    //update driver
+    @PUT("driver")
+    Call<Map> updateDriverData(@Body Map map);
 }
