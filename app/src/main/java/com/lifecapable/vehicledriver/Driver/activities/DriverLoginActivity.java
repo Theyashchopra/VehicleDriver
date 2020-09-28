@@ -83,22 +83,23 @@ public class DriverLoginActivity extends AppCompatActivity {
                 }
                 DriverData res = response.body();
                 if(res != null){
-                    editor.putBoolean("login",true);
-                    editor.apply();
-                    editor.putInt("driverid",res.getId());
-                    editor.apply();
-                    editor.putInt("vehicleid",res.getVehicle_id());
-                    editor.apply();
-                    Toast.makeText(DriverLoginActivity.this, "Email: " + res.getEmail() + "\n full name: " + res.getName() + "\n phone: " + res.getMobile(), Toast.LENGTH_LONG).show();
-                    DriverLoginSuccessPoppup lg = new DriverLoginSuccessPoppup();
-                    lg.show(getSupportFragmentManager(),"login");
+                    if(res.getEmail() != null) {
+                        editor.putBoolean("login", true);
+                        editor.apply();
+                        editor.putInt("driverid", res.getId());
+                        editor.apply();
+                        editor.putInt("vehicleid", res.getVehicle_id());
+                        editor.apply();
+                        Toast.makeText(DriverLoginActivity.this, "Email: " + res.getEmail() + "\n full name: " + res.getName() + "\n phone: " + res.getMobile(), Toast.LENGTH_LONG).show();
+                        DriverLoginSuccessPoppup lg = new DriverLoginSuccessPoppup();
+                        lg.show(getSupportFragmentManager(), "login");
+                    }
                 }
                 else {
                     Toast.makeText(DriverLoginActivity.this, "Somethings Wrong I can feel it"+response.message(), Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }
-
             @Override
             public void onFailure(@NotNull Call<DriverData> call, @NotNull Throwable t) {
                 Toast.makeText(DriverLoginActivity.this, "Somethings Wrong I can feel it"+t.getMessage(), Toast.LENGTH_SHORT).show();

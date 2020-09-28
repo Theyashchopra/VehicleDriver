@@ -74,6 +74,7 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
     PicassoMarker marker;
     boolean first;
     private float start_rotation;
+
     Handler handler;
     Runnable runnable;
     int delay;
@@ -82,8 +83,7 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
     Button callDriver;
     TextView vehicleName,driverName,plateNumber;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_vehicle_map, container, false);
 
@@ -270,6 +270,7 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
 
 
     }
+
 
     public void rotateMarker(final Marker marker, final float toRotation, final float st) {
         final Handler handler = new Handler(Looper.getMainLooper());

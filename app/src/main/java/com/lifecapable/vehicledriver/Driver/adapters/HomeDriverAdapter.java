@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lifecapable.vehicledriver.Driver.datamodels.HomeDriverData;
@@ -24,10 +28,12 @@ import java.util.List;
 public class HomeDriverAdapter extends RecyclerView.Adapter<HomeDriverAdapter.HomeDriverViewHolder> {
     List<HomeDriverData> mList;
     Context mContext;
+    Fragment fragment;
 
-    public HomeDriverAdapter(List<HomeDriverData> mList, Context mContext) {
+    public HomeDriverAdapter(List<HomeDriverData> mList, Context mContext, Fragment fragment) {
         this.mList = mList;
         this.mContext = mContext;
+        this.fragment = fragment;
     }
     @NonNull
     @Override
@@ -52,7 +58,16 @@ public class HomeDriverAdapter extends RecyclerView.Adapter<HomeDriverAdapter.Ho
             mContext.startActivity(phoneIntent);
         });
         holder.drelative.setOnClickListener(v -> {
-
+            Bundle args = new Bundle();
+            args.putInt("id",curr.getId());
+            args.putString("customername",curr.getCustomer_name());
+            args.putString("customermobile",curr.getCustomer_mobile());
+            args.putString("alternatemobile",curr.getAlternate_mobile());
+            args.putString("address",curr.getAddress());
+            args.putString("time",curr.getTime());
+            args.putString("startdate",curr.getStart_day());
+            args.putString("enddate",curr.getEnd_day());
+            NavHostFragment.findNavController(fragment).navigate(R.id.action_navigation_home_driver_to_navigation_ViewAppointment_driver, args);
         });
         holder.name.setText(curr.getCustomer_name());
         holder.time.setText(curr.getStart_day());
