@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f5f5f5"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Driver.ui.home.DriverViewAppointmentFragment">
 
@@ -22,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="8dp"
+        app:cardBackgroundColor="#fff"
         android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
         android:layout_below="@+id/dvahead">
@@ -104,6 +106,7 @@
         android:elevation="8dp"
         android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="#fff"
         android:layout_below="@+id/dvacardcust">
         <LinearLayout
             android:layout_width="match_parent"
@@ -134,6 +137,7 @@
         android:elevation="8dp"
         android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="#fff"
         android:layout_below="@+id/dvacardadd">
         <RelativeLayout
             android:layout_width="match_parent"

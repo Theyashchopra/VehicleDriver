@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Driver.ui.notifications.DriverNotificationsFragment"
     android:fillViewport="true"
+    android:background="#f5f5f5"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,23 +13,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/progress"
+            android:visibility="gone"/>
         <ImageView
             android:id="@+id/dpimage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="12dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_account"/>
+            android:src="@drawable/ic_person"/>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dpname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Name">
+            android:hint="Name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dpnameet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:inputType="textPersonName"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -37,11 +46,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Mobile Number">
+            android:hint="Mobile Number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dpcontactet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,11 +61,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Alternate Number">
+            android:hint="Alternate Number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dpaltcontactet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,11 +77,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="E-mail">
+            android:hint="E-mail"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dpemailet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,11 +92,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Aadhar">
+            android:hint="Aadhar"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dpaadharet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,6 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Edit"
+            android:visibility="gone"
             android:layout_margin="8dp"
             android:textColor="@android:color/white"
             android:background="@drawable/background_accent" />

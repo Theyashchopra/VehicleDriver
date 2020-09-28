@@ -50,7 +50,6 @@ public class DriverLoginActivity extends AppCompatActivity {
     }
 
     private void login(){
-        progressBar.setVisibility(View.VISIBLE);
         email = emailet.getText().toString();
         password = passet.getText().toString();
         if(email.isEmpty()){
@@ -72,6 +71,7 @@ public class DriverLoginActivity extends AppCompatActivity {
             imm.showSoftInput(passet, InputMethodManager.SHOW_IMPLICIT);
             return;
         }
+        progressBar.setVisibility(View.VISIBLE);
         Call<DriverData> call = RestAdapter.createAPI().dgetLogin(email, password);
         call.enqueue(new Callback<DriverData>() {
             @Override
