@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,17 +44,17 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class DriverHomeFragment extends Fragment {
     View root;
     int vid;
+    ProgressBar progressBar;
     RecyclerView homerecycle;
     HomeDriverAdapter homeDriverAdapter;
     List<HomeDriverData> appointlist;
     Button busybt, statusbt;
     Boolean busystate, statusstate;
-    TextView busytv, statustv;
+    TextView busytv, statustv,notice;
     View busyvw, statusvw;
     SharedPreferences sharedPreferences;
     SharedPreferences sharedPreferences2;
     SharedPreferences.Editor editor;
-
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.driver_fragment_home, container, false);
 
@@ -64,6 +65,8 @@ public class DriverHomeFragment extends Fragment {
         busytv = root.findViewById(R.id.busytxt);
         busyvw = root.findViewById(R.id.busyview);
         statusvw =root.findViewById(R.id.statusview);
+        notice = root.findViewById(R.id.appt_notice);
+        progressBar = root.findViewById(R.id.progress);
         try {
             sharedPreferences = requireActivity().getSharedPreferences("statePreference", Context.MODE_PRIVATE);
             sharedPreferences2 = requireActivity().getSharedPreferences("driver", Context.MODE_PRIVATE);
@@ -101,28 +104,34 @@ public class DriverHomeFragment extends Fragment {
         });
     }
     private void initRecycle(){
+        progressBar.setVisibility(View.VISIBLE);
         appointlist = new ArrayList<>();
         Call<ListHomeDriverData> call = RestAdapter.createAPI().dgetAppointmnets(vid);
         call.enqueue(new Callback<ListHomeDriverData>() {
             @Override
             public void onResponse(@NotNull Call<ListHomeDriverData> call, @NotNull Response<ListHomeDriverData> response) {
                 if(!response.isSuccessful()){
+                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 ListHomeDriverData res = response.body();
                 if (res != null){
                     appointlist.addAll(res.getAppointments());
+                    if(appointlist.isEmpty()){
+                        notice.setText("You don't have any appointments yet");
+                    }
                     homeDriverAdapter = new HomeDriverAdapter(appointlist,getContext(),DriverHomeFragment.this);
                     homerecycle.setLayoutManager(new LinearLayoutManager(getContext()));
                     homerecycle.setAdapter(homeDriverAdapter);
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
 
             @Override
             public void onFailure(@NotNull Call<ListHomeDriverData> call, @NotNull Throwable t) {
+                progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(getContext(), "Something went wrong"+t.getMessage(), Toast.LENGTH_SHORT).show();
-                return;
             }
         });
 

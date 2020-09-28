@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Driver.activities.DriverLoginActivity">
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <ProgressBar
         android:id="@+id/progress_logind"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_margin="12dp"
-        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="12dp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/logind"
@@ -51,7 +55,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/asdriver"
-        app:layout_constraintVertical_chainStyle="packed">
+        app:layout_constraintVertical_chainStyle="packed"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dcontactet"
@@ -71,7 +76,8 @@
         app:layout_constraintBottom_toTopOf="@id/logindriverbt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dcontacttf">
+        app:layout_constraintTop_toBottomOf="@id/dcontacttf"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dpasswordet"
@@ -80,7 +86,6 @@
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
 <!--    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/dagencytf"
         android:layout_width="match_parent"
@@ -98,7 +103,6 @@
             android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>-->
-
     <Button
         android:id="@+id/logindriverbt"
         android:layout_width="match_parent"
@@ -109,9 +113,20 @@
         android:layout_marginEnd="8dp"
         android:textColor="@android:color/white"
         android:background="@drawable/background_accent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dpasswordtf" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_margin="10dp"
+            android:alpha="0.4"
+            android:src="@drawable/ic_driver_truck"
+            app:layout_constraintTop_toBottomOf="@id/logindriverbt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

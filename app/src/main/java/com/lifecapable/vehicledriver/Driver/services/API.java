@@ -6,6 +6,7 @@ import com.lifecapable.vehicledriver.Driver.datamodels.ListHomeDriverData;
 import com.lifecapable.vehicledriver.Driver.datamodels.ReturnMessage;
 import com.lifecapable.vehicledriver.Driver.datamodels.VehicleDriverData;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.PUT;
@@ -27,4 +28,7 @@ public interface API {
 
     @PUT("vehicle")
     Call<VehicleDriverData> oputAvailability(@Query("id")int id, @Query("availibility")int availability);
+
+    @GET("driver")
+    Call<ResponseBody> getDriverImage(@Query("driver_image") int id);
 }

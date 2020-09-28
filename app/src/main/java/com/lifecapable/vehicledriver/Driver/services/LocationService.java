@@ -83,9 +83,6 @@ public class LocationService extends Service {
         if(!service){
             stopForeground(true);
             stopSelfResult(startId);
-            stopSelf();
-            stopService(intent);
-            Log.e("Location service","Stopping service");
         }
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 /*        sharedPreferences = getSharedPreferences("phone",MODE_PRIVATE);
