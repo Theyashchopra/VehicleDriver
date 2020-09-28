@@ -98,7 +98,7 @@ public class LocationService extends Service {
     }
 
     private void getLocation() {
-       /* LocationRequest mLocationRequestHighAccuracy = new LocationRequest();
+        LocationRequest mLocationRequestHighAccuracy = new LocationRequest();
         mLocationRequestHighAccuracy.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequestHighAccuracy.setInterval(UPDATE_INTERVAL);
         mLocationRequestHighAccuracy.setFastestInterval(FASTEST_INTERVAL);
@@ -127,8 +127,8 @@ public class LocationService extends Service {
                         }
                     }
                 },
-                Looper.myLooper());*/
-        timer.scheduleAtFixedRate(new TimerTask() {
+                Looper.myLooper());
+        /*timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 if (ActivityCompat.checkSelfPermission(LocationService.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
@@ -156,7 +156,7 @@ public class LocationService extends Service {
                     stopSelf();
                 }
            }
-       },0,5000);
+       },0,3000);*/
     }
 
     public void updateLocation(float lat,float lon){
