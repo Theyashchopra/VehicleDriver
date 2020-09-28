@@ -44,7 +44,7 @@ public class OwnerViewVehicleFragment extends Fragment {
     OwnerJsonPlaceHolder vehicleDataPlaceHolder;
     Retrofit retrofit;
     Button location;
-    VehicleDetailsOwnerData vehicleDetailsOwnerData;
+    public static VehicleDetailsOwnerData vehicleDetailsOwnerData;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.owner_fragment_view_vehicle, container, false);
@@ -134,10 +134,14 @@ public class OwnerViewVehicleFragment extends Fragment {
         removebt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(vehicleDetailsOwnerData == null){
+                    Toast.makeText(getContext(), "Please Wait", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 //got to edit page
                 Bundle args = new Bundle();
                 args.putInt("vid",vehicleid);
+                args.putString("name",vehicleDetailsOwnerData.getName());
                 NavController navController = NavHostFragment.findNavController(OwnerViewVehicleFragment.this);
                 navController.navigate(R.id.action_nav_viewvehicle_owner_to_nav_EditVehicle_owner,args);
             }
@@ -145,6 +149,10 @@ public class OwnerViewVehicleFragment extends Fragment {
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(vehicleDetailsOwnerData == null){
+                    Toast.makeText(getContext(), "Please Wait", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Bundle args = new Bundle();
                 args.putInt("driver_id",vehicleDetailsOwnerData.getDriver_id());
                 args.putString("vname",vehicleDetailsOwnerData.getName());

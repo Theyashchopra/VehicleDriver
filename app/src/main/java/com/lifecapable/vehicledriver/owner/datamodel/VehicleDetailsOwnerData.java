@@ -14,6 +14,8 @@ public class VehicleDetailsOwnerData {
     int rent_per_hour_with_fuel;
     int rent_per_hour_without_fuel;
     int rent_per_day_without_fuel;
+    int fuel_consumption;
+    int average_fuel_consumption;
     String yom;
     String ip_address;
     String plate_no;
@@ -171,5 +173,13 @@ public class VehicleDetailsOwnerData {
 
     public int getDriver_id() {
         return driver_id;
+    }
+
+    public int getFuel_consumption() {
+        return fuel_consumption;
+    }
+
+    public int getAverage_fuel_consumption() {
+        return average_fuel_consumption;
     }
 }
