@@ -3,168 +3,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".owner.ui.home.OwnerViewEnquiryFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".owner.ui.gallery.VehicleMapFragment">
 
-    <TextView
-        android:id="@+id/ven"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="customer name: "
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"/>
-
-    <TextView
-        android:id="@+id/vename"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test name"
-        android:textColor="@android:color/black"
-        android:layout_alignBottom="@id/ven"
-        android:layout_toEndOf="@id/ven"/>
-
-<!--        <TextView
-        android:id="@+id/vea"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="customer address: "
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"/>
-
-    <TextView
-        android:id="@+id/veaddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test address"
-        android:textColor="@android:color/black"
-        android:layout_below="@id/vename"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"/>-->
-    <TextView
-        android:id="@+id/vec"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="customer contact: "
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_below="@id/vename"
-        android:layout_alignParentStart="true"/>
-    <TextView
-        android:id="@+id/vecontact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test contact"
-        android:textColor="@android:color/black"
-        android:layout_alignBottom="@id/vec"
-        android:layout_toEndOf="@id/vec"/>
-    <TextView
-        android:id="@+id/vefo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="For: "
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/colorAccent"
-        android:layout_below="@id/vec"
-        android:layout_alignParentStart="true"/>
-    <TextView
-        android:id="@+id/vev"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Plate number: "
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_below="@id/vefo"
-        android:layout_alignParentStart="true"/>
-
-    <TextView
-        android:id="@+id/vevehicle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MH31A2222"
-        android:layout_marginStart="8dp"
-        android:textColor="@android:color/black"
-        android:layout_toEndOf="@id/vev"
-        android:layout_alignBottom="@id/vev"/>
-
-    <TextView
-        android:id="@+id/vecat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Category: "
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_below="@id/vev"
-        android:layout_alignParentStart="true"/>
-    <TextView
-        android:id="@+id/vecategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="category"
-        android:layout_marginStart="8dp"
-        android:textColor="@android:color/black"
-        android:layout_alignBottom="@id/vecat"
-        android:layout_toEndOf="@id/vecat"/>
-    <ImageView
-        android:id="@+id/venextcat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_right"
-        android:layout_toEndOf="@id/vecategory"
-        android:layout_alignTop="@id/vecategory"/>
-    <TextView
-        android:id="@+id/vesubcategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Subcategory"
-        android:textColor="@android:color/black"
-        android:layout_toEndOf="@id/venextcat"
-        android:layout_alignBottom="@id/vecategory"/>
-    <ImageView
-        android:id="@+id/venextcat1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_right"
-        android:layout_alignTop="@id/venextcat"
-        android:layout_toEndOf="@id/vesubcategory"/>
-    <TextView
-        android:id="@+id/vesubcategory1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="subcategory"
-        android:textColor="@android:color/black"
-        android:layout_toEndOf="@id/venextcat1"
-        android:layout_alignBottom="@id/vesubcategory"/>
-
-    <LinearLayout
+    <!-- TODO: Update blank fragment layout -->
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:layout_height="match_parent"/>
 
-        <Button
-            android:id="@+id/veremove"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Remove"
-            android:textColor="@android:color/white"
-            android:background="@drawable/background_red"
-            android:layout_margin="8dp"/>
-        <Button
-            android:id="@+id/veconfirm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Confirm"
-            android:textColor="@android:color/white"
-            android:background="@drawable/background_green"
-            android:layout_margin="8dp"/>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="#fff">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:elevation="8dp"
+                android:visibility="invisible"
+                android:id="@+id/map_Progress"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="USER NAME"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:id="@+id/header"
+                android:textColor="#fff"
+                android:background="@android:color/holo_orange_dark"
+                android:layout_alignParentTop="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please wait..."
+                android:id="@+id/plateMap"
+                android:layout_below="@id/header"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/plateMap"
+                android:id="@+id/driverMap"
+                android:layout_centerHorizontal="true"
+                android:text=""/>
 
-    </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/callUser"
+                android:drawableLeft="@drawable/ic_call_driver"
+                android:layout_margin="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:text="CALL USER"/>
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </RelativeLayout>

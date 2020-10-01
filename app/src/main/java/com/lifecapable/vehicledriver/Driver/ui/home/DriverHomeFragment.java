@@ -149,6 +149,7 @@ public class DriverHomeFragment extends Fragment {
             busytv.setText(available);
             busytv.setTextColor(Color.rgb(50,205,50));
             editor.putBoolean("busy",true);
+            editor.apply();
         }
         else{
             setAvailabilityInApi(0);
@@ -160,8 +161,9 @@ public class DriverHomeFragment extends Fragment {
             busytv.setText(busy);
             busytv.setTextColor(Color.rgb(255, 165, 0));
             editor.putBoolean("busy",false);
+            editor.apply();
         }
-        editor.apply();
+
     }
 
     private void setOnlineStatus(boolean status){
@@ -213,7 +215,6 @@ public class DriverHomeFragment extends Fragment {
             @Override
             public void onFailure(Call<VehicleDriverData> call, Throwable t) {
                 Toast.makeText(getContext(), "Something went wrong"+t.getMessage(), Toast.LENGTH_SHORT).show();
-                return;
             }
         });
     }

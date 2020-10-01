@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -19,11 +23,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.datamodel.HomeOwnerData;
 import java.util.List;
+import java.util.Locale;
 
 public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.HomeOwnerViewHolder> {
     List<HomeOwnerData> mList;
     Context mContext;
     Fragment fragment;
+    public static HomeOwnerData homeOwnerData;
 
     public HomeOwnerAdapter(List<HomeOwnerData> mList, Context mContext, Fragment fragment) {
         this.mList = mList;
@@ -58,7 +64,12 @@ public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.Home
         holder.ocardrelative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //NavHostFragment.findNavController(fragment).navigate(R.id.action_nav_home_owner_to_nav_ViewEnquiry_owner);
+                homeOwnerData = mList.get(position);
+                if(homeOwnerData.getLat() == 0.0 || homeOwnerData.getLon() == 0.0){
+                    Toast.makeText(mContext, "Location of this enquiry is not available", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                NavHostFragment.findNavController(fragment).navigate(R.id.action_nav_home_owner_to_nav_ViewEnquiry_owner);
             }
         });
     }
@@ -82,4 +93,6 @@ public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.Home
             ocardrelative = itemView.findViewById(R.id.ocardrl);
         }
     }
+
+
 }

@@ -54,7 +54,7 @@ public class LocationService extends Service {
     float lat, lon;
     Timer timer;
 
-    Boolean service;
+    boolean service;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -64,11 +64,11 @@ public class LocationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        if(!service){
+        /*if(!service){
             stopForeground(true);
             stopSelf();
             Log.e("Location service","Stopping service");
-        }
+        }*/
     }
 
     @Override
@@ -88,9 +88,9 @@ public class LocationService extends Service {
 /*        sharedPreferences = getSharedPreferences("phone",MODE_PRIVATE);
         phone_no = sharedPreferences.getString("phone","");*/
         sharedPreferences = getSharedPreferences("driver", MODE_PRIVATE);
+        status = getSharedPreferences("statePreference",MODE_PRIVATE);
         vid = sharedPreferences.getInt("vehicleid", 0);
         did = sharedPreferences.getInt("driverid", 0);
-
         timer = new Timer();
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Location service")
@@ -133,7 +133,7 @@ public class LocationService extends Service {
                     }
                 },
                 getMainLooper());
-/*        timer.scheduleAtFixedRate(new TimerTask() {
+        /*timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 if (ActivityCompat.checkSelfPermission(LocationService.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
