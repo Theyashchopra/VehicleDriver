@@ -180,4 +180,8 @@ public interface OwnerJsonPlaceHolder {
     //update driver
     @PUT("driver")
     Call<Map> updateDriverData(@Body Map map);
+
+    //check validity
+    @GET("subs")
+    Call<Map> checkValidity(@Query("validity") int id);
 }

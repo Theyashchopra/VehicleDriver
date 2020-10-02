@@ -50,6 +50,8 @@ public class LogoutPopup extends DialogFragment {
             public void onClick(View v) {
                 editor.putBoolean("login",false);
                 editor.apply();
+                editor.putInt("id",0);
+                editor.apply();
                 startActivity(new Intent(getActivity(), MainActivity.class));
                 getDialog().dismiss();
             }
