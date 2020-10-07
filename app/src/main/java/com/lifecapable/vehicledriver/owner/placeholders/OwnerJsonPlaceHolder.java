@@ -15,6 +15,8 @@ import com.lifecapable.vehicledriver.owner.datamodel.Message;
 import com.lifecapable.vehicledriver.owner.datamodel.Messages;
 import com.lifecapable.vehicledriver.owner.datamodel.ProfileOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.RootEnquiry;
+import com.lifecapable.vehicledriver.owner.datamodel.StateModel;
+import com.lifecapable.vehicledriver.owner.datamodel.StateModelRoot;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleIds;
 
@@ -184,4 +186,7 @@ public interface OwnerJsonPlaceHolder {
     //check validity
     @GET("subs")
     Call<Map> checkValidity(@Query("validity") int id);
+
+    @GET("states")
+    Call<StateModelRoot> getStateList();
 }
