@@ -1,6 +1,7 @@
 package com.lifecapable.vehicledriver.owner.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,12 +18,17 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
+import com.lifecapable.vehicledriver.MainActivity;
 import com.lifecapable.vehicledriver.R;
+import com.lifecapable.vehicledriver.SplashActivity;
 import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
 import com.lifecapable.vehicledriver.owner.datamodel.ProfileOwnerData;
 import com.lifecapable.vehicledriver.owner.dialogs.LogoutPopup;
+import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -119,6 +125,35 @@ public class OwnerLeftNavActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NotNull Call<ProfileOwnerData> call, @NotNull Throwable t) {
                 Toast.makeText(OwnerLeftNavActivity.this, "Something went wrong" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void validate() throws Exception{
+        if(id == 0){
+            return;
+        }
+        OwnerJsonPlaceHolder o = RestAdapter.createAPI();
+        Call<Map> call = o.checkValidity(id);
+        call.enqueue(new Callback<Map>() {
+            @Override
+            public void onResponse(Call<Map> call, Response<Map> response) {
+                if(response.isSuccessful()){
+                    Map<String,Boolean> map = response.body();
+                    boolean isValid = map.get("message");
+                    if(!isValid){
+                        Toast.makeText(OwnerLeftNavActivity.this, "Subscription Expired", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(OwnerLeftNavActivity.this, ExpiredActivity.class));
+                        return;
+                    }
+                    Log.i("Valid",String.valueOf(map.get("message")));
+                }else{
+                    Toast.makeText(OwnerLeftNavActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Map> call, Throwable t) {
+                Toast.makeText(OwnerLeftNavActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
             }
         });
     }

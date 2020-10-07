@@ -88,7 +88,19 @@
         android:layout_marginTop="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:textColor="@android:color/white"
-        android:background="@drawable/background_accent" />
+        android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_gravity="center"
+            android:text="Don't have an account yet?"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Account"
+            android:id="@+id/redirect"
+            android:layout_margin="10dp"/>
     </LinearLayout>
 </ScrollView>

@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class OwnerLoginActivity extends AppCompatActivity {
 
     ProgressBar progressBar;
-    Button loginbt;
+    Button loginbt,register;
     EditText emailet,passet;
     String email,pass;
     SharedPreferences owner;
@@ -42,11 +42,19 @@ public class OwnerLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.owner_activity_login);
         loginbt = findViewById(R.id.loginownerbt);
+        register = findViewById(R.id.redirect);
         emailet = findViewById(R.id.oemailet);
         passet = findViewById(R.id.opasswordet);
         progressBar = findViewById(R.id.progress_logino);
         owner = getSharedPreferences("owner",MODE_PRIVATE);
         editor = owner.edit();
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(OwnerLoginActivity.this,OwnerRegisterActivity.class));
+            }
+        });
 
         loginbt.setOnClickListener(v -> {
             try {
