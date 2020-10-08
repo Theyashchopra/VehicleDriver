@@ -4,6 +4,7 @@ import com.lifecapable.vehicledriver.owner.categories.MasterRoot;
 import com.lifecapable.vehicledriver.owner.categories.VehicleModelRoot;
 import com.lifecapable.vehicledriver.owner.categories.VehicleTypeRoot;
 import com.lifecapable.vehicledriver.owner.datamodel.AppointmentOwnerData;
+import com.lifecapable.vehicledriver.owner.datamodel.CityModelRoot;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverRoot;
@@ -189,4 +190,10 @@ public interface OwnerJsonPlaceHolder {
 
     @GET("states")
     Call<StateModelRoot> getStateList();
+
+    @GET("cities")
+    Call<CityModelRoot> getCities(@Query("state_id") int id);
+
+    @POST("regowner")
+    Call<Map> registerOwner(@Body Map map);
 }

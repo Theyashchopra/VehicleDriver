@@ -67,7 +67,6 @@ public class OwnerLoginActivity extends AppCompatActivity {
     }
 
     private void login() {
-        progressBar.setVisibility(View.VISIBLE);
         email = emailet.getText().toString();
         pass = passet.getText().toString();
         if(email.isEmpty()){
@@ -89,6 +88,7 @@ public class OwnerLoginActivity extends AppCompatActivity {
             imm.showSoftInput(passet, InputMethodManager.SHOW_IMPLICIT);
             return;
         }
+        progressBar.setVisibility(View.VISIBLE);
         Call<LoginOwnerData> call = RestAdapter.createAPI().ogetLogin(email,pass);
 
         call.enqueue(new Callback<LoginOwnerData>() {
