@@ -20,6 +20,7 @@ public class ProfileOwnerData {
     private String mobile2;
     private String state;
     private String city;
+    private boolean isKYC;
 
     public ProfileOwnerData(int id, String email, String name, String mobile, Boolean status, String ipAddress, String subscriptionName, int allotedVehicles, String pinCode, String fullAddress, String pan, String tan, String gst, String gumasta, String mobile2, String state, String city) {
         this.id = id;
@@ -175,5 +176,9 @@ public class ProfileOwnerData {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public boolean isKYC() {
+        return isKYC;
     }
 }

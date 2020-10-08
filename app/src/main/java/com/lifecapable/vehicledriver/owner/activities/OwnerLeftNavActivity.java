@@ -114,6 +114,14 @@ public class OwnerLeftNavActivity extends AppCompatActivity {
                 if(res != null){
                     name = res.getName();
                     email = res.getEmail();
+                    boolean kyc = res.isKYC();
+                    if(!kyc){
+                        Log.i("KYC","Pending");
+                        Toast.makeText(OwnerLeftNavActivity.this, "KYC Pending", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(OwnerLeftNavActivity.this,KycActivity.class);
+                        intent.putExtra("email",email);
+                        startActivity(intent);
+                    }
                     headerImage = navHeaderView.findViewById(R.id.himageView);
                     headerTV1 = navHeaderView.findViewById(R.id.htv1);
                     headerTV2 = navHeaderView.findViewById(R.id.htv2);

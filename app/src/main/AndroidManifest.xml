@@ -21,7 +21,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".owner.activities.OwnerRegisterActivity"></activity>
+        <activity android:name=".owner.activities.KycActivity"></activity>
+        <activity android:name=".owner.activities.OwnerRegisterActivity" />
         <activity android:name=".owner.activities.ExpiredActivity" />
         <activity android:name=".MainActivity" />
         <activity

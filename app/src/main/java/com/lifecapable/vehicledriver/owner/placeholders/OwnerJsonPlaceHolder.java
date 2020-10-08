@@ -196,4 +196,12 @@ public interface OwnerJsonPlaceHolder {
 
     @POST("regowner")
     Call<Map> registerOwner(@Body Map map);
+
+    @Multipart
+    @PUT("ownerkyc")
+    Call<Message> uploadAddressImage(@Part("email") RequestBody email, @Part MultipartBody.Part address);
+
+    @Multipart
+    @POST("ownerkyc")
+    Call<Message> uploadPanImage(@Part("email") RequestBody email, @Part MultipartBody.Part pan);
 }
