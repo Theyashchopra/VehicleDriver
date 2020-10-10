@@ -124,6 +124,7 @@ public class DriverHomeFragment extends Fragment {
                     homeDriverAdapter = new HomeDriverAdapter(appointlist,getContext(),DriverHomeFragment.this);
                     homerecycle.setLayoutManager(new LinearLayoutManager(getContext()));
                     homerecycle.setAdapter(homeDriverAdapter);
+                    homerecycle.scheduleLayoutAnimation();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }

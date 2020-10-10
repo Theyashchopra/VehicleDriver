@@ -187,8 +187,8 @@
                 android:layout_height="wrap_content"
                 android:text=" "
                 android:textColor="@android:color/black"
-                android:layout_toEndOf="@id/dvatime"
-                android:layout_alignBottom="@id/dvatime"/>
+                android:layout_toEndOf="@id/dvasd"
+                android:layout_alignBottom="@id/dvasd"/>
 
             <TextView
                 android:id="@+id/dvaed"

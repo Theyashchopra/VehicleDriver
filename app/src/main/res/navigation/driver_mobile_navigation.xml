@@ -12,7 +12,11 @@
         tools:layout="@layout/driver_fragment_home" >
         <action
             android:id="@+id/action_navigation_home_driver_to_navigation_ViewAppointment_driver"
-            app:destination="@id/navigation_ViewAppointment_driver" />
+            app:destination="@id/navigation_ViewAppointment_driver"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
 
     <fragment

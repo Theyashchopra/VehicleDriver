@@ -137,6 +137,7 @@
             android:id="@+id/dhomerecycle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layoutAnimation="@anim/layout_animation"
             android:nestedScrollingEnabled="true"
             tools:listitem="@layout/driver_card_home"/>
     </LinearLayout>

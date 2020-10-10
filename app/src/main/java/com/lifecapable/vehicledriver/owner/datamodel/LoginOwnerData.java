@@ -2,7 +2,7 @@ package com.lifecapable.vehicledriver.owner.datamodel;
 
 public class LoginOwnerData {
     int id,alloted_vehicles;
-    String name,email,mobile,added_on,modified_on,status,ip_address,subscription_name,pin_code,full_address,pan,tan,gst,gumasta,pan_image,mobile2,state,city;
+    String name,email,mobile,added_on,modified_on,status,ip_address,subscription_name,pin_code,full_address,pan,tan,gst,gumasta,pan_image,mobile2,message,state,city;
 
     public int getId() {
         return id;
@@ -63,5 +63,9 @@ public class LoginOwnerData {
     }
     public String getCity() {
         return city;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

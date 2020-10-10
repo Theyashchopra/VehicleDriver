@@ -100,15 +100,22 @@ public class OwnerLoginActivity extends AppCompatActivity {
                     return;
                 }
                 LoginOwnerData res = response.body();
+                progressBar.setVisibility(View.INVISIBLE);
                 try {
                     if (res.getEmail() != null) {
                         editor.putBoolean("login",true);
                         editor.apply();
                         editor.putInt("id",res.getId());
                         editor.apply();
-                        Toast.makeText(OwnerLoginActivity.this, "Email: " + res.getEmail() + "\n full name: " + res.getName() + "\n phone: " + res.getMobile(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(OwnerLoginActivity.this, "Email: " + res.getEmail() + "\n full name: " + res.getName() + "\n phone: " + res.getMobile(), Toast.LENGTH_LONG).show();
                         LoginSuccessPopup lg = new LoginSuccessPopup();
                         lg.show(getSupportFragmentManager(),"login");
+                    }else{
+                        try{
+                            Toast.makeText(OwnerLoginActivity.this,res.getMessage(), Toast.LENGTH_SHORT).show();
+                        }catch (Exception e){
+                            Toast.makeText(OwnerLoginActivity.this, "Somethings Wrong I can feel it"+response.message(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }catch (Exception e){
                     Toast.makeText(OwnerLoginActivity.this, "Somethings Wrong I can feel it"+response.message(), Toast.LENGTH_SHORT).show();
