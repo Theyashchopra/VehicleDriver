@@ -256,6 +256,20 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
+        <CheckBox
+            android:id="@+id/terms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="I accept the Terms and Conditions"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/read_terms"
+            android:background="#fff"
+            android:layout_margin="8dp"
+            android:textAlignment="center"
+            android:text="Click here to read our Terms"/>
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

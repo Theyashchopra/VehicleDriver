@@ -3,6 +3,8 @@ package com.lifecapable.vehicledriver.owner.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,8 +12,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -47,6 +51,8 @@ public class OwnerRegisterActivity extends AppCompatActivity {
     TextInputEditText nameEt,emailEt,passEt,cpassEt,mobileEt,mobile2Et,addresssEt,tehsilEt,pinEt,panEt,tanEt,gumastaEt,refEt,gstEt;
     ProgressBar progressBar;
     Button registerBtn;
+    CheckBox checkBox;
+    TextView read;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +60,11 @@ public class OwnerRegisterActivity extends AppCompatActivity {
         init();
         getStates();
         spinnerListeners();
+        readTerms();
     }
     private void init(){
+        read = findViewById(R.id.read_terms);
+        checkBox = findViewById(R.id.terms);
         cities = new ArrayList<>();
         cityModelList = new ArrayList<>();
         states = new ArrayList<>();
@@ -87,6 +96,10 @@ public class OwnerRegisterActivity extends AppCompatActivity {
     }
 
     private void validateAndRegister(){
+        if(!checkBox.isChecked()){
+            Toast.makeText(this, "Please accept terms and conditions", Toast.LENGTH_SHORT).show();
+            return;
+        }
         String name = nameEt.getText().toString().trim();
         String email = emailEt.getText().toString().trim();
         String password = passEt.getText().toString().trim();
@@ -319,6 +332,22 @@ public class OwnerRegisterActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<CityModelRoot> call, Throwable t) {
 
+            }
+        });
+    }
+
+    private void readTerms(){
+        read.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Uri uri = Uri.parse("http://rentbygps.epizy.com/hireonmap/term_of_service.html"); // missing 'http://' will cause crashed
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(OwnerRegisterActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

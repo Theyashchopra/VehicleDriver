@@ -13,6 +13,8 @@ import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.lifecapable.vehicledriver.Driver.activities.DriverBottomActivity;
 import com.lifecapable.vehicledriver.owner.activities.ExpiredActivity;
 import com.lifecapable.vehicledriver.owner.activities.OwnerLeftNavActivity;
@@ -34,6 +36,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        YoYo.with(Techniques.FadeIn)
+                .duration(1000)
+                .playOn(findViewById(R.id.logo));
 
         owner = getSharedPreferences("owner",MODE_PRIVATE);
         id = owner.getInt("id",0);

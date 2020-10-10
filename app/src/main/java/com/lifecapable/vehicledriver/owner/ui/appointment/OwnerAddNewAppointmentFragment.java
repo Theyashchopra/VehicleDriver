@@ -119,11 +119,18 @@ public class OwnerAddNewAppointmentFragment extends Fragment implements  OwnerSe
             Log.e("Add Vehicle","Dialog launched");
 
         });
-        done.setOnClickListener(view -> uploadData());
+        done.setOnClickListener(view -> {
+            try {
+                uploadData();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
-    private void uploadData(){
+    private void uploadData() throws Exception{
         if(cname.getText().toString().isEmpty() || address.getText().toString().isEmpty() || customer_mobile.getText().toString().isEmpty() || alternate_mobile.getText().toString().isEmpty() || startstring == null || endstring == null || timestring == null || vehicle == null){
             Toast.makeText(getContext(), "You left something empty!!", Toast.LENGTH_SHORT).show();
             return;
