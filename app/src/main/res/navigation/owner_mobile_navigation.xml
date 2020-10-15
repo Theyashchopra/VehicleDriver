@@ -149,6 +149,13 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_nav_AddDriver_owner_to_nav_contacts"
+            app:destination="@id/nav_contacts"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/nav_ViewEnquiry_owner"
@@ -247,4 +254,10 @@
         android:label="Edit Driver"
         android:name="com.lifecapable.vehicledriver.owner.ui.slideshow.EditDriverFragment"
         tools:layout="@layout/fragment_edit_driver"/>
+
+    <fragment
+        android:id="@+id/nav_contacts"
+        android:label="Contacts"
+        android:name="com.lifecapable.vehicledriver.owner.ui.slideshow.GetContactsFragment"
+        tools:layout="@layout/fragment_get_contacts"/>
 </navigation>

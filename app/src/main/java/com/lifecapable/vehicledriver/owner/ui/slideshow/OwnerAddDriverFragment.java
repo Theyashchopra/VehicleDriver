@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -47,7 +48,7 @@ public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehi
 
     View root;
     TextInputEditText nameet, emailet, contact1, contact2, addharet, passwordet;
-    Button btdone;
+    Button btdone,addcontact;
     CardView cardView;
     TextView assignedText;
     OwnerSelectVehiclePopup ownerSelectVehiclePopup;
@@ -73,9 +74,11 @@ public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehi
         passwordet = root.findViewById(R.id.adpasswordet);
         cardView = root.findViewById(R.id.adassignedvehicle);
         assignedText = root.findViewById(R.id.adassignedvehicletext);
+        addcontact = root.findViewById(R.id.add_phone);
         owner = getActivity().getSharedPreferences("owner",MODE_PRIVATE);
         oid = owner.getInt("id",-1);
         inithome();
+        listeners();
         return root;
     }
 
@@ -257,4 +260,12 @@ public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehi
         }
     }
 
+    private void listeners(){
+        addcontact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(OwnerAddDriverFragment.this).navigate(R.id.action_nav_AddDriver_owner_to_nav_contacts);
+            }
+        });
+    }
 }

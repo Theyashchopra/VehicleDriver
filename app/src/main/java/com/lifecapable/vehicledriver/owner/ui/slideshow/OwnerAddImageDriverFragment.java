@@ -108,7 +108,7 @@ public class OwnerAddImageDriverFragment extends Fragment implements OwnerDialog
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(OwnerAddImageDriverFragment.this).popBackStack();
+                NavHostFragment.findNavController(OwnerAddImageDriverFragment.this).navigate(R.id.action_nav_AddImageDriver_owner_to_nav_slideshow_owner);
             }
         });
     }
