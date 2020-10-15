@@ -116,12 +116,12 @@ public class OwnerRegisterActivity extends AppCompatActivity {
         String GST = gstEt.getText().toString().trim();
         String gumasta = gumastaEt.getText().toString().trim();
         String reference_code = refEt.getText().toString().trim();
-
+        cityName = city.getText().toString().trim();
         if(reference_code.isEmpty()){
             reference_code = "";
         }
         if(name.isEmpty() || email.isEmpty() || password.isEmpty() || confirm.isEmpty() || mobile.isEmpty() ||  address.isEmpty()
-            || tehsil.isEmpty() || PAN.isEmpty()  || stateName.isEmpty()){
+            || tehsil.isEmpty() || PAN.isEmpty()  || stateName.isEmpty() || cityName.isEmpty()){
             Toast.makeText(this, "You Left something empty", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -153,14 +153,6 @@ public class OwnerRegisterActivity extends AppCompatActivity {
                     .playOn(mobileEt);
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(mobileEt, InputMethodManager.SHOW_IMPLICIT);
-            return;
-        }else if(mobile2.length() != 10){
-            mobile2Et.setError("Invalid Number");
-            YoYo.with(Techniques.Shake)
-                    .duration(2000)
-                    .playOn(mobile2Et);
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(mobile2Et, InputMethodManager.SHOW_IMPLICIT);
             return;
         }
         Map<String,Object> map = new HashMap<>();
@@ -202,6 +194,7 @@ public class OwnerRegisterActivity extends AppCompatActivity {
                     try{
                         if(!res.get("email").toString().isEmpty()){
                             // registration successful
+                            //save the id for future purposes if required
                             RegisterSuccessPopup rg = new RegisterSuccessPopup();
                             rg.show(getSupportFragmentManager(),"success");
                         }
@@ -288,6 +281,7 @@ public class OwnerRegisterActivity extends AppCompatActivity {
                     return;
                 }
                 stateName = o.toString();
+                Log.i("STATE",stateName);
                 for(StateModel s : stateModelList){
                     if(s.getName().equals(stateName)){
                         getCities(s.getId());

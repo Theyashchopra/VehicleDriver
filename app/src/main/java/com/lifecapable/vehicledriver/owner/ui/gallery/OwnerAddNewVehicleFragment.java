@@ -8,9 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -22,6 +25,7 @@ import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleIds;
 
 import java.net.NetworkInterface;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -33,7 +37,7 @@ import retrofit2.Response;
 import static androidx.navigation.fragment.NavHostFragment.findNavController;
 
 public class OwnerAddNewVehicleFragment extends Fragment {
-    TextInputEditText name, platenumber, yearofman, avgfuelconsumption;
+    TextInputEditText name, platenumber, yearofman, avgfuelconsumption,rentEt;
     //totalhoursrun, kmperhour, fuelconsumptionrate , rentperhourwithfuel, rentperdaywithfuel, rentperhourwithoutfuel, rentperdaywithoutfuel
     RadioGroup available;
     boolean isAvailable;
@@ -42,10 +46,15 @@ public class OwnerAddNewVehicleFragment extends Fragment {
     SharedPreferences sharedPreferences;
     int id,model_id;
     ProgressBar progressBar;
+    Spinner spinner;
+    String totalrentString,unit;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         root = inflater.inflate(R.layout.owner_fragment_add_new_vehicle, container, false);
+        rentEt = root.findViewById(R.id.rentet);
         name = root.findViewById(R.id.avnameet);
+        spinner = root.findViewById(R.id.rentspinner);
         platenumber = root.findViewById(R.id.avplatenumberet);
         yearofman = root.findViewById(R.id.avmadeinet);
         avgfuelconsumption = root.findViewById(R.id.avavgfuelconsumptionet);
@@ -65,6 +74,8 @@ public class OwnerAddNewVehicleFragment extends Fragment {
         model_id = getArguments().getInt("model_id");
         donebt = root.findViewById(R.id.avdonebt);
         initviews();
+        setRentSpinner();
+        spinnerListener();
         return root;
     }
     private void initviews(){
@@ -87,15 +98,19 @@ public class OwnerAddNewVehicleFragment extends Fragment {
                  || rentperhourwithfuel.getText().toString().isEmpty() ||
                 rentperdaywithfuel.getText().toString().isEmpty() || rentperhourwithoutfuel.getText().toString().isEmpty() ||
                 rentperdaywithoutfuel.getText().toString().isEmpty()*/
-        if(yearofman.getText().toString().isEmpty() || avgfuelconsumption.getText().toString().isEmpty() || platenumber.getText().toString().isEmpty()){
+        String vehicle_plate = platenumber.getText().toString().trim();
+        totalrentString = rentEt.getText().toString().trim() + unit;
+        if(yearofman.getText().toString().isEmpty() || avgfuelconsumption.getText().toString().isEmpty() || platenumber.getText().toString().isEmpty() || rentEt.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "You left something empty!! ", Toast.LENGTH_SHORT).show();
             return;
-        }else if(patterMatcher(platenumber.getText().toString().trim())){
-            platenumber.setError("No blank spaces allowed");
-            YoYo.with(Techniques.Shake)
-                    .duration(2000)
-                    .playOn(platenumber);
-            return;
+        }else if(!platenumber.getText().toString().isEmpty()){
+            if(patterMatcher(platenumber.getText().toString())) {
+                platenumber.setError("No blank spaces allowed");
+                YoYo.with(Techniques.Shake)
+                        .duration(2000)
+                        .playOn(platenumber);
+                return;
+            }
         }
         progressBar.setVisibility(View.VISIBLE);
         Call<VehicleIds> call = RestAdapter.createAPI().addVehicle(new VehicleDetailsOwnerData(name.getText().toString(),
@@ -106,9 +121,10 @@ public class OwnerAddNewVehicleFragment extends Fragment {
                 0,0,
                 0,0,0,
                 getWifiMacAddress(),
-                platenumber.getText().toString().toLowerCase(),
+                vehicle_plate,
                 isAvailable,
-                id));
+                id,
+                totalrentString));
         /*Integer.parseInt(totalhoursrun.getText().toString()),
                 Integer.parseInt(kmperhour.getText().toString()),
                 Integer.parseInt(fuelconsumptionrate.getText().toString()),
@@ -183,5 +199,37 @@ public class OwnerAddNewVehicleFragment extends Fragment {
         }else{
             return false;
         }
+    }
+
+    private void setRentSpinner(){
+
+        List<String> strings = new ArrayList<>();
+        strings.add("Per Hour");
+        strings.add("Per Day");
+        strings.add("Per Month");
+        strings.add("Per Km");
+        try {
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, strings);
+            spinner.setAdapter(adapter);
+        }catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void spinnerListener(){
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Object o = adapterView.getItemAtPosition(i);
+                unit = o.toString();
+                Log.i("UNIT",unit);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }

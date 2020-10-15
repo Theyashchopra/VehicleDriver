@@ -9,6 +9,7 @@
         android:id="@+id/master_progress"
         android:layout_centerInParent="true"
         android:visibility="invisible"
+        android:elevation="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <!-- TODO: Update blank fragment layout -->

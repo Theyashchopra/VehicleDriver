@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class MasterFragment extends Fragment {
     List<VehicleType> vehicleTypeList;
     Spinner spinner1,spinner2,spinner3;
     List<String> master,type,models;
+    ProgressBar progressBar;
     View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +57,7 @@ public class MasterFragment extends Fragment {
         return view;
     }
     private void initialise(){
+        progressBar = view.findViewById(R.id.master_progress);
         master = new ArrayList<String>();
         type = new ArrayList<String>();
         models = new ArrayList<String>();
@@ -72,6 +75,7 @@ public class MasterFragment extends Fragment {
 
     public void getModels(int id){
         models.clear();
+        progressBar.setVisibility(View.VISIBLE);
         OwnerJsonPlaceHolder api = RestAdapter.createAPI();
         Call<VehicleModelRoot> call = api.getVModels(id);
         List<String> spinnerList = new ArrayList<>();
@@ -79,6 +83,7 @@ public class MasterFragment extends Fragment {
             @Override
             public void onResponse(Call<VehicleModelRoot> call, Response<VehicleModelRoot> response) {
                 if(response.isSuccessful()){
+                    progressBar.setVisibility(View.INVISIBLE);
                     VehicleModelRoot vehicleModelRoot = response.body();
                     vehicleModelList = vehicleModelRoot.getModels();
                     if(vehicleModelRoot != null){
@@ -89,29 +94,33 @@ public class MasterFragment extends Fragment {
                             ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, models);
                             spinner3.setAdapter(adapter);
                         }catch (Exception e){
-
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 }else{
                     Toast.makeText(getContext(), "Check your internet connection", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
 
             @Override
             public void onFailure(Call<VehicleModelRoot> call, Throwable t) {
                 Toast.makeText(getContext(), "Check your internet connection", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }
 
     public void getMasters(){
         master.clear();
+        progressBar.setVisibility(View.VISIBLE);
         OwnerJsonPlaceHolder api = RestAdapter.createAPI();
         Call<MasterRoot> call = api.getMaster();
         call.enqueue(new Callback<MasterRoot>() {
             @Override
             public void onResponse(Call<MasterRoot> call, Response<MasterRoot> response) {
                 if (response.isSuccessful()){
+                    progressBar.setVisibility(View.INVISIBLE);
                     MasterRoot masterRoot = response.body();
                     masterVehicleList = masterRoot.getMasters();
                     for(MasterVehicle m : masterRoot.getMasters()){
@@ -123,25 +132,28 @@ public class MasterFragment extends Fragment {
                     }catch (Exception e){}
                 }else{
                     Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
-
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
 
             @Override
             public void onFailure(Call<MasterRoot> call, Throwable t) {
                 Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }
 
     public void getTypes(int id){
         type.clear();
+        progressBar.setVisibility(View.VISIBLE);
         OwnerJsonPlaceHolder api = RestAdapter.createAPI();
         Call<VehicleTypeRoot> call = api.getVtypes(id);
         call.enqueue(new Callback<VehicleTypeRoot>() {
             @Override
             public void onResponse(Call<VehicleTypeRoot> call, Response<VehicleTypeRoot> response) {
                 if(response.isSuccessful()){
+                    progressBar.setVisibility(View.INVISIBLE);
                     VehicleTypeRoot vehicleTypeRoot = response.body();
                     vehicleTypeList = vehicleTypeRoot.getMasters();
                     for(VehicleType v : vehicleTypeRoot.getMasters()){
@@ -151,17 +163,19 @@ public class MasterFragment extends Fragment {
                         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,type);
                         spinner2.setAdapter(adapter);
                     }catch (Exception e){
-
+                        progressBar.setVisibility(View.INVISIBLE);
                     }
 
                 }else{
                     Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
 
             @Override
             public void onFailure(Call<VehicleTypeRoot> call, Throwable t) {
                 Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }

@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="invisible"
+        android:elevation="10dp"
         android:id="@+id/progress"/>
     <TextView
         android:id="@+id/avim"
@@ -230,21 +231,22 @@
             android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>-->
-    <Spinner
-        android:id="@+id/rentspinner"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_below="@id/avavgfuelconsumption"/>
+        android:orientation="horizontal"
+        android:layout_below="@id/avavgfuelconsumption"
+        android:id="@+id/rentlayout">
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/rentti"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_weight="1"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
-        android:layout_below="@id/rentspinner"
+        android:hint="Rent Amount"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -255,14 +257,21 @@
             android:maxLength="4"/>
 
     </com.google.android.material.textfield.TextInputLayout>
-
+    <Spinner
+        android:id="@+id/rentspinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="8dp"
+        android:layout_below="@id/rentti"/>
+    </LinearLayout>
     <TextView
         android:id="@+id/avavil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Available Now? "
         android:layout_margin="8dp"
-        android:layout_below="@+id/rentti"
+        android:layout_below="@+id/rentlayout"
         android:layout_alignParentStart="true"/>
     <RadioGroup
         android:id="@+id/avavailblenowbg"
@@ -275,7 +284,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/owner_radio_pick_outline"
         android:orientation="horizontal"
-        android:layout_below="@id/rentti"
+        android:layout_below="@+id/rentlayout"
         android:layout_toEndOf="@+id/avavil">
         <androidx.appcompat.widget.AppCompatRadioButton
             android:layout_marginTop="1dp"
