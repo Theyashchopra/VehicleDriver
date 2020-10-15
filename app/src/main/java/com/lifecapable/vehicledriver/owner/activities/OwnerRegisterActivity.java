@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ProgressBar;
@@ -45,10 +46,11 @@ public class OwnerRegisterActivity extends AppCompatActivity {
 
     List<StateModel> stateModelList;
     List<CityModel> cityModelList;
-    Spinner state,city;
+    Spinner state;
+    AutoCompleteTextView city;
     List<String> states,cities;
     String stateName,cityName;
-    TextInputEditText nameEt,emailEt,passEt,cpassEt,mobileEt,mobile2Et,addresssEt,tehsilEt,pinEt,panEt,tanEt,gumastaEt,refEt,gstEt;
+    TextInputEditText nameEt,emailEt,passEt,cpassEt,mobileEt,mobile2Et,addresssEt,tehsilEt,pinEt,panEt,gumastaEt,refEt,gstEt;
     ProgressBar progressBar;
     Button registerBtn;
     CheckBox checkBox;
@@ -56,7 +58,7 @@ public class OwnerRegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_owner_register);
+        setContentView(R.layout.owner_activity_register);
         init();
         getStates();
         spinnerListeners();
@@ -81,7 +83,7 @@ public class OwnerRegisterActivity extends AppCompatActivity {
         tehsilEt = findViewById(R.id.tehsil);
         pinEt = findViewById(R.id.pincode);
         panEt = findViewById(R.id.pan);
-        tanEt = findViewById(R.id.tan);
+       // tanEt = findViewById(R.id.tan);
         gumastaEt = findViewById(R.id.gumasta);
         refEt = findViewById(R.id.refcode);
         gstEt = findViewById(R.id.gst);
@@ -110,7 +112,7 @@ public class OwnerRegisterActivity extends AppCompatActivity {
         String tehsil = tehsilEt.getText().toString().trim();
         String pincode = pinEt.getText().toString().trim();
         String PAN = panEt.getText().toString().trim();
-        String TAN = tanEt.getText().toString().trim();
+    //    String TAN = tanEt.getText().toString().trim();
         String GST = gstEt.getText().toString().trim();
         String gumasta = gumastaEt.getText().toString().trim();
         String reference_code = refEt.getText().toString().trim();
@@ -118,11 +120,24 @@ public class OwnerRegisterActivity extends AppCompatActivity {
         if(reference_code.isEmpty()){
             reference_code = "";
         }
-        if(name.isEmpty() || email.isEmpty() || password.isEmpty() || confirm.isEmpty() || mobile.isEmpty() || mobile2.isEmpty() || address.isEmpty()
-            || tehsil.isEmpty() || pincode.isEmpty() || PAN.isEmpty() || TAN.isEmpty() || gumasta.isEmpty() || stateName.isEmpty() || GST.isEmpty()){
+        if(name.isEmpty() || email.isEmpty() || password.isEmpty() || confirm.isEmpty() || mobile.isEmpty() ||  address.isEmpty()
+            || tehsil.isEmpty() || PAN.isEmpty()  || stateName.isEmpty()){
             Toast.makeText(this, "You Left something empty", Toast.LENGTH_SHORT).show();
             return;
         }
+        if(mobile2.isEmpty()){
+            mobile2 = "";
+        }
+        if (pincode.isEmpty()){
+            pincode = "";
+        }
+        if (gumasta.isEmpty()){
+            gumasta = "";
+        }
+        if (GST.isEmpty()){
+            GST = "";
+        }
+
         if(!password.equals(confirm)){
             Toast.makeText(this, "Password did not match", Toast.LENGTH_SHORT).show();
             YoYo.with(Techniques.Shake)
@@ -158,7 +173,7 @@ public class OwnerRegisterActivity extends AppCompatActivity {
         map.put("full_address",address);
         map.put("pin_code",pincode);
         map.put("pan",PAN);
-        map.put("tan",TAN);
+       // map.put("tan",TAN);
         map.put("gst",GST);
         map.put("gumasta",gumasta);
         map.put("mobile2",mobile2);
@@ -250,6 +265,7 @@ public class OwnerRegisterActivity extends AppCompatActivity {
                         ArrayAdapter<String> aa = new ArrayAdapter<String>(OwnerRegisterActivity.this,android.R.layout.simple_spinner_item,states);
                         aa.setDropDownViewResource(android.R.layout.simple_list_item_1);
                         state.setAdapter(aa);
+                        state.setSelection(aa.getPosition("Maharashtra"));
                     }catch (Exception e){
 
                     }

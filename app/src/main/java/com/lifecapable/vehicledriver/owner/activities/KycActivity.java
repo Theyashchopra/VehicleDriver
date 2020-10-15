@@ -38,7 +38,7 @@ public class KycActivity extends AppCompatActivity implements Dialog_Get_ImageAc
     Uri imageUri,panUri,addressUri;
     Bitmap imageBitmap;
     Button savePan,saveAddress,done;
-    ImageView pan,address;
+    ImageView pan,address, backimage;
     ProgressBar panProgress,addressProgress;
     String email;
     @Override
@@ -60,6 +60,7 @@ public class KycActivity extends AppCompatActivity implements Dialog_Get_ImageAc
         address = findViewById(R.id.address);
         panProgress = findViewById(R.id.panProgress);
         addressProgress = findViewById(R.id.addressProgress);
+        backimage = findViewById(R.id.kycback);
         onClickListeners();
     }
 
@@ -112,6 +113,13 @@ public class KycActivity extends AppCompatActivity implements Dialog_Get_ImageAc
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(KycActivity.this,OwnerLeftNavActivity.class));
+            }
+        });
+
+        backimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

@@ -47,9 +47,9 @@ public class SplashActivity extends AppCompatActivity {
 
         isOwner = owner.getBoolean("login",false);
         isDriver = driver.getBoolean("login",false);
-
+        init();
         try {
-            validate();
+            //validate();
         } catch (Exception e) {
             Toast.makeText(SplashActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
             e.printStackTrace();

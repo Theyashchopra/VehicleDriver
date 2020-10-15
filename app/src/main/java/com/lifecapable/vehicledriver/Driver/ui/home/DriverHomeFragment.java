@@ -1,12 +1,14 @@
 package com.lifecapable.vehicledriver.Driver.ui.home;
 
+import android.Manifest;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -42,6 +45,7 @@ import static android.content.Context.ACTIVITY_SERVICE;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class DriverHomeFragment extends Fragment {
+    boolean mLocationPermissionsGranted;
     View root;
     int vid;
     ProgressBar progressBar;
@@ -80,7 +84,7 @@ public class DriverHomeFragment extends Fragment {
 
         initHome();
         initRecycle();
-
+        getLocationPermission();
         return root;
     }
 
@@ -246,6 +250,66 @@ public class DriverHomeFragment extends Fragment {
         }
         Log.d(TAG, "isLocationServiceRunning: location service is not running.");
         return false;
+    }
+    private void getLocationPermission(){
+        Log.d(TAG, "getLocationPermission: getting location permissions");
+        String[] permissions = new String[0];
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                    Manifest.permission.FOREGROUND_SERVICE};
+        }
+        else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.FOREGROUND_SERVICE};
+            }
+            else {
+                permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+            }
+        }
+        if(ContextCompat.checkSelfPermission(getContext().getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            if(ContextCompat.checkSelfPermission(getContext().getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                if(ContextCompat.checkSelfPermission(getContext().getApplicationContext(), Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                    if(ContextCompat.checkSelfPermission(getContext().getApplicationContext(), Manifest.permission.FOREGROUND_SERVICE) == PackageManager.PERMISSION_GRANTED){
+                        mLocationPermissionsGranted = true;
+                    }
+                    else{
+                        ActivityCompat.requestPermissions(getActivity(), permissions, 123);
+                    }
+                }
+                else {
+                    ActivityCompat.requestPermissions(getActivity(), permissions, 123);
+                }
+            }else{
+                ActivityCompat.requestPermissions(getActivity(), permissions, 123);
+            }
+        }else{
+            ActivityCompat.requestPermissions(getActivity(), permissions, 123);
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        Log.d(TAG, "onRequestPermissionsResult: called.");
+        mLocationPermissionsGranted = false;
+
+        switch(requestCode){
+            case 123:{
+                if(grantResults.length > 0){
+                    for(int i = 0; i < grantResults.length; i++){
+                        if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
+                            mLocationPermissionsGranted = false;
+                            Log.d(TAG, "onRequestPermissionsResult: permission failed");
+                            return;
+                        }
+                    }
+                    Log.d(TAG, "onRequestPermissionsResult: permission granted");
+                    mLocationPermissionsGranted = true;
+                    //initialize our map
+                }
+            }
+        }
     }
 
 }

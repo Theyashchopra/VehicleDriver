@@ -33,7 +33,8 @@ import retrofit2.Response;
 import static androidx.navigation.fragment.NavHostFragment.findNavController;
 
 public class OwnerAddNewVehicleFragment extends Fragment {
-    TextInputEditText name, platenumber, yearofman, totalhoursrun, kmperhour, fuelconsumptionrate, avgfuelconsumption, rentperhourwithfuel, rentperdaywithfuel, rentperhourwithoutfuel, rentperdaywithoutfuel;
+    TextInputEditText name, platenumber, yearofman, avgfuelconsumption;
+    //totalhoursrun, kmperhour, fuelconsumptionrate , rentperhourwithfuel, rentperdaywithfuel, rentperhourwithoutfuel, rentperdaywithoutfuel
     RadioGroup available;
     boolean isAvailable;
     Button donebt;
@@ -47,14 +48,14 @@ public class OwnerAddNewVehicleFragment extends Fragment {
         name = root.findViewById(R.id.avnameet);
         platenumber = root.findViewById(R.id.avplatenumberet);
         yearofman = root.findViewById(R.id.avmadeinet);
-        totalhoursrun = root.findViewById(R.id.avktotalrunhourset);
+        avgfuelconsumption = root.findViewById(R.id.avavgfuelconsumptionet);
+/*        totalhoursrun = root.findViewById(R.id.avktotalrunhourset);
         kmperhour = root.findViewById(R.id.avrunkmhret);
         fuelconsumptionrate = root.findViewById(R.id.avfuelconsumptionet);
-        avgfuelconsumption = root.findViewById(R.id.avavgfuelconsumptionet);
         rentperhourwithfuel = root.findViewById(R.id.avrentperhourwfet);
         rentperdaywithfuel = root.findViewById(R.id.avrentperdaywfet);
         rentperhourwithoutfuel = root.findViewById(R.id.avrentperhourwofet);
-        rentperdaywithoutfuel = root.findViewById(R.id.avrentperdaywofet);
+        rentperdaywithoutfuel = root.findViewById(R.id.avrentperdaywofet);*/
         available = root.findViewById(R.id.avavailblenowbg);
         progressBar = root.findViewById(R.id.progress);
         isAvailable = true;
@@ -81,12 +82,12 @@ public class OwnerAddNewVehicleFragment extends Fragment {
     }
 
     private void savedata(){
-        if(yearofman.getText().toString().isEmpty() || totalhoursrun.getText().toString().isEmpty() ||
+   /*     totalhoursrun.getText().toString().isEmpty() ||
                 kmperhour.getText().toString().isEmpty() || fuelconsumptionrate.getText().toString().isEmpty() ||
-                avgfuelconsumption.getText().toString().isEmpty() || rentperhourwithfuel.getText().toString().isEmpty() ||
+                 || rentperhourwithfuel.getText().toString().isEmpty() ||
                 rentperdaywithfuel.getText().toString().isEmpty() || rentperhourwithoutfuel.getText().toString().isEmpty() ||
-                rentperdaywithoutfuel.getText().toString().isEmpty() || platenumber.getText().toString().isEmpty()
-        ){
+                rentperdaywithoutfuel.getText().toString().isEmpty()*/
+        if(yearofman.getText().toString().isEmpty() || avgfuelconsumption.getText().toString().isEmpty() || platenumber.getText().toString().isEmpty()){
             Toast.makeText(getContext(), "You left something empty!! ", Toast.LENGTH_SHORT).show();
             return;
         }else if(patterMatcher(platenumber.getText().toString().trim())){
@@ -100,18 +101,21 @@ public class OwnerAddNewVehicleFragment extends Fragment {
         Call<VehicleIds> call = RestAdapter.createAPI().addVehicle(new VehicleDetailsOwnerData(name.getText().toString(),
                 model_id,
                 yearofman.getText().toString(),
-                Integer.parseInt(totalhoursrun.getText().toString()),
-                Integer.parseInt(kmperhour.getText().toString()),
-                Integer.parseInt(fuelconsumptionrate.getText().toString()),
                 Integer.parseInt(avgfuelconsumption.getText().toString()),
-                Integer.parseInt(rentperdaywithfuel.getText().toString()),
-                Integer.parseInt(rentperhourwithfuel.getText().toString()),
-                Integer.parseInt(rentperhourwithoutfuel.getText().toString()),
-                Integer.parseInt(rentperdaywithoutfuel.getText().toString()),
+                0,0,
+                0,0,
+                0,0,0,
                 getWifiMacAddress(),
                 platenumber.getText().toString().toLowerCase(),
                 isAvailable,
                 id));
+        /*Integer.parseInt(totalhoursrun.getText().toString()),
+                Integer.parseInt(kmperhour.getText().toString()),
+                Integer.parseInt(fuelconsumptionrate.getText().toString()),
+                Integer.parseInt(rentperdaywithfuel.getText().toString()),
+                Integer.parseInt(rentperhourwithfuel.getText().toString()),
+                Integer.parseInt(rentperhourwithoutfuel.getText().toString()),
+                Integer.parseInt(rentperdaywithoutfuel.getText().toString()),*/
         call.enqueue(new Callback<VehicleIds>() {
             @Override
             public void onResponse(Call<VehicleIds> call, Response<VehicleIds> response) {

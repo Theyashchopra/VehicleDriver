@@ -36,17 +36,17 @@
         android:layout_margin="16dp"
         android:textSize="18sp"
         android:textColor="#000"
-        app:layout_constraintBottom_toTopOf="@id/driverbt"
+        app:layout_constraintBottom_toTopOf="@id/ownerbt"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
-        android:id="@+id/driverbt"
+        android:id="@+id/ownerbt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Driver"
+        android:text="Owner"
         android:layout_margin="8dp"
         android:textColor="@android:color/white"
         android:background="@drawable/background_accent"
@@ -61,16 +61,16 @@
         android:layout_height="wrap_content"
         android:text="OR"
         android:layout_margin="8dp"
-        app:layout_constraintBottom_toTopOf="@id/ownerbt"
+        app:layout_constraintBottom_toTopOf="@id/driverbt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/driverbt" />
+        app:layout_constraintTop_toBottomOf="@id/ownerbt" />
 
     <Button
-        android:id="@+id/ownerbt"
+        android:id="@+id/driverbt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Owner"
+        android:text="Driver/Operator"
         android:layout_margin="8dp"
         android:textColor="@android:color/white"
         android:background="@drawable/background_accent"
