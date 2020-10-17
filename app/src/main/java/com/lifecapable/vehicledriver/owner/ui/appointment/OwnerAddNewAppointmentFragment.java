@@ -131,11 +131,16 @@ public class OwnerAddNewAppointmentFragment extends Fragment implements  OwnerSe
     }
 
     private void uploadData() throws Exception{
-        if(cname.getText().toString().isEmpty() || address.getText().toString().isEmpty() || customer_mobile.getText().toString().isEmpty() || alternate_mobile.getText().toString().isEmpty() || startstring == null || endstring == null || timestring == null || vehicle == null){
+        String alt;
+        if(cname.getText().toString().isEmpty() || address.getText().toString().isEmpty() || customer_mobile.getText().toString().isEmpty() || startstring == null || endstring == null || timestring == null || vehicle == null){
             Toast.makeText(getContext(), "You left something empty!!", Toast.LENGTH_SHORT).show();
             return;
         }
-        Call<AppointmentOwnerData> call = RestAdapter.createAPI().oaddAppointment(cname.getText().toString(),address.getText().toString(),customer_mobile.getText().toString(), alternate_mobile.getText().toString(),oid,assignedVehicle.getV_id(),startstring,endstring,timestring);
+        if(alternate_mobile.getText().toString().isEmpty()){
+           alt = " ";
+        }
+        alt = alternate_mobile.getText().toString();
+        Call<AppointmentOwnerData> call = RestAdapter.createAPI().oaddAppointment(cname.getText().toString(),address.getText().toString(),customer_mobile.getText().toString(), alt,oid,assignedVehicle.getV_id(),startstring,endstring,timestring);
         call.enqueue(new Callback<AppointmentOwnerData>() {
             @Override
             public void onResponse(Call<AppointmentOwnerData> call, Response<AppointmentOwnerData> response) {
@@ -145,7 +150,7 @@ public class OwnerAddNewAppointmentFragment extends Fragment implements  OwnerSe
                 }
                 AppointmentOwnerData res = response.body();
                 if(res!=null){
-                    Log.e("Yoooooooooo", res.getCustomer_name());
+                    Log.e("Something went wrong", res.getCustomer_name());
                     Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
 
                 }

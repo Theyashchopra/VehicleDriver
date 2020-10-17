@@ -18,8 +18,6 @@ public class MainActivity extends AppCompatActivity {
     //changes made by Ram Haridas
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
-    private static final String WRITE_EXTERNAL = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-    private static final String READ_EXTERNAL = Manifest.permission.READ_EXTERNAL_STORAGE;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private Boolean mLocationPermissionsGranted = false;
     @Override

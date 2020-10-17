@@ -55,13 +55,13 @@
             android:drawableLeft="@drawable/ic_call_driver"
             android:id="@+id/add_phone"
             android:layout_below="@+id/adcontact1"
-            android:text="ADD CONTACT"/>
+            android:text="select CONTACT"/>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/adcontact2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:hint="Alternate Number"
+            android:hint="Alternate Number (optional)"
             android:layout_below="@id/add_phone"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Aadhar"
-            android:layout_below="@id/ademail"
+            android:layout_below="@id/adpassword"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/adaadharet"
@@ -107,7 +107,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Password"
-            android:layout_below="@id/adaadhar"
+            app:endIconMode="password_toggle"
+            android:layout_below="@id/ademail"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/adpasswordet"
@@ -141,7 +142,7 @@
             app:cardCornerRadius="8dp"
             android:elevation="8dp"
             app:cardBackgroundColor="#B7FC82"
-            android:layout_below="@id/adpassword">
+            android:layout_below="@id/adaadhar">
 
             <TextView
                 android:id="@+id/adassignedvehicletext"

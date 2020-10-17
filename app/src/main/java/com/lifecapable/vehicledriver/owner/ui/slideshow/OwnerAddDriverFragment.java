@@ -125,8 +125,9 @@ public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehi
     }
 
     private void addDriver(){
+        String cont2;
         if(emailet.getText().toString().isEmpty() || passwordet.getText().toString().isEmpty() || nameet.getText().toString().isEmpty() || contact1.getText().toString().isEmpty() ||
-            addharet.getText().toString().isEmpty() || contact2.getText().toString().isEmpty() ){
+            addharet.getText().toString().isEmpty()){
             Toast.makeText(getActivity(), "You left something empty!!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -137,13 +138,17 @@ public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehi
         File file1 = FileUtil.from(getContext(),licenceuri);
         RequestBody requestFile1 = RequestBody.create(file1,MediaType.parse("image/*") );
         MultipartBody.Part body1 = MultipartBody.Part.createFormData("licence_image", file1.getName(), requestFile1);*/
+        if(contact2.getText().toString().isEmpty()){
+            cont2 = " ";
+        }
+        cont2 = contact2.getText().toString();
         Call<DriverDetailsOwnerData> call = RestAdapter.createAPI().addDriver(
                 emailet.getText().toString(),
                 passwordet.getText().toString(),
                 nameet.getText().toString(),
                 contact1.getText().toString(),
                 addharet.getText().toString(),
-                contact2.getText().toString(),
+                cont2,
                 getWifiMacAddress(),
                 assignedVehicle.getV_id(),
                 oid);
