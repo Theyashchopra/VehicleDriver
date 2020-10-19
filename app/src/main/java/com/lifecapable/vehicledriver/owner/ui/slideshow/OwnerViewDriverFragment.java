@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.adapter.DriverOwnerAdapter;
 import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverOwnerData;
+import com.lifecapable.vehicledriver.owner.datamodel.Message;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.dialogs.OwnerImageViewPopup;
@@ -37,7 +39,7 @@ import retrofit2.Response;
 public class OwnerViewDriverFragment extends Fragment {
     ProgressBar progressBar;
     View root;
-    Button edit,upload;
+    Button edit,upload,delete;
     TextView clickviewlicence;
     public static DriverOwnerData driverOwnerData;
     TextView name,number1,number2,adhaar,license,vname,plate,model,vplate;
@@ -47,6 +49,7 @@ public class OwnerViewDriverFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.owner_fragment_view_driver, container, false);
+        delete = root.findViewById(R.id.deletedriver);
         clickviewlicence = root.findViewById(R.id.vdlicence);
         clickviewlicence.setOnClickListener(v -> {
 
@@ -74,6 +77,23 @@ public class OwnerViewDriverFragment extends Fragment {
         upload = root.findViewById(R.id.vdremove);
         imageView = root.findViewById(R.id.vdimage);
         imageView.setImageResource(R.drawable.ic_person);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<Message> call = RestAdapter.createAPI().deleteDriver(driverOwnerData.id);
+                call.enqueue(new Callback<Message>() {
+                    @Override
+                    public void onResponse(Call<Message> call, Response<Message> response) {
+                        NavHostFragment.findNavController(OwnerViewDriverFragment.this).navigateUp();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Message> call, Throwable t) {
+                        Log.e("Something went wrong",t.getMessage());
+                    }
+                });
+            }
+        });
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override

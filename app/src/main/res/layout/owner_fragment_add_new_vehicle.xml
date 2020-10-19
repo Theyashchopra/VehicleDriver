@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Plate Number"
+        android:hint="Vehicle Number"
         android:layout_below="@id/avname"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -83,7 +83,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
-        android:hint="Manufactured in (Year)"
+        android:hint="Year of Manufacture"
         android:layout_below="@id/avpn"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -253,8 +253,7 @@
             android:id="@+id/rentet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:maxLength="4"/>
+            android:inputType="number"/>
 
     </com.google.android.material.textfield.TextInputLayout>
     <Spinner

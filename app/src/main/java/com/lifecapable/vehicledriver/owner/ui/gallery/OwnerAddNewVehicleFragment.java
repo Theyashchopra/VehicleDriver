@@ -50,7 +50,6 @@ public class OwnerAddNewVehicleFragment extends Fragment {
     String totalrentString,unit;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         root = inflater.inflate(R.layout.owner_fragment_add_new_vehicle, container, false);
         rentEt = root.findViewById(R.id.rentet);
         name = root.findViewById(R.id.avnameet);
@@ -99,7 +98,7 @@ public class OwnerAddNewVehicleFragment extends Fragment {
                 rentperdaywithfuel.getText().toString().isEmpty() || rentperhourwithoutfuel.getText().toString().isEmpty() ||
                 rentperdaywithoutfuel.getText().toString().isEmpty()*/
         String vehicle_plate = platenumber.getText().toString().trim();
-        totalrentString = rentEt.getText().toString().trim() + unit;
+        totalrentString = rentEt.getText().toString().trim() +" "+ unit;
         if(yearofman.getText().toString().isEmpty() || avgfuelconsumption.getText().toString().isEmpty() || platenumber.getText().toString().isEmpty() || rentEt.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "You left something empty!! ", Toast.LENGTH_SHORT).show();
             return;

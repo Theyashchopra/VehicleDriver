@@ -22,7 +22,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:largeHeap="true"
-        android:hardwareAccelerated="false"
         android:theme="@style/AppTheme">
         <activity android:name=".owner.activities.KycActivity"></activity>
         <activity android:name=".owner.activities.OwnerRegisterActivity"/>

@@ -355,12 +355,11 @@
             android:layout_toEndOf="@id/oppc"
             android:layout_alignTop="@id/oppc"/>
 
-        <!--<LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="gone"
-            android:layout_below="@id/oppanimage">
+            android:layout_below="@id/opregisternumber">
 
             <Button
                 android:id="@+id/oplogout"
@@ -368,7 +367,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Logout"
-                android:visibility="gone"
                 android:layout_margin="8dp"
                 android:textColor="@android:color/white"
                 android:background="@drawable/background_red"/>
@@ -379,7 +377,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Edit"
-                android:visibility="gone"
                 android:layout_margin="8dp"
                 android:textColor="@android:color/white"
                 android:background="@drawable/background_accent"/>
@@ -395,7 +392,7 @@
                 android:textColor="@android:color/white"
                 android:background="@drawable/background_accent"/>
 
-        </LinearLayout>-->
+        </LinearLayout>
 
     </RelativeLayout>
 

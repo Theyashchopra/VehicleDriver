@@ -22,6 +22,10 @@ import com.lifecapable.vehicledriver.owner.datamodel.ProfileOwnerData;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.net.NetworkInterface;
+import java.util.Collections;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,9 +63,9 @@ public class OwnerProfileFragment extends Fragment {
         emailEt = root.findViewById(R.id.opemailet);
         contactEt = root.findViewById(R.id.opcontact1et);
         contact2Et = root.findViewById(R.id.opcontact2et);
-        //editbt = root.findViewById(R.id.opedit);
-        //donebt = root.findViewById(R.id.opdone);
-        //logoutbt = root.findViewById(R.id.oplogout);
+        editbt = root.findViewById(R.id.opedit);
+        donebt = root.findViewById(R.id.opdone);
+        logoutbt = root.findViewById(R.id.oplogout);
         inithome();
 
         return root;
@@ -82,41 +86,60 @@ public class OwnerProfileFragment extends Fragment {
 
         getData();
 
-       /* editbt.setOnClickListener(v -> {
+        editbt.setOnClickListener(v -> {
                 state = false;
-                nameEt.setEnabled(true);
-                addressEt.setEnabled(true);
+/*                nameEt.setEnabled(true);
                 panEt.setEnabled(true);
-                pincodeEt.setEnabled(true);
                 tanEt.setEnabled(true);
                 gumastaEt.setEnabled(true);
                 gstEt.setEnabled(true);
-   //             ownernameEt.setActivated(true);
+                ownernameEt.setActivated(true);
                 emailEt.setEnabled(true);
-                contactEt.setEnabled(true);
+                contactEt.setEnabled(true);*/
+                pincodeEt.setEnabled(true);
                 contact2Et.setEnabled(true);
+                addressEt.setEnabled(true);
                 donebt.setVisibility(View.VISIBLE);
                 editbt.setVisibility(View.GONE);
                 logoutbt.setVisibility(View.GONE);
         });
         donebt.setOnClickListener(v -> {
                 state = true;
-                nameEt.setEnabled(false);
-                addressEt.setEnabled(false);
+/*                nameEt.setEnabled(false);
                 panEt.setEnabled(false);
-                pincodeEt.setEnabled(false);
                 tanEt.setEnabled(false);
                 gumastaEt.setEnabled(false);
                 gstEt.setEnabled(false);
        //         ownernameEt.setActivated(false);
                 emailEt.setEnabled(false);
-                contactEt.setEnabled(false);
+                contactEt.setEnabled(false);*/
+            progressBar.setVisibility(View.VISIBLE);
+
+                pincodeEt.setEnabled(false);
+                addressEt.setEnabled(false);
                 contact2Et.setEnabled(false);
                 donebt.setVisibility(View.GONE);
                 editbt.setVisibility(View.VISIBLE);
                 logoutbt.setVisibility(View.VISIBLE);
-        });*/
+                savedata();
+        });
     }
+    private void savedata(){
+        Call<ProfileOwnerData> call = RestAdapter.createAPI().updateAgencyProfile(contact2Et.getText().toString(), addressEt.getText().toString(), pincodeEt.getText().toString(), id, getWifiMacAddress());
+        call.enqueue(new Callback<ProfileOwnerData>() {
+            @Override
+            public void onResponse(Call<ProfileOwnerData> call, Response<ProfileOwnerData> response) {
+                Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<ProfileOwnerData> call, Throwable t) {
+                Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void getData(){
         progressBar.setVisibility(View.VISIBLE);
         Call<ProfileOwnerData> call = RestAdapter.createAPI().ogetProfileData(id);
@@ -154,4 +177,33 @@ public class OwnerProfileFragment extends Fragment {
             }
         });
     }
+    public static String getWifiMacAddress() {
+        try {
+            String interfaceName = "wlan0";
+            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface intf : interfaces) {
+                if (!intf.getName().equalsIgnoreCase(interfaceName)){
+                    continue;
+                }
+
+                byte[] mac = intf.getHardwareAddress();
+                if (mac==null){
+                    return "";
+                }
+
+                StringBuilder buf = new StringBuilder();
+                for (byte aMac : mac) {
+                    buf.append(String.format("%02X:", aMac));
+                }
+                if (buf.length()>0) {
+                    buf.deleteCharAt(buf.length() - 1);
+                }
+                return buf.toString();
+            }
+        } catch (Exception ex) {
+
+        } // for now eat exceptions
+        return "";
+    }
+
 }

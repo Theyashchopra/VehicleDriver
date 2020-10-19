@@ -252,7 +252,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true">
+            android:layout_below="@id/vdassignedvehcard">
             <Button
                 android:id="@+id/vdremove"
                 android:layout_width="0dp"
@@ -272,5 +272,15 @@
                 android:textColor="@android:color/white"
                 android:background="@drawable/background_accent" />
         </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/deletedriver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remove Driver"
+            android:layout_margin="8dp"
+            android:layout_alignParentBottom="true"
+            android:textColor="@android:color/white"
+            android:background="@drawable/background_red"/>
+
     </RelativeLayout>
 </ScrollView>

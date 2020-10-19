@@ -21,6 +21,7 @@ import com.lifecapable.vehicledriver.owner.datamodel.StateModelRoot;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleIds;
 
+import java.lang.reflect.Parameter;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -204,4 +205,10 @@ public interface OwnerJsonPlaceHolder {
     @Multipart
     @POST("ownerkyc")
     Call<Message> uploadPanImage(@Part("email") RequestBody email, @Part MultipartBody.Part pan);
+
+    @DELETE("driver")
+    Call<Message> deleteDriver(@Query("id") int id);
+
+    @PUT("regowner")
+    Call<ProfileOwnerData> updateAgencyProfile(@Query("mobile2") String mobile2, @Query("full_address") String full_address,@Query("pin_code")String pin_code,@Query("id") int id, @Query("ip_address") String ip_address);
 }
