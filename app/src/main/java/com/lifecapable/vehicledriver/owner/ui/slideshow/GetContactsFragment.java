@@ -1,10 +1,13 @@
 package com.lifecapable.vehicledriver.owner.ui.slideshow;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,13 +29,16 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.adapter.ContactAdapter;
 import com.lifecapable.vehicledriver.owner.datamodel.Contact;
+import com.lifecapable.vehicledriver.owner.datamodel.VehicleOwnerData;
+import com.lifecapable.vehicledriver.owner.dialogs.OwnerSelectVehiclePopup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class GetContactsFragment extends Fragment {
-
+public class GetContactsFragment extends DialogFragment implements ContactAdapter.OnItemContact {
+    public interface OnClosePassContact{
+        void getAssigned(int pos, Contact curr);
+    }
 
     List<Contact> contactList;
     View view;
@@ -40,6 +46,8 @@ public class GetContactsFragment extends Fragment {
     RecyclerView recyclerView;
     ContactAdapter contactAdapter;
     SearchView searchView;
+    int contactposition;
+    Contact contact;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,7 +62,7 @@ public class GetContactsFragment extends Fragment {
         searchView = view.findViewById(R.id.contact_search);
         contactList = new ArrayList<>();
         recyclerView = view.findViewById(R.id.contact_recycle);
-        contactAdapter = new ContactAdapter(contactList,getContext());
+        contactAdapter = new ContactAdapter(contactList,getContext(),GetContactsFragment.this,this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(contactAdapter);
@@ -138,5 +146,20 @@ public class GetContactsFragment extends Fragment {
 
     void add(Contact contact){
         contactList.add(contact);
+    }
+
+    @Override
+    public void getPosition(int pos, Contact curr) {
+        contactposition = pos;
+        contact = curr;
+        getDialog().dismiss();
+    }
+
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+        Fragment f1 = getTargetFragment();
+        if (f1 instanceof OwnerSelectVehiclePopup.OnClosePassData)
+            ((GetContactsFragment.OnClosePassContact)f1).getAssigned(contactposition,contact);
     }
 }

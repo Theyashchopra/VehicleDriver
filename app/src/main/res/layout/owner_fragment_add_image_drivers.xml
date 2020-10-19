@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#f5f5f5"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".owner.ui.slideshow.OwnerAddImageDriverFragment">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -16,91 +14,97 @@
             android:layout_margin="8dp"
             android:layout_centerHorizontal="true"
             android:text="*Please try to add images directly from camera for optimal uploads*"/>
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/image_progress"
-        android:elevation="10dp"
-        android:visibility="invisible"
-        android:layout_centerInParent="true"/>
-<com.google.android.material.card.MaterialCardView
-    android:id="@+id/driver_image_card"
-    android:layout_width="match_parent"
-    android:layout_margin="10dp"
-    android:layout_below="@+id/head_text2"
-    app:cardBackgroundColor="#fff"
-    app:cardElevation="8dp"
-    app:cardCornerRadius="8dp"
-    android:layout_height="wrap_content">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/adi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Driver Image"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_centerHorizontal="true"/>
-    <ImageView
-        android:id="@+id/driverimage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/ic_addphoto"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/adi"/>
-        <Button
+        <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SAVE"
-            android:id="@+id/save_image"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/driverimage"/>
-    </RelativeLayout>
-</com.google.android.material.card.MaterialCardView>
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:cardBackgroundColor="#fff"
-        app:cardElevation="8dp"
-        app:cardCornerRadius="8dp"
-        android:layout_below="@id/driver_image_card"
-        android:id="@+id/second">
-        <RelativeLayout
+            android:id="@+id/image_progress"
+            android:elevation="10dp"
+            android:visibility="invisible"
+            android:layout_centerInParent="true"/>
+        <LinearLayout
+            android:id="@+id/addll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/adl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Driver Licence"
-        android:layout_margin="8dp"
-        android:layout_centerHorizontal="true"/>
-    <ImageView
-        android:id="@+id/driverlicence"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/ic_addphoto"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/adl"/>
-            <Button
-                android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/head_text2">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/driver_image_card"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="#fff"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/adi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add Driver Image"
+                        android:layout_margin ="8dp"
+                        android:layout_centerHorizontal="true"/>
+                    <ImageView
+                        android:id="@+id/driverimage"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:src="@drawable/ic_addphoto"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/adi"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SAVE"
+                        android:id="@+id/save_image"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/driverimage"/>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="SAVE"
-                android:id="@+id/save_license"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/driverlicence"/>
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="#fff"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:layout_below="@id/driver_image_card"
+                android:id="@+id/second">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/adl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add Driver Licence"
+                        android:layout_margin="8dp"
+                        android:layout_centerHorizontal="true"/>
+                    <ImageView
+                        android:id="@+id/driverlicence"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:src="@drawable/ic_addphoto"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/adl"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SAVE"
+                        android:id="@+id/save_license"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/driverlicence"/>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
 
     <Button
         android:id="@+id/imagedone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_below="@id/second"
+        android:layout_alignParentBottom="true"
         android:text="DONE" />
-    </RelativeLayout>
-</ScrollView>
+</RelativeLayout>

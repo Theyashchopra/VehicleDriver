@@ -51,6 +51,7 @@ public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.Home
         holder.ocontacttv.setText(curr.getUser_mobile());
         holder.onametv.setText(curr.getUser_name());
         holder.ovehicletv.setText(curr.getVehicle_plate());
+        holder.timetv.setText(curr.getDate_of_enquiry());
         holder.ocontactbt.setOnClickListener(v -> {
             Intent phoneIntent = new Intent(Intent.ACTION_CALL);
             phoneIntent.setData(Uri.parse("tel:"+curr.getUser_mobile()));
@@ -82,6 +83,7 @@ public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.Home
     public static class HomeOwnerViewHolder extends RecyclerView.ViewHolder{
         TextView oaddresstv,ocontacttv,onametv,ovehicletv;
         Button ocontactbt;
+        TextView timetv;
         RelativeLayout ocardrelative;
         public HomeOwnerViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,6 +93,7 @@ public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.Home
             onametv = itemView.findViewById(R.id.ocardname);
             ovehicletv = itemView.findViewById(R.id.ocardvehicle);
             ocardrelative = itemView.findViewById(R.id.ocardrl);
+            timetv = itemView.findViewById(R.id.ocardtime);
         }
     }
 

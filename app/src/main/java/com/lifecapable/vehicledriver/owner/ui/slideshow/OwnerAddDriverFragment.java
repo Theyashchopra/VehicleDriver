@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.lifecapable.vehicledriver.R;
 import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
+import com.lifecapable.vehicledriver.owner.datamodel.Contact;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleOwnerData;
 import com.lifecapable.vehicledriver.owner.dialogs.OwnerDialogGetImageFragment;
@@ -44,7 +45,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehiclePopup.OnClosePassData {
+public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehiclePopup.OnClosePassData, GetContactsFragment.OnClosePassContact {
 
     View root;
     TextInputEditText nameet, emailet, contact1, contact2, addharet, passwordet;
@@ -266,11 +267,17 @@ public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehi
     }
 
     private void listeners(){
-        addcontact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(OwnerAddDriverFragment.this).navigate(R.id.action_nav_AddDriver_owner_to_nav_contacts);
-            }
+        addcontact.setOnClickListener(view -> {
+            GetContactsFragment getContactsFragment = new GetContactsFragment();
+            getContactsFragment.setTargetFragment(OwnerAddDriverFragment.this,122);
+            getContactsFragment.show(this.getParentFragmentManager(),"get Contacts");
+            //NavHostFragment.findNavController(OwnerAddDriverFragment.this).navigate(R.id.action_nav_AddDriver_owner_to_nav_contacts);
         });
+    }
+
+    @Override
+    public void getAssigned(int pos, Contact curr) {
+        Toast.makeText(getActivity(), curr.getPhone()+" ", Toast.LENGTH_SHORT).show();
+        contact1.setText(curr.getPhone());
     }
 }

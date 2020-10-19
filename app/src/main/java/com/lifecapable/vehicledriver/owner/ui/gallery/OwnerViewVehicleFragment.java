@@ -37,7 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class OwnerViewVehicleFragment extends Fragment {
     View root;
     ImageView rcimage,invoice,insurance,vfront,vside,vback;
-    TextView plateEt, modelnumEt, madeinEt, kmscompletedEt, rentperday, rentperhour;
+    TextView plateEt, modelnumEt, madeinEt, kmscompletedEt, rentperhour;
     ProgressBar rcProgress,invoiceProgress,insuranceProgress,vfrontProgress,vsideProgress,vbackProgress;
     int vehicleid;
     Button editbt, removebt;
@@ -53,7 +53,7 @@ public class OwnerViewVehicleFragment extends Fragment {
         modelnumEt = root.findViewById(R.id.vvmodelnumber);
         madeinEt = root.findViewById(R.id.vvmadein);
         kmscompletedEt = root.findViewById(R.id.vvkmscompleted);
-        rentperday = root.findViewById(R.id.vvrentperday);
+//        rentperday = root.findViewById(R.id.vvrentperday);
         rentperhour = root.findViewById(R.id.vvrentperhour);
         removebt = root.findViewById(R.id.vvremove);
         retrofit = new Retrofit.Builder()
@@ -122,9 +122,9 @@ public class OwnerViewVehicleFragment extends Fragment {
         plateEt.setText(allData.getPlate_no().toUpperCase());
         modelnumEt.setText(allData.getModel_name());
         madeinEt.setText(allData.getYom());
-        kmscompletedEt.setText(String.valueOf(allData.getTotal_run_hrs()));
+        kmscompletedEt.setText(String.valueOf(allData.getAverage_fuel_consumption()));
         rentperhour.setText(String.valueOf(allData.getRent_per_hour_with_fuel()));
-        rentperday.setText(String.valueOf(allData.getRent_per_day_with_fuel()));
+//        rentperday.setText(String.valueOf(allData.getRent_per_day_with_fuel()));
         editbt.setOnClickListener(v -> {
             Bundle args = new Bundle();
             args.putString("plate",allData.getPlate_no());

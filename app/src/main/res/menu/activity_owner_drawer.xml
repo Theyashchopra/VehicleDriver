@@ -13,6 +13,10 @@
             android:icon="@drawable/ic_owner_shipped"
             android:title="Vehicles" />
         <item
+            android:id="@+id/nav_locate_owner"
+            android:icon="@drawable/ic_owner_shipped"
+            android:title="Locate vehicles" />
+        <item
             android:id="@+id/nav_slideshow_owner"
             android:icon="@drawable/ic_owner_driver"
             android:title="Drivers" />

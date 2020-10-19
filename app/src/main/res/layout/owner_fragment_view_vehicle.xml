@@ -77,7 +77,7 @@
             android:id="@+id/vvkmsc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Running Hours: "
+            android:text="Average fuel consumption: "
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
             android:layout_below="@id/vvmai"
@@ -100,39 +100,13 @@
             android:layout_toEndOf="@+id/vvkmscompleted"/>
 
         <TextView
-            android:id="@+id/vvrpd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rent per day: "
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_below="@id/vvkmsc"
-            android:layout_alignParentStart="true"/>
-        <TextView
-            android:id="@+id/vvrs1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rs"
-            android:textColor="@android:color/black"
-            android:layout_alignBottom="@id/vvrpd"
-            android:layout_toEndOf="@id/vvrpd"/>
-        <TextView
-            android:id="@+id/vvrentperday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@android:color/black"
-            android:layout_alignBottom="@id/vvrs1"
-            android:layout_toEndOf="@id/vvrs1"/>
-
-        <TextView
             android:id="@+id/vvrph"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rent per hour: "
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
-            android:layout_below="@+id/vvrpd"
+            android:layout_below="@+id/vvkmsc"
             android:layout_alignParentStart="true"/>
         <TextView
             android:id="@+id/vvrs2"
@@ -157,7 +131,7 @@
            android:id="@+id/all_images"
            android:layout_height="wrap_content"
            android:layout_width="match_parent"
-           android:layout_below="@id/vvrentperhour"
+           android:layout_below="@id/navigate"
            layout="@layout/view_vehicle_docs"/>
         <Button
             android:layout_width="wrap_content"
@@ -166,13 +140,13 @@
             android:layout_margin="5dp"
             android:layout_centerHorizontal="true"
             android:drawableLeft="@drawable/ic_location_driver_owner"
-            android:layout_below="@id/all_images"
+            android:layout_below="@id/vvrentperhour"
             android:text="TRACK LOCATION"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@id/navigate">
+            android:layout_below="@id/all_images">
             <Button
                 android:id="@+id/vvremove"
                 android:layout_width="0dp"
