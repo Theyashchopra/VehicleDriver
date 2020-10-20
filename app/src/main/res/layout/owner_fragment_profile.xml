@@ -307,6 +307,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Tan number"
+            android:visibility="gone"
             android:layout_below="@+id/oppannumber"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 

@@ -25,6 +25,7 @@ import com.lifecapable.vehicledriver.owner.datamodel.DriverOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.Message;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleOwnerData;
+import com.lifecapable.vehicledriver.owner.dialogs.OwnerDeleteDriverPopup;
 import com.lifecapable.vehicledriver.owner.dialogs.OwnerImageViewPopup;
 import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
 import com.lifecapable.vehicledriver.owner.ui.gallery.OwnerViewVehicleFragment;
@@ -80,18 +81,9 @@ public class OwnerViewDriverFragment extends Fragment {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<Message> call = RestAdapter.createAPI().deleteDriver(driverOwnerData.id);
-                call.enqueue(new Callback<Message>() {
-                    @Override
-                    public void onResponse(Call<Message> call, Response<Message> response) {
-                        NavHostFragment.findNavController(OwnerViewDriverFragment.this).navigateUp();
-                    }
+                OwnerDeleteDriverPopup od = new OwnerDeleteDriverPopup(driverOwnerData.id,OwnerViewDriverFragment.this);
+                od.show(getActivity().getSupportFragmentManager(),"Delete");
 
-                    @Override
-                    public void onFailure(Call<Message> call, Throwable t) {
-                        Log.e("Something went wrong",t.getMessage());
-                    }
-                });
             }
         });
 

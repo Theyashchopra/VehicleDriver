@@ -83,12 +83,14 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
     ImageView driverImage;
     Button callDriver;
     TextView vehicleName,driverName,plateNumber;
+    private Handler mHandler;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_vehicle_map, container, false);
 
         timer = new Timer();
+        mHandler = new Handler();
         vehicle_id = 0;
         driver_id = 0;
         first = true;
@@ -303,8 +305,7 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
         progressBar.setVisibility(View.VISIBLE);
         if(driver_id == 0){
             Toast.makeText(getContext(), "No Driver available", Toast.LENGTH_SHORT).show();
-            DriverOfflinePopup dp = new DriverOfflinePopup(VehicleMapFragment.this,getContext());
-            dp.show(getActivity().getSupportFragmentManager(),"offline");
+            startProgress();
             return;
         }
         OwnerJsonPlaceHolder o = RestAdapter.createAPI();
@@ -321,9 +322,8 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
                         driverMobileNumber = d.getMobile();
                     }else{
                         progressBar.setVisibility(View.INVISIBLE);
-                        Toast.makeText(getContext(), "Driver not found", Toast.LENGTH_SHORT).show();
-                        DriverOfflinePopup dp = new DriverOfflinePopup(VehicleMapFragment.this,getContext());
-                        dp.show(getActivity().getSupportFragmentManager(),"offline");
+                       // Toast.makeText(getContext(), "Driver not found", Toast.LENGTH_SHORT).show();
+                        startProgress();
                     }
                 }
             }
@@ -357,5 +357,22 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
+    }
+    private void startProgress() {
+//      New thread to perform background operation
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+//                  Update the value background thread to UI thread
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                           // mProgressBar.setProgress(currentProgressCount);
+                            DriverOfflinePopup dp = new DriverOfflinePopup(VehicleMapFragment.this,getContext());
+                            dp.show(getActivity().getSupportFragmentManager(),"offline");
+                        }
+                    },10000);
+                }
+        }).start();
     }
 }

@@ -115,7 +115,7 @@ public class EditAppointmentFragment extends Fragment implements OwnerSelectVehi
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     getContext(),
                     (datePicker, i, i1, i2) -> {
-                        startstring =  i2 + "/" + i1 + "/" + i;
+                        startstring =  i2 + "/" + (i1+1) + "/" + i;
                         Log.i("start",startstring);
                         starttv.setText(startstring);
                         map.put("start",startstring);
@@ -129,7 +129,7 @@ public class EditAppointmentFragment extends Fragment implements OwnerSelectVehi
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     getContext(),
                     (datePicker, i, i1, i2) -> {
-                        endstring =  i2 + "/" + i1 + "/" + i;
+                        endstring =  i2 + "/" + (i1+1) + "/" + i;
                         endtv.setText(endstring);
                         map.put("end",endstring);
                     },

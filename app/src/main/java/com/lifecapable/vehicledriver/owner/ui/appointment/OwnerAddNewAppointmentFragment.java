@@ -76,7 +76,7 @@ public class OwnerAddNewAppointmentFragment extends Fragment implements  OwnerSe
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     getContext(),
                     (datePicker, i, i1, i2) -> {
-                        startstring =  i2 + "/" + i1 + "/" + i;
+                        startstring =  i2 + "/" + (i1+1) + "/" + i;
                         starttv.setText(startstring);
                     },
                     Calendar.getInstance().get(Calendar.YEAR),
@@ -88,7 +88,7 @@ public class OwnerAddNewAppointmentFragment extends Fragment implements  OwnerSe
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     getContext(),
                     (datePicker, i, i1, i2) -> {
-                        endstring =  i2 + "/" + i1 + "/" + i;
+                        endstring =  i2 + "/" + (i1+1) + "/" + i;
                         endtv.setText(endstring);
                     },
                     Calendar.getInstance().get(Calendar.YEAR),

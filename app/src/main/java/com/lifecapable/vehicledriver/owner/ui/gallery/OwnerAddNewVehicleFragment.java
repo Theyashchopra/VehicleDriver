@@ -114,7 +114,7 @@ public class OwnerAddNewVehicleFragment extends Fragment {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         getContext(),
                         (datePicker, i, i1, i2) -> {
-                            endString =  i2 + "/" + i1 + "/" + i;
+                            endString =  i2 + "/" + (i1+1) + "/" + i;
                             enddatetv.setText(endString);
                             //map.put("busy_start",startstring);
                         },
