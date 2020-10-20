@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Internet or GPS is OFF"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:id="@+id/head"
+            android:background="@android:color/holo_red_dark"
+            android:textSize="15sp"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:lottie_rawRes="@raw/hire_on_map_driver_offline"
+            app:lottie_autoPlay="true"
+            android:layout_below="@id/head"
+            android:id="@+id/offlineanim"
+            app:lottie_loop="false"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/offlineanim"
+            android:id="@+id/ok"
+            android:text="OK"/>
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

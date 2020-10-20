@@ -48,6 +48,7 @@ import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.DriverOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.LocationObject;
+import com.lifecapable.vehicledriver.owner.dialogs.DriverOfflinePopup;
 import com.lifecapable.vehicledriver.owner.placeholders.OwnerJsonPlaceHolder;
 import com.squareup.picasso.Picasso;
 
@@ -302,6 +303,8 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
         progressBar.setVisibility(View.VISIBLE);
         if(driver_id == 0){
             Toast.makeText(getContext(), "No Driver available", Toast.LENGTH_SHORT).show();
+            DriverOfflinePopup dp = new DriverOfflinePopup(VehicleMapFragment.this,getContext());
+            dp.show(getActivity().getSupportFragmentManager(),"offline");
             return;
         }
         OwnerJsonPlaceHolder o = RestAdapter.createAPI();
@@ -319,6 +322,8 @@ public class VehicleMapFragment extends Fragment implements OnMapReadyCallback {
                     }else{
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(getContext(), "Driver not found", Toast.LENGTH_SHORT).show();
+                        DriverOfflinePopup dp = new DriverOfflinePopup(VehicleMapFragment.this,getContext());
+                        dp.show(getActivity().getSupportFragmentManager(),"offline");
                     }
                 }
             }
