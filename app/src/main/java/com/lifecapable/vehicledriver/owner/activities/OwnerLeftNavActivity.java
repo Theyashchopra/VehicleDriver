@@ -164,14 +164,14 @@ public class OwnerLeftNavActivity extends AppCompatActivity {
                     }
                     Bundle bundle = new Bundle();
                     bundle.putString("days",String.valueOf(Math.round(daysLeft)));
-                    if(daysLeft < 5){
+                    if(Math.round(daysLeft) < 5){
                         ReminderPopup rp = new ReminderPopup();
                         rp.setArguments(bundle);
                         rp.show(getSupportFragmentManager(),"reminder");
                     }
-                    ReminderPopup rp = new ReminderPopup();
+/*                    ReminderPopup rp = new ReminderPopup();
                     rp.setArguments(bundle);
-                    rp.show(getSupportFragmentManager(),"reminder");
+                    rp.show(getSupportFragmentManager(),"reminder");*/
                     Log.i("Valid",String.valueOf(map.get("message")));
                 }else{
                     Toast.makeText(OwnerLeftNavActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();

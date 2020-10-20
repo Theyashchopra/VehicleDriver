@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lifecapable.vehicledriver.R;
+import com.lifecapable.vehicledriver.owner.activities.OwnerLeftNavActivity;
 import com.lifecapable.vehicledriver.owner.adapter.HomeOwnerAdapter;
 import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
 import com.lifecapable.vehicledriver.owner.datamodel.HomeOwnerData;
@@ -46,6 +47,7 @@ public class OwnerHomeFragment extends Fragment {
     HomeOwnerAdapter homeadapter;
     List<HomeOwnerData> homeList;
     SharedPreferences sharedPreferences;
+    double daysleft;
     int id;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.owner_fragment_home, container, false);
@@ -100,7 +102,10 @@ public class OwnerHomeFragment extends Fragment {
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });
-
+        if(OwnerLeftNavActivity.daysLeft != null){
+            daysleft = daysleft;
+            checkdaysLeft();
+        }
     }
 
     @Override
@@ -115,5 +120,10 @@ public class OwnerHomeFragment extends Fragment {
                 startActivity(a);
             }
         });
+    }
+    void checkdaysLeft(){
+        if(daysleft < 5.0){
+
+        }
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,6 +56,9 @@ public class OwnerRegisterActivity extends AppCompatActivity {
     Button registerBtn;
     CheckBox checkBox;
     TextView read;
+    SharedPreferences owner;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +69,8 @@ public class OwnerRegisterActivity extends AppCompatActivity {
         readTerms();
     }
     private void init(){
+        owner = getSharedPreferences("owner",MODE_PRIVATE);
+        editor = owner.edit();
         read = findViewById(R.id.read_terms);
         checkBox = findViewById(R.id.terms);
         cities = new ArrayList<>();
@@ -192,15 +198,19 @@ public class OwnerRegisterActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.INVISIBLE);
                     Map<String,Object> res = response.body();
                     try{
-                        if(!res.get("email").toString().isEmpty()){
+                        if(!res.get("id").toString().isEmpty()){
                             // registration successful
                             //save the id for future purposes if required
+                            editor.putBoolean("login",true);
+                            editor.apply();
+                            editor.putInt("id",(int)Math.round((double)res.get("id")));
+                            editor.apply();
                             RegisterSuccessPopup rg = new RegisterSuccessPopup();
                             rg.show(getSupportFragmentManager(),"success");
                         }
                     }catch (Exception e){
                         e.printStackTrace();
-                        Toast.makeText(OwnerRegisterActivity.this, res.get("message").toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OwnerRegisterActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

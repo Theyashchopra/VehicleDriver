@@ -1,375 +1,401 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#f5f5f5"
     android:fillViewport="true"
     tools:context=".owner.ui.gallery.OwnerAddNewVehicleFragment">
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="invisible"
-        android:elevation="10dp"
-        android:id="@+id/progress"/>
-    <TextView
-        android:id="@+id/avim"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Vehicle Details here"
-        android:layout_margin="8dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"/>
-    <ImageView
-        android:id="@+id/avvehicleImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="12dp"
-        android:visibility="gone"
-        android:src="@drawable/ic_account"
-        android:layout_below="@id/avim"
-        android:layout_centerHorizontal="true"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/avname"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Name"
-        android:layout_below="@id/avvehicleImage"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:layout_height="wrap_content">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:elevation="10dp"
+            android:id="@+id/progress"/>
+        <TextView
+            android:id="@+id/avim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Vehicle Details here"
+            android:layout_margin="8dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"/>
+        <ImageView
+            android:id="@+id/avvehicleImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_account"
+            android:layout_below="@id/avim"
+            android:layout_centerHorizontal="true"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/avnameet"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text" />
+            android:layout_margin="8dp"
+            android:hint="Name"
+            android:layout_below="@id/avvehicleImage"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/avnameet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/avplatenumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Vehicle Number"
-        android:layout_below="@id/avname"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/avplatenumberet"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avplatenumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text" />
+            android:layout_margin="8dp"
+            android:hint="Vehicle Number"
+            android:layout_below="@id/avname"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>
-    <TextView
-        android:id="@+id/avpn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="*The vehicle number should be without spaces and in small letter"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_below="@id/avplatenumber"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/avplatenumberet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/avmadein"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
-        android:hint="Year of Manufacture"
-        android:layout_below="@id/avpn"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/avpn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*The vehicle number should be without spaces and in small letter"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/avplatenumber"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/avmadeinet"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avmadein"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:maxLength="4"/>
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:hint="Year of Manufacture"
+            android:layout_below="@id/avpn"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/avmadeinet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="4"/>
 
-<!--       <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/avktotalrunhours"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Total hours running"
-        android:layout_below="@+id/avmadein"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/avktotalrunhourset"
+    <!--       <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avktotalrunhours"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_margin="8dp"
+            android:hint="Total hours running"
+            android:layout_below="@+id/avmadein"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/avktotalrunhourset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
-<!--    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/avrunkmhr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Running kilometer per hour"
-        android:layout_below="@+id/avktotalrunhours"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/avrunkmhret"
+    <!--    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avrunkmhr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_margin="8dp"
+            android:hint="Running kilometer per hour"
+            android:layout_below="@+id/avktotalrunhours"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/avrunkmhret"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
-<!--    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/avfuelconsumption"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Fuel consumption rate"
-        android:layout_below="@+id/avrunkmhr"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/avfuelconsumptionet"
+    <!--    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avfuelconsumption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_margin="8dp"
+            android:hint="Fuel consumption rate"
+            android:layout_below="@+id/avrunkmhr"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/avfuelconsumptionet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/avavgfuelconsumption"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Average fuel consumption"
-        android:layout_below="@+id/avmadein"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/avavgfuelconsumptionet"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avavgfuelconsumption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_margin="8dp"
+            android:hint="Average fuel consumption"
+            android:layout_below="@+id/avmadein"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/avavgfuelconsumptionet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
-<!--    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/avrentperhourwf"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Rent per hour with fuel(in rupees)"
-        android:layout_below="@id/avavgfuelconsumption"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/avrentperhourwfet"
+    <!--    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avrentperhourwf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_margin="8dp"
+            android:hint="Rent per hour with fuel(in rupees)"
+            android:layout_below="@id/avavgfuelconsumption"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/avrentperhourwfet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/avrentperdaywf"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Rent per Day with fuel(in rupees)"
-        android:layout_below="@id/avrentperhourwf"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/avrentperdaywfet"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avrentperdaywf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_margin="8dp"
+            android:hint="Rent per Day with fuel(in rupees)"
+            android:layout_below="@id/avrentperhourwf"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/avrentperdaywfet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/avrentperhourwof"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Rent per hour without fuel(in rupees)"
-        android:layout_below="@id/avrentperdaywf"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/avrentperhourwofet"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avrentperhourwof"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
+            android:layout_margin="8dp"
+            android:hint="Rent per hour without fuel(in rupees)"
+            android:layout_below="@id/avrentperdaywf"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/avrentperhourwofet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/avrentperdaywof"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Rent per Day without fuel(in rupees)"
-        android:layout_below="@id/avrentperhourwof"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/avrentperdaywofet"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/avrentperdaywof"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_margin="8dp"
+            android:hint="Rent per Day without fuel(in rupees)"
+            android:layout_below="@id/avrentperhourwof"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/avavgfuelconsumption"
-        android:id="@+id/rentlayout">
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/rentti"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
-        android:hint="Rent Amount"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/avrentperdaywofet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/rentet"
+        </com.google.android.material.textfield.TextInputLayout>-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-    <Spinner
-        android:id="@+id/rentspinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_margin="8dp"
-        android:layout_below="@id/rentti"/>
-    </LinearLayout>
-    <TextView
-        android:id="@+id/avavil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Available Now? "
-        android:layout_margin="8dp"
-        android:layout_below="@+id/rentlayout"
-        android:layout_alignParentStart="true"/>
-    <RadioGroup
-        android:id="@+id/avavailblenowbg"
-        android:layout_width="match_parent"
-        android:checkedButton="@id/yes"
-        android:layout_height="30dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/owner_radio_pick_outline"
-        android:orientation="horizontal"
-        android:layout_below="@+id/rentlayout"
-        android:layout_toEndOf="@+id/avavil">
-        <androidx.appcompat.widget.AppCompatRadioButton
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:layout_marginEnd="1dp"
-            android:id="@+id/yes"
-            android:background="@drawable/owner_radio_background"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_below="@id/avavgfuelconsumption"
+            android:id="@+id/rentlayout">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/rentti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:button="@null"
-            android:gravity="center"
-            android:text="Yes"
-            android:textColor="@android:color/white" />
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:hint="Rent Amount"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <androidx.appcompat.widget.AppCompatRadioButton
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            android:id="@+id/no"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/rentet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <Spinner
+            android:id="@+id/rentspinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/owner_radio_background"
-            android:button="@null"
-            android:gravity="center"
-            android:text="No"
-            android:textColor="@android:color/white" />
-    </RadioGroup>
+            android:layout_margin="8dp"
+            android:layout_below="@id/rentti"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/avavil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Available Now? "
+            android:layout_margin="8dp"
+            android:layout_below="@+id/rentlayout"
+            android:layout_alignParentStart="true"/>
+        <RadioGroup
+            android:id="@+id/avavailblenowbg"
+            android:layout_width="match_parent"
+            android:checkedButton="@id/yes"
+            android:layout_height="30dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/owner_radio_pick_outline"
+            android:orientation="horizontal"
+            android:layout_below="@+id/rentlayout"
+            android:layout_toEndOf="@+id/avavil">
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginEnd="1dp"
+                android:id="@+id/yes"
+                android:background="@drawable/owner_radio_background"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Yes"
+                android:textColor="@android:color/white" />
 
-  <!--  <TextView
-        android:id="@+id/avinv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="add Invoice image"
-        android:layout_margin="8dp"
-        android:layout_below="@id/avsubcategoery2"/>
-    <ImageView
-        android:id="@+id/avinvoiceimage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_addphoto"
-        android:layout_marginBottom="8dp"
-        android:layout_alignTop="@id/avinv"
-        android:layout_toEndOf="@id/avinv"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:id="@+id/no"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/owner_radio_background"
+                android:button="@null"
+                android:gravity="center"
+                android:text="No"
+                android:textColor="@android:color/white" />
+        </RadioGroup>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/avenddatecard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/avavailblenowbg"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            android:elevation="10dp"
+            android:visibility="gone">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/avenddatetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="End Date"
+                    android:layout_centerInParent="true"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="12dp"/>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/avr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="add RC image"
-        android:layout_margin="8dp"
-        android:layout_below="@id/avinvoiceimage"/>
-    <ImageView
-        android:id="@+id/avrcimage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_addphoto"
-        android:layout_marginBottom="8dp"
-        android:layout_alignTop="@id/avr"
-        android:layout_toEndOf="@id/avr"/>
+      <!--  <TextView
+            android:id="@+id/avinv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add Invoice image"
+            android:layout_margin="8dp"
+            android:layout_below="@id/avsubcategoery2"/>
+        <ImageView
+            android:id="@+id/avinvoiceimage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_addphoto"
+            android:layout_marginBottom="8dp"
+            android:layout_alignTop="@id/avinv"
+            android:layout_toEndOf="@id/avinv"/>
 
-    <TextView
-        android:id="@+id/avins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="add Insurance image"
-        android:layout_margin="8dp"
-        android:layout_below="@id/avrcimage"/>
-    <ImageView
-        android:id="@+id/avinsuranceimage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_addphoto"
-        android:layout_marginBottom="8dp"
-        android:layout_alignTop="@id/avins"
-        android:layout_toEndOf="@id/avins"/>-->
+        <TextView
+            android:id="@+id/avr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add RC image"
+            android:layout_margin="8dp"
+            android:layout_below="@id/avinvoiceimage"/>
+        <ImageView
+            android:id="@+id/avrcimage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_addphoto"
+            android:layout_marginBottom="8dp"
+            android:layout_alignTop="@id/avr"
+            android:layout_toEndOf="@id/avr"/>
 
-    <Button
-        android:id="@+id/avdonebt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Done"
-        android:textColor="@android:color/white"
-        android:layout_margin="8dp"
-        android:background="@drawable/background_green"
-        android:layout_alignParentBottom="true" />
+        <TextView
+            android:id="@+id/avins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add Insurance image"
+            android:layout_margin="8dp"
+            android:layout_below="@id/avrcimage"/>
+        <ImageView
+            android:id="@+id/avinsuranceimage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_addphoto"
+            android:layout_marginBottom="8dp"
+            android:layout_alignTop="@id/avins"
+            android:layout_toEndOf="@id/avins"/>-->
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/avdonebt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:textColor="@android:color/white"
+            android:layout_margin="8dp"
+            android:background="@drawable/background_green"
+            android:layout_below="@id/avenddatecard" />
+
+    </RelativeLayout>
+</ScrollView>

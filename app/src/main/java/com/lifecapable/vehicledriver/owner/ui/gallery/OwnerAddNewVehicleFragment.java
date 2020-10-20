@@ -1,8 +1,11 @@
 package com.lifecapable.vehicledriver.owner.ui.gallery;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +17,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -25,9 +29,13 @@ import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleIds;
 
 import java.net.NetworkInterface;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,6 +56,9 @@ public class OwnerAddNewVehicleFragment extends Fragment {
     ProgressBar progressBar;
     Spinner spinner;
     String totalrentString,unit;
+    CardView enddatecv;
+    TextView enddatetv;
+    String endString;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.owner_fragment_add_new_vehicle, container, false);
@@ -57,6 +68,8 @@ public class OwnerAddNewVehicleFragment extends Fragment {
         platenumber = root.findViewById(R.id.avplatenumberet);
         yearofman = root.findViewById(R.id.avmadeinet);
         avgfuelconsumption = root.findViewById(R.id.avavgfuelconsumptionet);
+        enddatecv = root.findViewById(R.id.avenddatecard);
+        enddatetv = root.findViewById(R.id.avenddatetext);
 /*        totalhoursrun = root.findViewById(R.id.avktotalrunhourset);
         kmperhour = root.findViewById(R.id.avrunkmhret);
         fuelconsumptionrate = root.findViewById(R.id.avfuelconsumptionet);
@@ -83,11 +96,33 @@ public class OwnerAddNewVehicleFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 isAvailable = root.findViewById(checkedId) == root.findViewById(R.id.yes);
+                if(isAvailable){
+                    enddatecv.setVisibility(View.GONE);
+                }
+                else {
+                    enddatecv.setVisibility(View.VISIBLE);
+                }
             }
         });
 
         donebt.setOnClickListener(v -> {
             savedata();
+        });
+        enddatecv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        getContext(),
+                        (datePicker, i, i1, i2) -> {
+                            endString =  i2 + "/" + i1 + "/" + i;
+                            enddatetv.setText(endString);
+                            //map.put("busy_start",startstring);
+                        },
+                        Calendar.getInstance().get(Calendar.YEAR),
+                        Calendar.getInstance().get(Calendar.MONTH),
+                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+            }
         });
     }
 
@@ -99,6 +134,13 @@ public class OwnerAddNewVehicleFragment extends Fragment {
                 rentperdaywithoutfuel.getText().toString().isEmpty()*/
         String vehicle_plate = platenumber.getText().toString().trim();
         totalrentString = rentEt.getText().toString().trim() +" "+ unit;
+        if(endString == null){
+            Date c = Calendar.getInstance().getTime();
+            System.out.println("Current time => " + c);
+
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            endString = df.format(c);
+        }
         if(yearofman.getText().toString().isEmpty() || avgfuelconsumption.getText().toString().isEmpty() || platenumber.getText().toString().isEmpty() || rentEt.getText().toString().trim().isEmpty()){
             Toast.makeText(getContext(), "You left something empty!! ", Toast.LENGTH_SHORT).show();
             return;
@@ -123,7 +165,8 @@ public class OwnerAddNewVehicleFragment extends Fragment {
                 vehicle_plate,
                 isAvailable,
                 id,
-                totalrentString));
+                totalrentString,
+                endString));
         /*Integer.parseInt(totalhoursrun.getText().toString()),
                 Integer.parseInt(kmperhour.getText().toString()),
                 Integer.parseInt(fuelconsumptionrate.getText().toString()),

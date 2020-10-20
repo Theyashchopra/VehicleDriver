@@ -33,7 +33,7 @@ public class RegisterSuccessPopup extends DialogFragment {
         }).postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getActivity(), OwnerLoginActivity.class));
+                startActivity(new Intent(getActivity(), OwnerLeftNavActivity.class));
             }
         },2500);
         return view;
