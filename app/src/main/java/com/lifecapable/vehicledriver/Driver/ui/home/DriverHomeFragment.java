@@ -31,6 +31,7 @@ import com.lifecapable.vehicledriver.Driver.datamodels.ListHomeDriverData;
 import com.lifecapable.vehicledriver.Driver.datamodels.VehicleDriverData;
 import com.lifecapable.vehicledriver.Driver.services.LocationService;
 import com.lifecapable.vehicledriver.R;
+import com.lifecapable.vehicledriver.owner.GPS.GpsUtils;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -59,6 +60,8 @@ public class DriverHomeFragment extends Fragment {
     SharedPreferences sharedPreferences;
     SharedPreferences sharedPreferences2;
     SharedPreferences.Editor editor;
+    boolean isGPS;
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.driver_fragment_home, container, false);
 
@@ -81,7 +84,7 @@ public class DriverHomeFragment extends Fragment {
         Log.e("Vid    ", vid+"");
         setBusyState(sharedPreferences.getBoolean("busy",false));
         setOnlineStatus(sharedPreferences.getBoolean("state",false));
-
+        new GpsUtils(getContext()).turnGPSOn(isGPSEnable -> isGPS = isGPSEnable);
         initHome();
         initRecycle();
         getLocationPermission();
@@ -158,7 +161,7 @@ public class DriverHomeFragment extends Fragment {
         }
         else{
             setAvailabilityInApi(0);
-            String busy = "BUSY";
+            String busy = "NOT AVAILABLE";
             busystate = false;
             busybt.setBackgroundResource(R.drawable.background_orange);
             busybt.setText(busy);
