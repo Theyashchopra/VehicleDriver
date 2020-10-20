@@ -123,7 +123,7 @@ public class OwnerViewVehicleFragment extends Fragment {
         modelnumEt.setText(allData.getModel_name());
         madeinEt.setText(allData.getYom());
         kmscompletedEt.setText(String.valueOf(allData.getAverage_fuel_consumption()));
-        rentperhour.setText(String.valueOf(allData.getRent_per_hour_with_fuel()));
+        rentperhour.setText(String.valueOf(allData.getCost()));
 //        rentperday.setText(String.valueOf(allData.getRent_per_day_with_fuel()));
         editbt.setOnClickListener(v -> {
             Bundle args = new Bundle();

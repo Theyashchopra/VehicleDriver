@@ -43,6 +43,7 @@ public class OwnerLeftNavActivity extends AppCompatActivity {
     NavController navController;
     SharedPreferences sharedPreferences;
     int id;
+    public static Double daysLeft;
 
     String email, name;
 
@@ -75,6 +76,11 @@ public class OwnerLeftNavActivity extends AppCompatActivity {
             //Toast.makeText(OwnerLeftNavActivity.this, "Click Click", Toast.LENGTH_SHORT).show();
             mAppBarConfiguration.getOpenableLayout().close();closeContextMenu();
         });
+        try {
+            validate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         logoutFromNavigationBar(navigationView,drawer);
         getData();
     }
@@ -146,8 +152,10 @@ public class OwnerLeftNavActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Map> call, Response<Map> response) {
                 if(response.isSuccessful()){
-                    Map<String,Boolean> map = response.body();
-                    boolean isValid = map.get("message");
+                    Map<String,Object> map = response.body();
+                    boolean isValid = (boolean)map.get("message");
+                    daysLeft = (Double) map.get("days_left");
+                    Log.e("Validate  ",""+isValid+" "+daysLeft);
                     if(!isValid){
                         Toast.makeText(OwnerLeftNavActivity.this, "Subscription Expired", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(OwnerLeftNavActivity.this, ExpiredActivity.class));

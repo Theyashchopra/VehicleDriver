@@ -250,6 +250,24 @@
                     android:textColor="@android:color/black"
                     android:layout_below="@+id/opsubscriptionname"
                     android:layout_toEndOf="@+id/opsav"/>
+                <TextView
+                    android:id="@+id/opdl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Days Left: "
+                    android:layout_below="@id/opsallottedvehicles"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_alignParentStart="true"/>
+
+                <TextView
+                    android:id="@+id/opdaysleft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@android:color/black"
+                    android:layout_below="@+id/opsallottedvehicles"
+                    android:layout_toEndOf="@+id/opdl"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -361,7 +379,7 @@
             android:orientation="horizontal"
             android:layout_below="@id/opregisternumber">
 
-            <Button
+<!--            <Button
                 android:id="@+id/oplogout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -369,7 +387,7 @@
                 android:text="Logout"
                 android:layout_margin="8dp"
                 android:textColor="@android:color/white"
-                android:background="@drawable/background_red"/>
+                android:background="@drawable/background_red"/>-->
 
             <Button
                 android:id="@+id/opedit"

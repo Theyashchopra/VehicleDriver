@@ -16,7 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.lifecapable.vehicledriver.MainActivity;
 import com.lifecapable.vehicledriver.R;
+import com.lifecapable.vehicledriver.owner.activities.OwnerLeftNavActivity;
 import com.lifecapable.vehicledriver.owner.adapter.RestAdapter;
 import com.lifecapable.vehicledriver.owner.datamodel.ProfileOwnerData;
 
@@ -34,9 +36,9 @@ public class OwnerProfileFragment extends Fragment {
 
     View root;
     TextInputEditText nameEt, addressEt, pincodeEt, panEt, tanEt, gstEt, gumastaEt, emailEt, contactEt, contact2Et;
-    Button editbt, donebt, logoutbt;
+    Button editbt, donebt;
     Boolean state;
-    TextView subnaem,alloted_vehicles;
+    TextView subnaem,alloted_vehicles, daysleft;
     SharedPreferences sharedPreferences;
     int id;
     ProgressBar progressBar;
@@ -65,7 +67,8 @@ public class OwnerProfileFragment extends Fragment {
         contact2Et = root.findViewById(R.id.opcontact2et);
         editbt = root.findViewById(R.id.opedit);
         donebt = root.findViewById(R.id.opdone);
-        logoutbt = root.findViewById(R.id.oplogout);
+        daysleft = root.findViewById(R.id.opdaysleft);
+    //    logoutbt = root.findViewById(R.id.oplogout);
         inithome();
 
         return root;
@@ -101,7 +104,7 @@ public class OwnerProfileFragment extends Fragment {
                 addressEt.setEnabled(true);
                 donebt.setVisibility(View.VISIBLE);
                 editbt.setVisibility(View.GONE);
-                logoutbt.setVisibility(View.GONE);
+                //logoutbt.setVisibility(View.GONE);
         });
         donebt.setOnClickListener(v -> {
                 state = true;
@@ -120,7 +123,7 @@ public class OwnerProfileFragment extends Fragment {
                 contact2Et.setEnabled(false);
                 donebt.setVisibility(View.GONE);
                 editbt.setVisibility(View.VISIBLE);
-                logoutbt.setVisibility(View.VISIBLE);
+               // logoutbt.setVisibility(View.VISIBLE);
                 savedata();
         });
     }
@@ -141,6 +144,7 @@ public class OwnerProfileFragment extends Fragment {
     }
 
     private void getData(){
+        daysleft.setText(((int)Math.round(OwnerLeftNavActivity.daysLeft))+"");
         progressBar.setVisibility(View.VISIBLE);
         Call<ProfileOwnerData> call = RestAdapter.createAPI().ogetProfileData(id);
         call.enqueue(new Callback<ProfileOwnerData>() {
