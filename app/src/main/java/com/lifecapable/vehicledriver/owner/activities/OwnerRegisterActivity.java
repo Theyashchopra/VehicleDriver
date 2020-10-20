@@ -199,7 +199,7 @@ public class OwnerRegisterActivity extends AppCompatActivity {
                     Map<String,Object> res = response.body();
                     try{
                         if(!res.get("id").toString().isEmpty()){
-                            // registration successful
+                            //registration successful
                             //save the id for future purposes if required
                             editor.putBoolean("login",true);
                             editor.apply();
