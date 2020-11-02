@@ -52,7 +52,7 @@ public class OwnerLoginActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(OwnerLoginActivity.this,OwnerRegisterActivity.class));
+                startActivity(new Intent(OwnerLoginActivity.this,MobileNumberActivity.class));
             }
         });
 

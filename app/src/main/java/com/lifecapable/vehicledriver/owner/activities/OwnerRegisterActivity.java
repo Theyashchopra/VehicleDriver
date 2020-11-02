@@ -58,11 +58,13 @@ public class OwnerRegisterActivity extends AppCompatActivity {
     TextView read;
     SharedPreferences owner;
     SharedPreferences.Editor editor;
-
+    String paramMobile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.owner_activity_register);
+        Intent intent = getIntent();
+        paramMobile = intent.getStringExtra("mobile");
         init();
         getStates();
         spinnerListeners();
@@ -84,6 +86,8 @@ public class OwnerRegisterActivity extends AppCompatActivity {
         passEt = findViewById(R.id.password);
         cpassEt = findViewById(R.id.confirm);
         mobileEt = findViewById(R.id.mobile);
+        mobileEt.setText(paramMobile);
+        mobileEt.setEnabled(false);
         mobile2Et = findViewById(R.id.mobile2);
         addresssEt = findViewById(R.id.address);
         tehsilEt = findViewById(R.id.tehsil);

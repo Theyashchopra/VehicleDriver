@@ -16,6 +16,7 @@ import com.lifecapable.vehicledriver.owner.datamodel.Message;
 import com.lifecapable.vehicledriver.owner.datamodel.Messages;
 import com.lifecapable.vehicledriver.owner.datamodel.ProfileOwnerData;
 import com.lifecapable.vehicledriver.owner.datamodel.RootEnquiry;
+import com.lifecapable.vehicledriver.owner.datamodel.RootMessage;
 import com.lifecapable.vehicledriver.owner.datamodel.StateModel;
 import com.lifecapable.vehicledriver.owner.datamodel.StateModelRoot;
 import com.lifecapable.vehicledriver.owner.datamodel.VehicleDetailsOwnerData;
@@ -211,4 +212,7 @@ public interface OwnerJsonPlaceHolder {
 
     @PUT("regowner")
     Call<ProfileOwnerData> updateAgencyProfile(@Query("mobile2") String mobile2, @Query("full_address") String full_address,@Query("pin_code")String pin_code,@Query("id") int id, @Query("ip_address") String ip_address);
+
+
+
 }
