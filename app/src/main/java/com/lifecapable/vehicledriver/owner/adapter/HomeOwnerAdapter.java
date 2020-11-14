@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -73,6 +74,18 @@ public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.Home
                 NavHostFragment.findNavController(fragment).navigate(R.id.action_nav_home_owner_to_nav_ViewEnquiry_owner);
             }
         });
+
+        // Added to remove enquries from menu
+        holder.carddelete.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mList.remove(position);
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position, mList.size());
+                    }
+                }
+        );
     }
 
     @Override
@@ -83,6 +96,7 @@ public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.Home
     public static class HomeOwnerViewHolder extends RecyclerView.ViewHolder{
         TextView oaddresstv,ocontacttv,onametv,ovehicletv;
         Button ocontactbt;
+        AppCompatImageView carddelete;
         TextView timetv;
         RelativeLayout ocardrelative;
         public HomeOwnerViewHolder(@NonNull View itemView) {
@@ -94,6 +108,7 @@ public class HomeOwnerAdapter extends RecyclerView.Adapter<HomeOwnerAdapter.Home
             ovehicletv = itemView.findViewById(R.id.ocardvehicle);
             ocardrelative = itemView.findViewById(R.id.ocardrl);
             timetv = itemView.findViewById(R.id.ocardtime);
+            carddelete = itemView.findViewById(R.id.carddelete);
         }
     }
 
