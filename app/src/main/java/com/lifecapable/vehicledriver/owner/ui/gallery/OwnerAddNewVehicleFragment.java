@@ -141,10 +141,15 @@ public class OwnerAddNewVehicleFragment extends Fragment {
             SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             endString = df.format(c);
         }
-        if(yearofman.getText().toString().isEmpty() || avgfuelconsumption.getText().toString().isEmpty() || platenumber.getText().toString().isEmpty() || rentEt.getText().toString().trim().isEmpty()){
+
+        int num = Integer.parseInt(rentEt.getText().toString().trim());
+        if (yearofman.getText().toString().isEmpty() || avgfuelconsumption.getText().toString().isEmpty() || platenumber.getText().toString().isEmpty() || rentEt.getText().toString().trim().isEmpty()) {
             Toast.makeText(getContext(), "You left something empty!! ", Toast.LENGTH_SHORT).show();
             return;
-        }else if(!platenumber.getText().toString().isEmpty()){
+        } else if(0 == num){
+            Toast.makeText(getContext(), "Rent Amount cannot be 0", Toast.LENGTH_SHORT).show();
+            return;
+        }  else if(!platenumber.getText().toString().isEmpty()){
             if(patterMatcher(platenumber.getText().toString())) {
                 platenumber.setError("No blank spaces allowed");
                 YoYo.with(Techniques.Shake)
@@ -250,6 +255,8 @@ public class OwnerAddNewVehicleFragment extends Fragment {
         strings.add("Per Day");
         strings.add("Per Month");
         strings.add("Per Km");
+        strings.add("Per Unit");
+        strings.add("Not Specified");
         try {
             ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, strings);
             spinner.setAdapter(adapter);

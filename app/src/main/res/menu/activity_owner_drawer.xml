@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
@@ -11,15 +12,18 @@
         <item
             android:id="@+id/nav_gallery_owner"
             android:icon="@drawable/ic_owner_shipped"
-            android:title="Vehicles" />
-        <item
-            android:id="@+id/nav_locate_owner"
-            android:icon="@drawable/ic_baseline_location_on_24"
-            android:title="Locate Vehicles" />
+            android:title="Vehicles / Services" />
+
+
         <item
             android:id="@+id/nav_slideshow_owner"
             android:icon="@drawable/ic_owner_driver"
-            android:title="Drivers" />
+            android:title="Drivers / Persons" />
+        <item
+            android:id="@+id/nav_locate_owner"
+            android:icon="@drawable/ic_baseline_location_on_24"
+            android:title="Find Location" />
+
         <item
             android:id="@+id/nav_appointments_owner"
             android:icon="@drawable/ic_appointment_icon"

@@ -278,6 +278,17 @@ public class OwnerAddDriverFragment extends Fragment implements  OwnerSelectVehi
     @Override
     public void getAssigned(int pos, Contact curr) {
         Toast.makeText(getActivity(), curr.getPhone()+" ", Toast.LENGTH_SHORT).show();
-        contact1.setText(curr.getPhone());
+        if(curr.getPhone().contains("+") || curr.getPhone().contains("(") || curr.getPhone().contains(")")
+                || curr.getPhone().contains("-") || curr.getPhone().contains(" ")){
+            String currPhNumber;
+            currPhNumber = curr.getPhone().replaceAll("\\s", "");
+            currPhNumber = currPhNumber.replace("(", "");
+            currPhNumber = currPhNumber.replace(")", "");
+            currPhNumber = currPhNumber.replace("-", "");
+            String phNumber  = currPhNumber.substring(currPhNumber.length() - 10);
+            contact1.setText(phNumber);
+        }else {
+            contact1.setText(curr.getPhone());
+        }
     }
 }

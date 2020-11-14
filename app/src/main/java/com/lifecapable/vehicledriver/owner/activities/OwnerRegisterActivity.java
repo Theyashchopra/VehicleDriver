@@ -55,7 +55,7 @@ public class OwnerRegisterActivity extends AppCompatActivity {
     ProgressBar progressBar;
     Button registerBtn;
     CheckBox checkBox;
-    TextView read;
+    TextView read, readPolicy;
     SharedPreferences owner;
     SharedPreferences.Editor editor;
     String paramMobile;
@@ -69,11 +69,13 @@ public class OwnerRegisterActivity extends AppCompatActivity {
         getStates();
         spinnerListeners();
         readTerms();
+        readPolicy();
     }
     private void init(){
         owner = getSharedPreferences("owner",MODE_PRIVATE);
         editor = owner.edit();
         read = findViewById(R.id.read_terms);
+        readPolicy = findViewById(R.id.read_policy);
         checkBox = findViewById(R.id.terms);
         cities = new ArrayList<>();
         cityModelList = new ArrayList<>();
@@ -365,7 +367,22 @@ public class OwnerRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    Uri uri = Uri.parse("http://rentbygps.epizy.com/hireonmap/term_of_service.html"); // missing 'http://' will cause crashed
+                    Uri uri = Uri.parse("http://hireonmap.com/terms-and-conditions.html"); // missing 'http://' will cause crashed
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(OwnerRegisterActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+    private void readPolicy(){
+        readPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Uri uri = Uri.parse("http://hireonmap.com/privacy-policy.html"); // missing 'http://' will cause crashed
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
                 }catch (Exception e){

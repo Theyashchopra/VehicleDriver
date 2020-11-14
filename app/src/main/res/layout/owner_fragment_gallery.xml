@@ -48,7 +48,7 @@
             android:drawableStart="@drawable/ic_add"
             android:padding="8dp"
             android:layout_margin="8dp"
-            android:text="Add Vehicle"
+            android:text="Add"
             android:background="@drawable/background_accent"
             app:drawableTint="@android:color/white"
             android:textColor="@android:color/white"

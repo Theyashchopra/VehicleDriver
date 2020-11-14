@@ -274,6 +274,14 @@
                 android:layout_margin="8dp"
                 android:textAlignment="center"
                 android:text="Click here to read our Terms"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/read_policy"
+                android:background="#fff"
+                android:layout_margin="8dp"
+                android:textAlignment="center"
+                android:text="Click here to read our Privacy Policy"/>
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
